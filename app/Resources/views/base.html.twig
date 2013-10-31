@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang={{ app.request.locale }}>
+    <head>
+        <meta charset="UTF-8" />
+        <title>A2lix Demo - {% block title %}{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('css/combine.css') }}">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+        {% block javascripts %}
+            <script src="{{ asset('js/combine.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

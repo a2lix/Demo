@@ -1,0 +1,2 @@
+a2lix_demo_translation:
+    resource: "@A2lixDemoTranslationBundle/Resources/config/routing.yml"
