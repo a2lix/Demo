@@ -1,13 +1,13 @@
 {% extends "A2lixDemoTranslationBundle:Backend:layout.html.twig" %}
 
 {% block content %}
-    <h2>ProductGedmo {{ entity.id ? 'Edition' : 'Creation' }}</h2>
+    <h2>Product {{ entity.id ? 'Edition' : 'Creation' }}</h2>
 
     {{ form(editForm) }}
 
     <ul class="record_actions">
         <li>
-            <a href="{{ path('backend_productGedmo') }}">
+            <a href="{{ path('backend_product') }}">
                 Back to the list
             </a>
         </li>

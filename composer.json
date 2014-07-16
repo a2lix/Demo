@@ -4,74 +4,80 @@
     "type": "project",
     "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.3.*",
-        "doctrine/orm": ">=2.2.3,<2.4-dev",
-        "doctrine/doctrine-bundle": "1.2.*",
-        "twig/extensions": "1.0.*",
-        "symfony/assetic-bundle": "2.3.*",
-        "symfony/swiftmailer-bundle": "2.3.*",
-        "symfony/monolog-bundle": "2.3.*",
-        "sensio/distribution-bundle": "2.3.*",
-        "sensio/framework-extra-bundle": "2.3.*",
-        "sensio/generator-bundle": "2.3.*",
+        "symfony/symfony": "~2.5",
+        "doctrine/orm": "~2.2,>=2.2.3",
+        "doctrine/doctrine-bundle": "~1.2",
+        "twig/extensions": "~1.0",
+        "symfony/assetic-bundle": "~2.3",
+        "symfony/swiftmailer-bundle": "~2.3",
+        "symfony/monolog-bundle": "~2.4",
+        "sensio/distribution-bundle": "~3.0",
+        "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
-        
-        "stof/doctrine-extensions-bundle": "dev-master",
-        "knplabs/doctrine-behaviors": "1.0.*@dev",
+        "umpirsky/composer-permissions-handler": "~1.0",
+
         "a2lix/i18n-doctrine-bundle": "0.*@dev",
-        "a2lix/translation-form-bundle": "1.x-dev",
-        
-        "braincrafted/bootstrap-bundle": "2.0.*@dev",
-        
-        "twbs/bootstrap": "3.*",
-        "jquery/jquery": "1.9.*"
+        "a2lix/translation-form-bundle": "2.x-dev",
+
+        "braincrafted/bootstrap-bundle": "~2.0",
+
+        "twbs/bootstrap": "3.0.*",
+        "jquery/jquery":  "1.10.*"
+    },
+    "require-dev": {
+        "sensio/generator-bundle": "~2.3"
     },
     "repositories": [
         {
             "type": "package",
             "package": {
                 "name": "jquery/jquery",
-                "version": "1.9.1",
+                "version": "1.10.2",
                 "dist": {
-                    "url": "http://code.jquery.com/jquery-1.9.1.min.js",
+                    "url": "http://code.jquery.com/jquery-1.10.2.js",
                     "type": "file"
                 }
             }
         }
     ],
     "scripts": {
+        "post-root-package-install": [
+            "SymfonyStandard\\Composer::hookRootPackageInstall"
+        ],
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
+            "Umpirsky\\PermissionsHandler\\ScriptHandler::setPermissions"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
         ]
     },
     "config": {
         "bin-dir": "bin"
     },
-    "minimum-stability": "stable",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
+        "symfony-bin-dir": "bin",
+        "symfony-var-dir": "var",
         "symfony-assets-install": "symlink",
+        "writable-dirs": ["var/cache", "var/logs"],
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
-        },
-        "branch-alias": {
-            "dev-master": "2.3-dev"
         }
     }
 }

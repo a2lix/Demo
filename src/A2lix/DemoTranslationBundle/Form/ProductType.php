@@ -8,16 +8,14 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
-class ProductGedmoType extends AbstractType
+class ProductType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('translations', 'a2lix_translations_gedmo', array(
-                'required' => false
-            ))
+            ->add('translations', 'a2lix_translations')
         ;
-        
+
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) {
             $form = $event->getForm();
             $data = $event->getData();
@@ -33,19 +31,19 @@ class ProductGedmoType extends AbstractType
                         'class' => 'btn btn-primary'
                     )
                 ))
-             ;
+            ;
         });
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'A2lix\DemoTranslationBundle\Entity\ProductGedmo',
+            'data_class' => 'A2lix\DemoTranslationBundle\Entity\Product',
         ));
     }
 
     public function getName()
     {
-        return 'productGedmo';
+        return 'product';
     }
 }

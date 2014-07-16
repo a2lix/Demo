@@ -1,7 +1,7 @@
 {% extends "A2lixDemoTranslationBundle:Backend:layout.html.twig" %}
 
 {% block content %}
-    <h2>ProductGedmo show</h2>
+    <h2>Product show</h2>
 
     <table class="record_properties">
         <tbody>
@@ -22,12 +22,12 @@
 
     <ul class="record_actions">
         <li>
-            <a href="{{ path('backend_productGedmo') }}">
+            <a href="{{ path('backend_product') }}">
                 Back to the list
             </a>
         </li>
         <li>
-            <a href="{{ path('backend_productGedmo_edit', { 'id': entity.id }) }}">
+            <a href="{{ path('backend_product_edit', { 'id': entity.id }) }}">
                 Edit
             </a>
         </li>

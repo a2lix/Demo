@@ -1,5 +1,9 @@
-A2LiX Demo
-==========
+# A2LiX Demo
+
+** Symfony 2.5 (new directory structure) with A2lixTranslationFormBundle (I18nDoctrineBundle strategy) **
+
+
+#### Help
 
 - curl -sS https://getcomposer.org/installer | php
 - php composer.phar install

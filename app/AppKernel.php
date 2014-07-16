@@ -16,11 +16,11 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            
+
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
-            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new A2lix\I18nDoctrineBundle\A2lixI18nDoctrineBundle(),
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
-            
+
             new A2lix\CommonBundle\A2lixCommonBundle(),
             new A2lix\DemoTranslationBundle\A2lixDemoTranslationBundle(),
         );
