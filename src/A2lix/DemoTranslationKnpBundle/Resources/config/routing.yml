@@ -1,0 +1,18 @@
+A2lixDemoTranslationKnpBundle_BackendCustom:
+    resource: "@A2lixDemoTranslationKnpBundle/Controller/BackendCustom/"
+    type:     annotation
+    prefix:   /{_locale}/backend
+
+#A2lixDemoTranslationKnpBundle_BackendSonata:
+#    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+#    prefix: /admin
+#
+#_A2lixDemoTranslationKnpBundle_BackendSonata:
+#    resource: .
+#    type: sonata_admin
+#    prefix: /admin
+
+A2lixDemoTranslationKnpBundle_Frontend:
+    resource: "@A2lixDemoTranslationKnpBundle/Controller/Frontend/"
+    type:     annotation
+    prefix:   /

@@ -1,2 +1,35 @@
-a2lix_demo_translation:
-    resource: "@A2lixDemoTranslationBundle/Resources/config/routing.yml"
+a2lix_demo_translation_a2lix:
+    resource: '@A2lixDemoTranslationA2lixBundle/Resources/config/routing.yml'
+    prefix: /a2lix
+
+a2lix_demo_translation_knp:
+    resource: '@A2lixDemoTranslationKnpBundle/Resources/config/routing.yml'
+    prefix: /knp
+
+# Sonata
+sonata_admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /{_locale}/admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /{_locale}/admin
+
+
+
+
+# Redirects
+home_redir:
+    pattern: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: a2lix_home
+        permanent: true # this for 301
+
+admin_redir:
+    pattern: (/{_locale}/admin/|/admin|/admin/dashboard)
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: sonata_admin_dashboard
+        permanent: true # this for 301

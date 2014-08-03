@@ -18,11 +18,20 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
+
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+
             new A2lix\I18nDoctrineBundle\A2lixI18nDoctrineBundle(),
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
 
             new A2lix\CommonBundle\A2lixCommonBundle(),
-            new A2lix\DemoTranslationBundle\A2lixDemoTranslationBundle(),
+            new A2lix\DemoTranslationA2lixBundle\A2lixDemoTranslationA2lixBundle(),
+            new A2lix\DemoTranslationKnpBundle\A2lixDemoTranslationKnpBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

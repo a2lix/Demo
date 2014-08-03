@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -83,3 +83,13 @@ braincrafted_bootstrap:
 a2lix_translation_form:
     locales: [en, fr, de, es]
     required_locales: [en]
+
+sonata_admin:
+    templates:
+        user_block: A2lixTranslationFormBundle:Util:localeSwitcher_sonata.html.twig
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]

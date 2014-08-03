@@ -1,9 +1,0 @@
-A2lixDemoTranslationBundle_Backend:
-    resource: "@A2lixDemoTranslationBundle/Controller/Backend/"
-    type:     annotation
-    prefix:   /{_locale}/backend
-
-A2lixDemoTranslationBundle_Frontend:
-    resource: "@A2lixDemoTranslationBundle/Controller/Frontend/"
-    type:     annotation
-    prefix:   /

@@ -1,0 +1,58 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/a2lixdemotranslationknp/css/main.css') }}" />
+{% endblock %}
+
+{% block body %}
+    {% block flashMsg %}
+    {% if app.session.flashbag %}
+        <div id="flashMsg">
+            {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': true } %}
+        </div>
+    {% endif %}
+    {% endblock %}
+
+    {% block header %}
+    <header>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="">A2LiX</a>
+            </div><!-- /.navbar-header -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <ul class="dropdown-menu">
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+            {% include 'A2lixTranslationFormBundle:Util:localeSwitcher.html.twig' only %}
+        </nav>
+    </header>
+    {% endblock %}
+
+    <section class="main">
+        {% block content %}{% endblock %}
+    </section>
+
+    {% block footer %}
+    <footer>
+        A2LiX - {{ 'now'|date('Y') }} | <a href="{{ path('sonata_admin_dashboard') }}">Sonata</a> | <a href="{{ path('a2lix_home') }}">A2lix Home</a>
+    </footer>
+    {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/a2lixdemotranslationknp/js/main.js') }}"></script>
+{% endblock %}

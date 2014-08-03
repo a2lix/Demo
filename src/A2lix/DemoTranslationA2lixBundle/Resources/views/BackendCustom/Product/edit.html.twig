@@ -1,0 +1,20 @@
+{% extends "A2lixDemoTranslationA2lixBundle:BackendCustom:layout.html.twig" %}
+
+{% block content %}
+    <h2>Product {{ entity.id ? 'Edition' : 'Creation' }}</h2>
+
+    {{ form(editForm) }}
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('a2lix_backend_product') }}">
+                Back to the list
+            </a>
+        </li>
+        {% if entity.id %}
+        <li class="delete">
+            {{ form(deleteForm) }}
+        </li>
+        {% endif %}
+    </ul>
+{% endblock %}

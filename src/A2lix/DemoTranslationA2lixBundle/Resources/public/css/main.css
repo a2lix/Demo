@@ -1,0 +1,10 @@
+footer {
+    margin-top: 50px;
+    text-align: center;
+    background-color: #eee;
+    padding: 10px 0;
+}
+
+#locale_switcher li.active {
+    font-weight: bold;
+}
