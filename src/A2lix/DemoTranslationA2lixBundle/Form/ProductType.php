@@ -43,9 +43,4 @@ class ProductType extends AbstractType
             'data_class' => 'A2lix\DemoTranslationA2lixBundle\Entity\Product',
         ]);
     }
-
-    public function getBlockPrefix()
-    {
-        return 'product';
-    }
 }
