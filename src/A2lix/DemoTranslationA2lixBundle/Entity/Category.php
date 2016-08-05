@@ -2,9 +2,9 @@
 
 namespace A2lix\DemoTranslationA2lixBundle\Entity;
 
+use A2lix\I18nDoctrineBundle\Doctrine as A2lixI18n;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use A2lix\I18nDoctrineBundle\Doctrine as A2lixI18n;
 
 /**
  * @ORM\Entity

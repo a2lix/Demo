@@ -2,21 +2,23 @@
 
 namespace A2lix\DemoTranslationKnpBundle\Form;
 
+use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProductType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('translations', 'a2lix_translations')
+            ->add('translations', TranslationsType::class)
         ;
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             $form = $event->getForm();
             $data = $event->getData();
 
@@ -25,24 +27,24 @@ class ProductType extends AbstractType
             }
 
             $form
-                ->add('save', 'submit', array(
+                ->add('save', SubmitType::class, [
                     'label' => $data->getId() ? 'Edit' : 'Create',
-                    'attr' => array(
-                        'class' => 'btn btn-primary'
-                    )
-                ))
+                    'attr' => [
+                        'class' => 'btn btn-primary',
+                    ],
+                ])
             ;
         });
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'A2lix\DemoTranslationKnpBundle\Entity\Product',
-        ));
+        ]);
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'product';
     }

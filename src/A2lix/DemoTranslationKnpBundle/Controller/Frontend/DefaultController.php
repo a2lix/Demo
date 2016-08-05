@@ -2,20 +2,18 @@
 
 namespace A2lix\DemoTranslationKnpBundle\Controller\Frontend;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
-    Sensio\Bundle\FrameworkExtraBundle\Configuration\Method,
-    Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
-    Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
     /**
+     * @Method("GET")
      * @Route("/", name="knp_home")
-     * @Template
      */
     public function indexAction()
     {
-        return array();
+        return $this->render('demo_translation/knp/frontend/default/index.html.twig');
     }
 }

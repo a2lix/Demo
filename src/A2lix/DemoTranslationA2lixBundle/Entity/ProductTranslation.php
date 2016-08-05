@@ -2,8 +2,8 @@
 
 namespace A2lix\DemoTranslationA2lixBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use A2lix\I18nDoctrineBundle\Doctrine as A2lixI18n;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
@@ -26,6 +26,7 @@ class ProductTranslation implements A2lixI18n\Interfaces\OneLocaleInterface
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -37,6 +38,7 @@ class ProductTranslation implements A2lixI18n\Interfaces\OneLocaleInterface
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
 

@@ -2,13 +2,13 @@
 
 namespace A2lix\DemoTranslationKnpBundle\Controller\BackendCustom;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
-    Sensio\Bundle\FrameworkExtraBundle\Configuration\Method,
-    Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
-    Symfony\Component\HttpFoundation\Request;
+use A2lix\CommonBundle\Form\Type\DeleteType;
 use A2lix\DemoTranslationKnpBundle\Entity\Product;
 use A2lix\DemoTranslationKnpBundle\Form\ProductType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/product")
@@ -16,11 +16,11 @@ use A2lix\DemoTranslationKnpBundle\Form\ProductType;
 class ProductController extends Controller
 {
     /**
-     * Show one/list
+     * Show one/list.
      *
+     * @Method("GET")
      * @Route("/", defaults={"id"=""}, name="knp_backend_product")
      * @Route("/{id}/show", name="knp_backend_product_show")
-     * @Template
      */
     public function indexAction($id = null)
     {
@@ -31,27 +31,26 @@ class ProductController extends Controller
                 throw $this->createNotFoundException();
             }
 
-            $deleteForm = $this->createForm('delete', $entity, array(
-                'action' => $this->generateUrl('knp_backend_product_delete', array('id' => $id))
-            ));
+            $deleteForm = $this->createForm(DeleteType::class, $entity, [
+                'action' => $this->generateUrl('knp_backend_product_delete', ['id' => $id]),
+            ]);
 
-            return $this->render("A2lixDemoTranslationKnpBundle:BackendCustom\\Product:show.html.twig", array(
-                'entity'     => $entity,
-                'deleteForm' => $deleteForm->createView()
-            ));
+            return $this->render('demo_translation/knp/backend_custom/product/show.html.twig', [
+                'entity' => $entity,
+                'deleteForm' => $deleteForm->createView(),
+            ]);
         }
 
-        return array(
-            'entities' => $em->getRepository('A2lixDemoTranslationKnpBundle:Product')->findAll()
-        );
+        return $this->render('demo_translation/knp/backend_custom/product/index.html.twig', [
+            'entities' => $em->getRepository('A2lixDemoTranslationKnpBundle:Product')->findAll(),
+        ]);
     }
 
     /**
-     * New/Edit
+     * New/Edit.
      *
      * @Route("/new", defaults={"id"=""}, name="knp_backend_product_new")
      * @Route("/{id}/edit", name="knp_backend_product_edit")
-     * @Template
      */
     public function editAction(Request $request, $_route, $id = null)
     {
@@ -61,48 +60,47 @@ class ProductController extends Controller
             if (!$entity = $em->getRepository('A2lixDemoTranslationKnpBundle:Product')->find($id)) {
                 throw $this->createNotFoundException();
             }
-            $deleteForm = $this->createForm('delete', $entity, array(
-                'action' => $this->generateUrl('knp_backend_product_delete', array('id' => $id))
-            ));
-
+            $deleteForm = $this->createForm(DeleteType::class, $entity, [
+                'action' => $this->generateUrl('knp_backend_product_delete', ['id' => $id]),
+            ]);
         } else {
             $entity = new Product();
         }
 
-        $editForm = $this->createForm(new ProductType(), $entity, array(
-            'action' => $this->generateUrl($_route, $id ? array('id' => $id) : array())
-        ));
+        $editForm = $this->createForm(ProductType::class, $entity, [
+            'action' => $this->generateUrl($_route, $id ? ['id' => $id] : []),
+        ]);
         if ($editForm->handleRequest($request)->isSubmitted() && $editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('knp_backend_product_show', array('id' => $entity->getId())));
+            return $this->redirectToRoute('knp_backend_product_show', ['id' => $entity->getId()]);
         }
 
-        return array(
-            'entity'   => $entity,
-            'editForm' => $editForm->createView()
-        ) + ($id ? array('deleteForm' => $deleteForm->createView()) : array());
+        return $this->render('demo_translation/knp/backend_custom/product/edit.html.twig', [
+            'entity' => $entity,
+            'editForm' => $editForm->createView(),
+        ] + ($id ? ['deleteForm' => $deleteForm->createView()] : []));
     }
 
     /**
-     * Delete
+     * Delete.
      *
      * @Route("/{id}/delete", name="knp_backend_product_delete", options={"i18n" = false})
-     * @Method("POST")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Product $entity)
     {
-        $deleteForm = $this->createForm('delete', $entity);
+        $deleteForm = $this->createForm(DeleteType::class, $entity);
 
         if ($deleteForm->handleRequest($request)->isSubmitted() && $deleteForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($entity);
             $em->flush();
 
-            $this->get('bc_bootstrap.flash')->success('Deleted!');
+            $this->addFlash('success', 'Deleted!');
         }
 
-        return $this->redirect($this->generateUrl('knp_backend_product'));
+        return $this->redirectToRoute('knp_backend_product');
     }
 }

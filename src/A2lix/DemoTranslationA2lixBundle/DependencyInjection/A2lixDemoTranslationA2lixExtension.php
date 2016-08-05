@@ -2,11 +2,11 @@
 
 namespace A2lix\DemoTranslationA2lixBundle\DependencyInjection;
 
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\Config\FileLocator;
 
 class A2lixDemoTranslationA2lixExtension extends Extension
 {
@@ -17,8 +17,8 @@ class A2lixDemoTranslationA2lixExtension extends Extension
         $loader = new XmlFileLoader($container, $fileLocator);
         $loader->load('services.xml');
 
-        $loader = new YamlFileLoader($container, $fileLocator);
-        $loader->load('sonata.yml');
+//        $loader = new YamlFileLoader($container, $fileLocator);
+//        $loader->load('sonata.yml');
     }
 
     public function getAlias()
