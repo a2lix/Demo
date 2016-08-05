@@ -3,6 +3,7 @@
 namespace A2lix\CommonBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class DeleteType extends AbstractType
@@ -11,16 +12,16 @@ class DeleteType extends AbstractType
     {
         $builder
             ->setMethod('DELETE')
-            ->add('delete', 'submit', array(
+            ->add('delete', SubmitType::class, [
                 'label' => 'Delete',
-                'attr' => array(
-                    'class' => 'btn btn-danger'
-                )
-            ))
+                'attr' => [
+                    'class' => 'btn btn-danger',
+                ],
+            ])
         ;
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'delete';
     }

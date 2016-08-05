@@ -2,20 +2,18 @@
 
 namespace A2lix\DemoTranslationA2lixBundle\Controller\Frontend;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
-    Sensio\Bundle\FrameworkExtraBundle\Configuration\Method,
-    Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
-    Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
     /**
+     * @Method("GET")
      * @Route("/", name="a2lix_home")
-     * @Template
      */
     public function indexAction()
     {
-        return array();
+        return $this->render('demo_translation/a2lix/frontend/default/index.html.twig');
     }
 }

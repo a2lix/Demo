@@ -3,7 +3,6 @@
 namespace A2lix\DemoTranslationKnpBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
@@ -16,11 +15,12 @@ class Product
 
     public function __call($method, $arguments)
     {
-        if (in_array($method, array('get_action', 'getBatch'))) {
+        if (in_array($method, ['get_action', 'getBatch'], true)) {
             return;
         }
 
-        $method = ('get' === substr($method, 0, 3)) ? $method : 'get'. ucfirst($method);
+        $method = ('get' === substr($method, 0, 3)) ? $method : 'get'.ucfirst($method);
+
         return $this->proxyCurrentLocaleTranslation($method, $arguments);
     }
 }

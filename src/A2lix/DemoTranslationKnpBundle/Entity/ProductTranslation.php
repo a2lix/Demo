@@ -26,6 +26,7 @@ class ProductTranslation
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -37,6 +38,7 @@ class ProductTranslation
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
 
