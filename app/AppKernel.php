@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Knp\DoctrineBehaviors\Bundle\DoctrineBehaviorsBundle(),
 
             new A2lix\I18nDoctrineBundle\A2lixI18nDoctrineBundle(),
+            new A2lix\AutoFormBundle\A2lixAutoFormBundle(),
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
 
             new A2lix\CommonBundle\A2lixCommonBundle(),

@@ -4,9 +4,70 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f4bcb6c8b86a091e040deb8be37b97eb",
-    "content-hash": "0bc2d2a84fba965e09d934a51837eb1f",
+    "hash": "30adec807371a4a6ab4c6f31768655c7",
+    "content-hash": "21634c9816c54c4618cf35432cd03def",
     "packages": [
+        {
+            "name": "a2lix/auto-form-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/a2lix/AutoFormBundle.git",
+                "reference": "c83ddd312434ffc4f9d275998ff778cb32889903"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/a2lix/AutoFormBundle/zipball/c83ddd312434ffc4f9d275998ff778cb32889903",
+                "reference": "c83ddd312434ffc4f9d275998ff778cb32889903",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "symfony/doctrine-bridge": "~2.8|~3.0",
+                "symfony/form": "~2.8|~3.0"
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.4",
+                "fabpot/php-cs-fixer": "~1.10",
+                "phpunit/phpunit": "~4.1",
+                "symfony/validator": "~2.8|~3.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "A2lix\\AutoFormBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David ALLIX",
+                    "homepage": "http://a2lix.fr"
+                }
+            ],
+            "description": "Automatize form creation",
+            "homepage": "https://github.com/a2lix/AutoFormBundle",
+            "keywords": [
+                "Symfony2",
+                "automatization",
+                "automatize",
+                "field",
+                "form",
+                "magic"
+            ],
+            "time": "2015-12-13 17:17:14"
+        },
         {
             "name": "a2lix/i18n-doctrine-bundle",
             "version": "0.1",
@@ -64,44 +125,46 @@
         },
         {
             "name": "a2lix/translation-form-bundle",
-            "version": "2.1.2",
-            "target-dir": "A2lix/TranslationFormBundle",
+            "version": "3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/a2lix/TranslationFormBundle.git",
-                "reference": "a04a8db282caabc084cf9fcccd82d2fcfbee36af"
+                "reference": "beb2e89c3dd76826e677f066a9fa3d54d00bf75d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/a2lix/TranslationFormBundle/zipball/a04a8db282caabc084cf9fcccd82d2fcfbee36af",
-                "reference": "a04a8db282caabc084cf9fcccd82d2fcfbee36af",
+                "url": "https://api.github.com/repos/a2lix/TranslationFormBundle/zipball/beb2e89c3dd76826e677f066a9fa3d54d00bf75d",
+                "reference": "beb2e89c3dd76826e677f066a9fa3d54d00bf75d",
                 "shasum": ""
             },
             "require": {
-                "symfony/symfony": ">=2.3"
+                "a2lix/auto-form-bundle": "@dev",
+                "php": "^5.4 || ^7.0",
+                "symfony/config": "~2.8|~3.0",
+                "symfony/dependency-injection": "~2.8|~3.0",
+                "symfony/doctrine-bridge": "~2.8|~3.0",
+                "symfony/form": "~2.8|~3.0",
+                "symfony/http-kernel": "~2.8|~3.0"
             },
             "require-dev": {
-                "doctrine/common": "~2.3",
-                "gedmo/doctrine-extensions": "~2.4",
-                "knplabs/doctrine-behaviors": "1.0.*",
-                "phpunit/phpunit": "~4.1"
+                "doctrine/orm": "~2.4",
+                "friendsofphp/php-cs-fixer": "~1.10",
+                "phpunit/phpunit": "~4.1",
+                "symfony/validator": "~2.8|~3.0"
             },
             "suggest": {
                 "a2lix/i18n-doctrine-bundle": "For A2lix strategy",
-                "gedmo/doctrine-extensions": "For Gedmo strategy",
                 "knplabs/doctrine-behaviors": "For Knp strategy",
                 "prezent/doctrine-translatable-bundle": "For Prezent strategy"
             },
             "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.x-dev"
-                }
-            },
             "autoload": {
-                "psr-0": {
-                    "A2lix\\TranslationFormBundle": ""
-                }
+                "psr-4": {
+                    "A2lix\\TranslationFormBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -119,14 +182,13 @@
                 "Symfony2",
                 "doctrine2",
                 "form",
-                "gedmo",
                 "i18n",
                 "internationalization",
                 "knplabs",
                 "translatable",
                 "translation"
             ],
-            "time": "2016-04-11 12:49:49"
+            "time": "2016-08-05 21:33:52"
         },
         {
             "name": "behat/transliterator",
@@ -2353,7 +2415,8 @@
     "stability-flags": {
         "knplabs/doctrine-behaviors": 0,
         "a2lix/i18n-doctrine-bundle": 0,
-        "a2lix/translation-form-bundle": 0,
+        "a2lix/auto-form-bundle": 20,
+        "a2lix/translation-form-bundle": 20,
         "friendsofphp/php-cs-fixer": 20
     },
     "prefer-stable": false,
