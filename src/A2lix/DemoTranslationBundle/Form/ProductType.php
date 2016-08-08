@@ -5,6 +5,7 @@ namespace A2lix\DemoTranslationBundle\Form;
 use A2lix\DemoTranslationBundle\Entity\Category;
 use A2lix\TranslationFormBundle\Form\Type\TranslatedEntityType;
 use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,6 +23,13 @@ class ProductType extends AbstractType
             ->add('category', TranslatedEntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'displayWithCompany',
+                // Optionnal custom query_builder override. Here, to ordering by title ASC
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('e')
+                        ->select('e, t')
+                        ->join('e.translations', 't')
+                        ->orderBy('t.title', 'ASC');
+                },
             ])
             ->add('media', ProductMediaType::class)
         ;
