@@ -60,13 +60,14 @@ doctrine:
             default:
                 auto_mapping: true
                 naming_strategy: doctrine.orm.naming_strategy.underscore
+                # Filter required for A2lixI18n strategy
                 filters:
                     oneLocale:
                         class: A2lix\I18nDoctrineBundle\Doctrine\ORM\Filter\OneLocaleFilter
                         enabled: true
 
 knp_doctrine_behaviors:
-    translatable:   true
+    translatable: true
 
 a2lix_translation_form:
     locales: "%a2lix_locales%"

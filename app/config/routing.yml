@@ -1,15 +1,11 @@
-a2lix_demo_translation_a2lix:
-    resource: "@A2lixDemoTranslationA2lixBundle/Resources/config/routing.yml"
-    prefix: /a2lix
-
-a2lix_demo_translation_knp:
-    resource: "@A2lixDemoTranslationKnpBundle/Resources/config/routing.yml"
-    prefix: /knp
+a2lix_demo_translation:
+    resource: "@A2lixDemoTranslationBundle/Resources/config/routing.yml"
+    prefix: /translation
 
 # Redirects
-home_redir:
+translation_home_redir:
     path: /
     defaults:
         _controller: FrameworkBundle:Redirect:redirect
-        route: a2lix_home
+        route: translation_home
         permanent: true # this for 301

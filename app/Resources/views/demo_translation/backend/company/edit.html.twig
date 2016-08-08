@@ -1,0 +1,16 @@
+{% extends "demo_translation/layout.html.twig" %}
+
+{% block content %}
+    <h2>Company {{ entity.id ? 'Edition' : 'Creation' }}</h2>
+
+    {{ form(editForm) }}
+
+    <div class="record_actions">
+        <a class="btn btn-default" href="{{ path('a2lix_backend_company') }}">
+            Back to the list
+        </a>
+        {% if entity.id %}
+            {{ form(deleteForm) }}
+        {% endif %}
+    </div>
+{% endblock %}
