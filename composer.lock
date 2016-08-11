@@ -4,9 +4,73 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f4bcb6c8b86a091e040deb8be37b97eb",
-    "content-hash": "0bc2d2a84fba965e09d934a51837eb1f",
+    "hash": "30adec807371a4a6ab4c6f31768655c7",
+    "content-hash": "21634c9816c54c4618cf35432cd03def",
     "packages": [
+        {
+            "name": "a2lix/auto-form-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/a2lix/AutoFormBundle.git",
+                "reference": "4345e93e09253c77f848465423ed75ddff2d144e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/a2lix/AutoFormBundle/zipball/4345e93e09253c77f848465423ed75ddff2d144e",
+                "reference": "4345e93e09253c77f848465423ed75ddff2d144e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4 || ^7.0",
+                "symfony/doctrine-bridge": "~2.8|~3.0",
+                "symfony/form": "~2.8|~3.0"
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.4",
+                "friendsofphp/php-cs-fixer": "~1.10",
+                "phpunit/phpunit": "~4.1",
+                "symfony/validator": "~2.8|~3.0"
+            },
+            "suggest": {
+                "a2lix/translation-form-bundle": "For translation form"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "A2lix\\AutoFormBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David ALLIX",
+                    "homepage": "http://a2lix.fr"
+                }
+            ],
+            "description": "Automatize form creation",
+            "homepage": "https://github.com/a2lix/AutoFormBundle",
+            "keywords": [
+                "Symfony2",
+                "automatization",
+                "automatize",
+                "field",
+                "form",
+                "magic"
+            ],
+            "time": "2016-08-10 18:13:13"
+        },
         {
             "name": "a2lix/i18n-doctrine-bundle",
             "version": "0.1",
@@ -64,44 +128,46 @@
         },
         {
             "name": "a2lix/translation-form-bundle",
-            "version": "2.1.2",
-            "target-dir": "A2lix/TranslationFormBundle",
+            "version": "3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/a2lix/TranslationFormBundle.git",
-                "reference": "a04a8db282caabc084cf9fcccd82d2fcfbee36af"
+                "reference": "f2e8d62132cb4d32117ddc82ae2930224ba1fb03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/a2lix/TranslationFormBundle/zipball/a04a8db282caabc084cf9fcccd82d2fcfbee36af",
-                "reference": "a04a8db282caabc084cf9fcccd82d2fcfbee36af",
+                "url": "https://api.github.com/repos/a2lix/TranslationFormBundle/zipball/f2e8d62132cb4d32117ddc82ae2930224ba1fb03",
+                "reference": "f2e8d62132cb4d32117ddc82ae2930224ba1fb03",
                 "shasum": ""
             },
             "require": {
-                "symfony/symfony": ">=2.3"
+                "a2lix/auto-form-bundle": "@dev",
+                "php": "^5.4 || ^7.0",
+                "symfony/config": "~2.8|~3.0",
+                "symfony/dependency-injection": "~2.8|~3.0",
+                "symfony/doctrine-bridge": "~2.8|~3.0",
+                "symfony/form": "~2.8|~3.0",
+                "symfony/http-kernel": "~2.8|~3.0"
             },
             "require-dev": {
-                "doctrine/common": "~2.3",
-                "gedmo/doctrine-extensions": "~2.4",
-                "knplabs/doctrine-behaviors": "1.0.*",
-                "phpunit/phpunit": "~4.1"
+                "doctrine/orm": "~2.4",
+                "friendsofphp/php-cs-fixer": "~1.10",
+                "phpunit/phpunit": "~4.1",
+                "symfony/validator": "~2.8|~3.0"
             },
             "suggest": {
                 "a2lix/i18n-doctrine-bundle": "For A2lix strategy",
-                "gedmo/doctrine-extensions": "For Gedmo strategy",
                 "knplabs/doctrine-behaviors": "For Knp strategy",
                 "prezent/doctrine-translatable-bundle": "For Prezent strategy"
             },
             "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.x-dev"
-                }
-            },
             "autoload": {
-                "psr-0": {
-                    "A2lix\\TranslationFormBundle": ""
-                }
+                "psr-4": {
+                    "A2lix\\TranslationFormBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -119,14 +185,13 @@
                 "Symfony2",
                 "doctrine2",
                 "form",
-                "gedmo",
                 "i18n",
                 "internationalization",
                 "knplabs",
                 "translatable",
                 "translation"
             ],
-            "time": "2016-04-11 12:49:49"
+            "time": "2016-08-10 18:50:21"
         },
         {
             "name": "behat/transliterator",
@@ -518,16 +583,16 @@
         },
         {
             "name": "doctrine/doctrine-bundle",
-            "version": "1.6.3",
+            "version": "1.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "fd51907c6c76acaa8a5234822a4f901c1500afc1"
+                "reference": "dd40b0a7fb16658cda9def9786992b8df8a49be7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/fd51907c6c76acaa8a5234822a4f901c1500afc1",
-                "reference": "fd51907c6c76acaa8a5234822a4f901c1500afc1",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/dd40b0a7fb16658cda9def9786992b8df8a49be7",
+                "reference": "dd40b0a7fb16658cda9def9786992b8df8a49be7",
                 "shasum": ""
             },
             "require": {
@@ -536,6 +601,7 @@
                 "jdorn/sql-formatter": "~1.1",
                 "php": ">=5.3.2",
                 "symfony/console": "~2.3|~3.0",
+                "symfony/dependency-injection": "~2.3|~3.0",
                 "symfony/doctrine-bridge": "~2.2|~3.0",
                 "symfony/framework-bundle": "~2.3|~3.0"
             },
@@ -594,7 +660,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2016-04-21 19:55:56"
+            "time": "2016-08-10 15:35:22"
         },
         {
             "name": "doctrine/doctrine-cache-bundle",
@@ -1230,16 +1296,16 @@
         },
         {
             "name": "psr/cache",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/cache.git",
-                "reference": "9e66031f41fbbdda45ee11e93c45d480ccba3eb3"
+                "reference": "d11b50ad223250cf17b86e38383413f5a6764bf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/cache/zipball/9e66031f41fbbdda45ee11e93c45d480ccba3eb3",
-                "reference": "9e66031f41fbbdda45ee11e93c45d480ccba3eb3",
+                "url": "https://api.github.com/repos/php-fig/cache/zipball/d11b50ad223250cf17b86e38383413f5a6764bf8",
+                "reference": "d11b50ad223250cf17b86e38383413f5a6764bf8",
                 "shasum": ""
             },
             "require": {
@@ -1272,7 +1338,7 @@
                 "psr",
                 "psr-6"
             ],
-            "time": "2015-12-11 02:52:07"
+            "time": "2016-08-06 20:24:11"
         },
         {
             "name": "psr/log",
@@ -2072,12 +2138,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "c9ecfc82d2a78362be297f60aa310c9b5faefa84"
+                "reference": "41c085fe425d9396de56ecd0033645ae611c2a96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/c9ecfc82d2a78362be297f60aa310c9b5faefa84",
-                "reference": "c9ecfc82d2a78362be297f60aa310c9b5faefa84",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/41c085fe425d9396de56ecd0033645ae611c2a96",
+                "reference": "41c085fe425d9396de56ecd0033645ae611c2a96",
                 "shasum": ""
             },
             "require": {
@@ -2128,7 +2194,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2016-08-05 07:15:09"
+            "time": "2016-08-08 19:04:08"
         },
         {
             "name": "sebastian/diff",
@@ -2353,7 +2419,8 @@
     "stability-flags": {
         "knplabs/doctrine-behaviors": 0,
         "a2lix/i18n-doctrine-bundle": 0,
-        "a2lix/translation-form-bundle": 0,
+        "a2lix/auto-form-bundle": 20,
+        "a2lix/translation-form-bundle": 20,
         "friendsofphp/php-cs-fixer": 20
     },
     "prefer-stable": false,

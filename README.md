@@ -1,8 +1,6 @@
 # A2LiX Demo
 
-Symfony 3.1 with A2lixTranslationFormBundle v2 (A2lix and KnpLabs strategies)
-
-*See https://github.com/a2lix/Demo/tree/translation-form-3.x-with-sf-3.x for A2lixTranslationFormBundle v3 (A2lix and KnpLabs strategies)*
+** Symfony 3.1 with A2lixTranslationFormBundle/AutoFormBUndle (A2lixI18n and KnpDoctrine strategies) **
 
 
 #### Help

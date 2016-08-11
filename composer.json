@@ -23,7 +23,9 @@
 
         "knplabs/doctrine-behaviors": "@stable",
         "a2lix/i18n-doctrine-bundle": "@stable",
-        "a2lix/translation-form-bundle": "@stable"
+
+        "a2lix/auto-form-bundle": "0.x@dev",
+        "a2lix/translation-form-bundle": "3.x@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

@@ -8,3 +8,7 @@ footer {
 #locale_switcher li.active {
     font-weight: bold;
 }
+
+form .form-group .form-group {
+    padding-left: 10px;
+}
