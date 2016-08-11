@@ -1,5 +1,12 @@
 {% extends "demo_translation/layout.html.twig" %}
 
+{% form_theme editForm _self %}
+
+{% block _company_translations_locale_title_widget %}
+    {{- form_widget(form) -}}
+    <p class="bg-info">Custom form rendering</p>
+{% endblock %}
+
 {% block content %}
     <h2>Company {{ entity.id ? 'Edition' : 'Creation' }}</h2>
 

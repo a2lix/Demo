@@ -17,6 +17,11 @@ class CompanyTranslation implements A2lixI18n\Interfaces\OneLocaleInterface
      */
     protected $title;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $description;
+
     public function getTitle()
     {
         return $this->title;
@@ -25,6 +30,18 @@ class CompanyTranslation implements A2lixI18n\Interfaces\OneLocaleInterface
     public function setTitle($title)
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
 
         return $this;
     }

@@ -18,7 +18,14 @@ class CompanyType extends AbstractType
     {
         $builder
             ->add('code')
-            ->add('translations', TranslationsType::class)
+            ->add('translations', TranslationsType::class, [
+                'fields' => [
+                    'description' => [
+                        'disabled' => true
+                    ]
+                ],
+//                'excluded_fields' => ['description']
+            ])
             ->add('categories', CollectionType::class, [
                 'entry_type' => CategoryType::class,
                 'allow_add' => true,
@@ -31,6 +38,13 @@ class CompanyType extends AbstractType
             ->add('medias', TranslationsFormsType::class, [
                 'form_type' => CompanyMediaType::class,
             ])
+//            // AutoFormType use without need of declare a dedicated CompanyMediaType
+//            ->add('medias', TranslationsFormsType::class, [
+//                'form_type' => \A2lix\AutoFormBundle\Form\Type\AutoFormType::class,
+//                'form_options' => [
+//                    'data_class' => \A2lix\DemoTranslationBundle\Entity\CompanyMediaLocalize::class
+//                ]
+//            ])
         ;
 
         // Manage submit label

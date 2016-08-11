@@ -18,12 +18,16 @@
                 <td>{{ entity.title }}</td>
             </tr>
             <tr>
+                <th>Description</th>
+                <td>{{ entity.description }}</td>
+            </tr>
+            <tr>
                 <th>Categories</th>
                 <td>{% for categ in entity.categories %}{{ categ.title }}, {% endfor %}</td>
             </tr>
             <tr>
                 <th>Media</th>
-                <td>{{ (entity.medias|first).url }}</td>
+                <td>{{ entity.medias|first ? (entity.medias|first).url }}</td>
             </tr>
         </tbody>
     </table>

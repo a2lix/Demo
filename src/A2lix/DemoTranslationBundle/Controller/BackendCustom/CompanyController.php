@@ -12,6 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
+ * A2lixI18n version
+ *
  * @Route("/company")
  */
 class CompanyController extends Controller
@@ -72,6 +74,12 @@ class CompanyController extends Controller
         $editForm = $this->createForm(CompanyType::class, $entity, [
             'action' => $this->generateUrl($_route, $id ? ['id' => $id] : []),
         ]);
+
+//        $editForm = $this->createForm(\A2lix\AutoFormBundle\Form\Type\AutoFormType::class, $entity, [
+//            'action' => $this->generateUrl($_route, $id ? ['id' => $id] : []),
+//        ])
+//            ->add('save', \Symfony\Component\Form\Extension\Core\Type\SubmitType::class);
+
         if ($editForm->handleRequest($request)->isSubmitted() && $editForm->isValid()) {
             $em->persist($entity);
             $em->flush();

@@ -11,6 +11,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
+ * KnpDoctrine version
+ *
  * @Route("/product")
  */
 class ProductController extends Controller
