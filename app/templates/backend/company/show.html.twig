@@ -1,0 +1,42 @@
+{% extends 'backend/layout.html.twig' %}
+
+{% block title %}Company{% endblock %}
+
+{% block content %}
+    <h1>Company</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ company.id }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ company.code }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ company.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ company.description }}</td>
+            </tr>
+            <tr>
+                <th>Categories</th>
+                <td>{% for categ in company.categories %}{{ categ.title }}, {% else %}No categories{% endfor %}</td>
+            </tr>
+            <tr>
+                <th>Media</th>
+                <td>{{ company.medias|first ? (company.medias|first).url }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="record_actions">
+        {{ form(deleteForm) }}
+        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('a2lix_backend_company_edit', {'id': company.id}) }}">Edit</a>
+        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('a2lix_backend_company_index') }}">Back to list</a>
+    </div>
+{% endblock %}

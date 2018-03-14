@@ -1,0 +1,5 @@
+<nav class="my-2 my-md-0 mr-md-3">
+    {% for locale in locales %}
+        <a class="p-2" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale' : locale})) }}">{{ locale }}</a>
+    {% endfor %}
+</nav>

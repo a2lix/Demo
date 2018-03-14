@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: ./docker/app
+    environment:
+      DATABASE_URL: pgsql://a2lix:p4ssw0rd@db:5432/a2lix_demo
+    volumes:
+      - ./app:/srv/app:rw,cached
+      # If you develop on Linux, comment out the following volumes to just use bind-mounted project directory from host
+      # - /srv/app/var/
+      # - /srv/app/var/cache/
+      # - /srv/app/var/logs/
+      # - /srv/app/var/sessions/
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
+
+  db:
+    image: postgres:10-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: a2lix_demo
+      POSTGRES_USER: a2lix
+      POSTGRES_PASSWORD: p4ssw0rd
+    volumes:
+      - db-data:/var/lib/postgresql/data:rw
+      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      # - ./docker/db/data:/var/lib/postgresql/data:rw
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer:latest
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
+
+volumes:
+  db-data: {}

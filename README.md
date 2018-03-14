@@ -1,11 +1,18 @@
-# A2LiX Demo
+# A2liX Demo
 
-** Symfony 3.1 with A2lixTranslationFormBundle/AutoFormBUndle (A2lixI18n and KnpDoctrine strategies) **
+Symfony4 with A2lixTranslationFormBundle and KnpDoctrine strategy example.
 
+---
 
-#### Help
+### Start:
 
-- curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
-- composer install
-- bin/console doctrine:database:create
-- bin/console doctrine:schema:update --force
+- ```docker-compose build```
+- ```docker-compose up```
+- ```docker-compose exec app bin/console doctrine:schema:update --force```
+- Go ```http://localhost:8000```
+
+---
+
+### Resources:
+
+-  https://github.com/a2lix/docker-starters

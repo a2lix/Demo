@@ -1,0 +1,21 @@
+{% extends 'backend/layout.html.twig' %}
+
+{% form_theme form _self %}
+
+{% block _company_translations_locale_title_widget %}
+    {{- form_widget(form) -}}
+    <p class="bg-info">Custom form rendering example</p>
+{% endblock %}
+
+{% block title %}Edit Company{% endblock %}
+
+{% block content %}
+    <h1>Edit Company</h1>
+
+    {{ form(form) }}
+
+    <div class="record_actions">
+        {{ form(deleteForm) }}
+        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('a2lix_backend_company_index') }}">Back to list</a>
+    </div>
+{% endblock %}

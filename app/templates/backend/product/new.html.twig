@@ -1,0 +1,13 @@
+{% extends 'backend/layout.html.twig' %}
+
+{% block title %}New Product{% endblock %}
+
+{% block content %}
+    <h1>Create new Product</h1>
+
+    {{ form(form) }}
+
+    <div class="record_actions">
+        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('knp_backend_product_index') }}">Back to list</a>
+    </div>
+{% endblock %}

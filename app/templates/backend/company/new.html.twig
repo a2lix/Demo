@@ -1,0 +1,13 @@
+{% extends 'backend/layout.html.twig' %}
+
+{% block title %}New Company{% endblock %}
+
+{% block content %}
+    <h1>Create new Company</h1>
+
+    {{ form(form) }}
+
+    <div class="record_actions">
+        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('a2lix_backend_company_index') }}">back to list</a>
+    </div>
+{% endblock %}
