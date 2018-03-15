@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity\Common;
 
 /**
@@ -14,15 +16,15 @@ trait OneLocaleTrait
      */
     protected $locale;
 
-    public function getLocale()
+    public function getLocale(): string
     {
         return $this->locale;
     }
 
-    public function setLocale($locale)
+    public function setLocale(string $locale): self
     {
         $this->locale = $locale;
+
         return $this;
     }
-
 }

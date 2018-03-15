@@ -1,4 +1,4 @@
-{% extends 'backend/layout.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Edit Product{% endblock %}
 
@@ -9,6 +9,6 @@
 
     <div class="record_actions">
         {{ form(deleteForm) }}
-        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('knp_backend_product_index') }}">Back to list</a>
+        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_product_index') }}">Back to list</a>
     </div>
 {% endblock %}

@@ -1,10 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Translations examples</h1>
-
-    <ul>
-        <li><a href="{{ path('a2lix_backend_company_index', { '_locale': 'en' }) }}">Manage Company</a> <i>(A2lixI18nBundle, a2lix_translations with collection, a2lix_translationsForm)</i></li>
-        <li><a href="{{ path('knp_backend_product_index', { '_locale': 'en' }) }}">Manage Product</a> <i>(KnpDoctrineBehavior, a2lix_translations, a2lix_translatedEntity)</i></li>
-    </ul>
+    <div class="jumbotron">
+        <h1 class="display-4">Demo</h1>
+        <p class="lead">Some examples to help</p>
+        <hr class="my-4">
+        <ul>
+            <li><a href="{{ path('backend_company_index', { '_locale': 'en' }) }}">Manage Company with A2lixTranslationsForm</a> <i>(KnpDoctrineBehavior, a2lix_translations with collection, a2lix_translationsForm)</i></li>
+            <li><a href="{{ path('backend_product_index', { '_locale': 'en' }) }}">Manage Product with A2lixTranslationsForm</a> <i>(KnpDoctrineBehavior, a2lix_translations, a2lix_translatedEntity)</i></li>
+        </ul>
+    </div>
 {% endblock %}

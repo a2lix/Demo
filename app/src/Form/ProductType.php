@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use App\Entity\Category;
 use A2lix\TranslationFormBundle\Form\Type\TranslatedEntityType;
 use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
+use App\Entity\Category;
 use App\Entity\Product;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
@@ -18,7 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProductType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('code')
@@ -38,7 +38,7 @@ class ProductType extends AbstractType
         ;
 
         // Manage submit label
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
             $form = $event->getForm();
             $data = $event->getData();
 
@@ -57,7 +57,7 @@ class ProductType extends AbstractType
         });
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Product::class,

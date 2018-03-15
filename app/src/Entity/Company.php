@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -17,7 +20,8 @@ class Company
     use ORMBehaviors\Translatable\Translatable;
 
     /**
-     * @ORM\Column()
+     * @ORM\Column
+     * @Assert\NotBlank
      */
     protected $code;
 
@@ -38,28 +42,33 @@ class Company
 
     public function __construct()
     {
-        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->medias = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categories = new ArrayCollection();
+        $this->medias = new ArrayCollection();
     }
 
-    public function getCode()
+    public function __call($method, $arguments)
+    {
+        return PropertyAccess::createPropertyAccessor()->getValue($this->translate(), $method);
+    }
+
+    public function getCode(): ?string
     {
         return $this->code;
     }
 
-    public function setCode($code)
+    public function setCode(string $code): self
     {
         $this->code = $code;
 
         return $this;
     }
 
-    public function getCategories()
+    public function getCategories(): Collection
     {
         return $this->categories;
     }
 
-    public function addCategory(Category $category)
+    public function addCategory(Category $category): self
     {
         if (!$this->categories->contains($category)) {
             $category->setCompany($this);
@@ -69,19 +78,19 @@ class Company
         return $this;
     }
 
-    public function removeCategory(Category $category)
+    public function removeCategory(Category $category): self
     {
         $this->categories->removeElement($category);
 
         return $this;
     }
 
-    public function getMedias()
+    public function getMedias(): Collection
     {
         return $this->medias;
     }
 
-    public function addMedia(CompanyMediaLocalize $media = null)
+    public function addMedia(CompanyMediaLocalize $media): self
     {
         if (!$this->medias->contains($media)) {
             $media->setCompany($this);
@@ -91,15 +100,10 @@ class Company
         return $this;
     }
 
-    public function removeMedia(CompanyMediaLocalize $media)
+    public function removeMedia(CompanyMediaLocalize $media): self
     {
         $this->medias->removeElement($media);
 
         return $this;
-    }
-
-    public function __call($method, $arguments)
-    {
-        return \Symfony\Component\PropertyAccess\PropertyAccess::createPropertyAccessor()->getValue($this->translate(), $method);
     }
 }

@@ -6,6 +6,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
@@ -16,7 +18,8 @@ class Product
     use ORMBehaviors\Translatable\Translatable;
 
     /**
-     * @ORM\Column()
+     * @ORM\Column
+     * @Assert\NotBlank
      */
     protected $code;
 
@@ -30,44 +33,49 @@ class Product
      */
     protected $media;
 
-    public function getCode()
+    /**
+     * @Assert\Valid
+     */
+    protected $translations;
+
+    public function __call($method, $arguments)
+    {
+        return PropertyAccess::createPropertyAccessor()->getValue($this->translate(), $method);
+    }
+
+    public function getCode(): ?string
     {
         return $this->code;
     }
 
-    public function setCode($code)
+    public function setCode(string $code): self
     {
         $this->code = $code;
 
         return $this;
     }
 
-    public function getCategory()
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
-    public function setCategory(Category $category)
+    public function setCategory(Category $category): self
     {
         $this->category = $category;
 
         return $this;
     }
 
-    public function getMedia()
+    public function getMedia(): ?ProductMedia
     {
         return $this->media;
     }
 
-    public function setMedia(ProductMedia $media)
+    public function setMedia(ProductMedia $media): self
     {
         $this->media = $media;
 
         return $this;
-    }
-
-    public function __call($method, $arguments)
-    {
-        return \Symfony\Component\PropertyAccess\PropertyAccess::createPropertyAccessor()->getValue($this->translate(), $method);
     }
 }

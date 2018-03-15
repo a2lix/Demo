@@ -3,7 +3,7 @@
         "version": "9999999-dev"
     },
     "a2lix/translation-form-bundle": {
-        "version": "2.x-dev"
+        "version": "3.x-dev"
     },
     "behat/transliterator": {
         "version": "v1.2.0"

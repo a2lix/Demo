@@ -1,4 +1,4 @@
-{% extends 'backend/layout.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Company index{% endblock %}
 
@@ -20,15 +20,15 @@
         <tbody>
         {% for company in companies %}
             <tr>
-                <td><a href="{{ path('a2lix_backend_company_show', { 'id': company.id }) }}">{{ company.id }}</a></td>
+                <td>{{ company.id }}</td>
                 <td>{{ company.code }}</td>
                 <td>{{ company.title }}</td>
                 <td>{{ company.description }}</td>
                 <td>{% for categ in company.categories %}{{ categ.title }}{% else %}No categories{% endfor %}</td>
                 <td>{{ company.medias|first ? (company.medias|first).url }}</td>
                 <td>
-                    <a class="btn btn-outline-primary" href="{{ path('a2lix_backend_company_show', {'id': company.id}) }}">Show</a>
-                    <a class="btn btn-outline-primary" href="{{ path('a2lix_backend_company_edit', {'id': company.id}) }}">Edit</a>
+                    <a class="btn btn-outline-primary" href="{{ path('backend_company_show', {'id': company.id}) }}">Show</a>
+                    <a class="btn btn-outline-primary" href="{{ path('backend_company_edit', {'id': company.id}) }}">Edit</a>
                 </td>
             </tr>
         {% else %}
@@ -40,6 +40,6 @@
     </table>
 
     <div class="record_actions">
-        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('a2lix_backend_company_new') }}">Create new</a>
+        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_company_new') }}">Create new</a>
     </div>
 {% endblock %}

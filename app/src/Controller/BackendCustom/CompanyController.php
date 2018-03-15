@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\BackendCustom;
 
 use App\Entity\Company;
@@ -12,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/company", name="a2lix_backend_company_")
+ * @Route("/company", name="backend_company_")
  */
 class CompanyController extends Controller
 {
@@ -38,7 +40,9 @@ class CompanyController extends Controller
             $em->persist($company);
             $em->flush();
 
-            return $this->redirectToRoute('a2lix_backend_company__index');
+            $this->addFlash('success', 'Created!');
+
+            return $this->redirectToRoute('backend_company_index');
         }
 
         return $this->render('backend/company/new.html.twig', [
@@ -53,7 +57,7 @@ class CompanyController extends Controller
     public function show(Company $company): Response
     {
         $deleteForm = $this->createForm(GenericDeleteType::class, $company, [
-            'action' => $this->generateUrl('a2lix_backend_company_delete', ['id' => $company->getId()]),
+            'action' => $this->generateUrl('backend_company_delete', ['id' => $company->getId()]),
         ]);
 
         return $this->render('backend/company/show.html.twig', [
@@ -78,11 +82,13 @@ class CompanyController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('a2lix_backend_company__edit', ['id' => $company->getId()]);
+            $this->addFlash('success', 'Edited!');
+
+            return $this->redirectToRoute('backend_company_edit', ['id' => $company->getId()]);
         }
 
         $deleteForm = $this->createForm(GenericDeleteType::class, $company, [
-            'action' => $this->generateUrl('a2lix_backend_company_delete', ['id' => $company->getId()]),
+            'action' => $this->generateUrl('backend_company_delete', ['id' => $company->getId()]),
         ]);
 
         return $this->render('backend/company/edit.html.twig', [
@@ -98,7 +104,7 @@ class CompanyController extends Controller
     public function delete(Request $request, Company $company): Response
     {
         $deleteForm = $this->createForm(GenericDeleteType::class, $company);
-        $form->handleRequest($request);
+        $deleteForm->handleRequest($request);
 
         if ($deleteForm->isSubmitted() && $deleteForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -108,6 +114,6 @@ class CompanyController extends Controller
             $this->addFlash('success', 'Deleted!');
         }
 
-        return $this->redirectToRoute('a2lix_backend_company_index');
+        return $this->redirectToRoute('backend_company_index');
     }
 }

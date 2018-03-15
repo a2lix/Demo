@@ -8,12 +8,6 @@ use App\Entity\ProductMedia;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-/**
- * @method ProductMedia|null find($id, $lockMode = null, $lockVersion = null)
- * @method ProductMedia|null findOneBy(array $criteria, array $orderBy = null)
- * @method ProductMedia[]    findAll()
- * @method ProductMedia[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
 class ProductMediaRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)

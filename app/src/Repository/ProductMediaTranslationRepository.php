@@ -8,12 +8,6 @@ use App\Entity\ProductMediaTranslation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-/**
- * @method ProductMediaTranslation|null find($id, $lockMode = null, $lockVersion = null)
- * @method ProductMediaTranslation|null findOneBy(array $criteria, array $orderBy = null)
- * @method ProductMediaTranslation[]    findAll()
- * @method ProductMediaTranslation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
 class ProductMediaTranslationRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)

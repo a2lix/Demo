@@ -1,4 +1,4 @@
-{% extends 'backend/layout.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Product index{% endblock %}
 
@@ -20,15 +20,15 @@
         <tbody>
         {% for product in products %}
             <tr>
-                <td><a href="{{ path('knp_backend_product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
+                <td>{{ product.id }}</td>
                 <td>{{ product.code }}</td>
                 <td>{{ product.title }}</td>
                 <td>{{ product.description }}</td>
                 <td>{{ product.category ? product.category.title ~' ('~ product.category.company.title ~')' : 'No category' }}</td>
                 <td>{{ product.media ? product.media.url : 'No media' }}</td>
                 <td>
-                    <a class="btn btn-outline-primary" href="{{ path('knp_backend_product_show', {'id': product.id}) }}">Show</a>
-                    <a class="btn btn-outline-primary" href="{{ path('knp_backend_product_edit', {'id': product.id}) }}">Edit</a>
+                    <a class="btn btn-outline-primary" href="{{ path('backend_product_show', {'id': product.id}) }}">Show</a>
+                    <a class="btn btn-outline-primary" href="{{ path('backend_product_edit', {'id': product.id}) }}">Edit</a>
                 </td>
             </tr>
         {% else %}
@@ -40,6 +40,6 @@
     </table>
 
     <div class="record_actions">
-        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('knp_backend_product_new') }}">Create new</a>
+        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_product_new') }}">Create new</a>
     </div>
 {% endblock %}

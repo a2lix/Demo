@@ -24,24 +24,24 @@ class CompanyMediaLocalize implements Common\OneLocaleInterface
      */
     protected $company;
 
-    public function getUrl()
+    public function getUrl(): ?string
     {
         return $this->url;
     }
 
-    public function setUrl($url)
+    public function setUrl(?string $url): self
     {
         $this->url = $url;
 
         return $this;
     }
 
-    public function getCompany()
+    public function getCompany(): Company
     {
         return $this->company;
     }
 
-    public function setCompany(Company $company)
+    public function setCompany(Company $company): self
     {
         $this->company = $company;
 

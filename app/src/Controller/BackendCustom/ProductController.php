@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\BackendCustom;
 
 use App\Entity\Product;
-use App\Form\ProductType;
 use App\Form\GenericDeleteType;
+use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,14 +14,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/product", name="knp_backend_product_")
+ * @Route("/product", name="backend_product_")
  */
 class ProductController extends Controller
 {
     /**
      * @Route("/", name="index", methods="GET")
      */
-    public function index(ProductRepository $productRepository) : Response
+    public function index(ProductRepository $productRepository): Response
     {
         return $this->render('backend/product/index.html.twig', ['products' => $productRepository->findAll()]);
     }
@@ -27,7 +29,7 @@ class ProductController extends Controller
     /**
      * @Route("/new", name="new", methods="GET|POST")
      */
-    public function new(Request $request) : Response
+    public function new(Request $request): Response
     {
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
@@ -38,7 +40,9 @@ class ProductController extends Controller
             $em->persist($product);
             $em->flush();
 
-            return $this->redirectToRoute('knp_backend_product_index');
+            $this->addFlash('success', 'Created!');
+
+            return $this->redirectToRoute('backend_product_index');
         }
 
         return $this->render('backend/product/new.html.twig', [
@@ -50,10 +54,10 @@ class ProductController extends Controller
     /**
      * @Route("/{id}", name="show", methods="GET")
      */
-    public function show(Product $product) : Response
+    public function show(Product $product): Response
     {
         $deleteForm = $this->createForm(GenericDeleteType::class, $product, [
-            'action' => $this->generateUrl('knp_backend_product_delete', ['id' => $product->getId()]),
+            'action' => $this->generateUrl('backend_product_delete', ['id' => $product->getId()]),
         ]);
 
         return $this->render('backend/product/show.html.twig', [
@@ -65,7 +69,7 @@ class ProductController extends Controller
     /**
      * @Route("/{id}/edit", name="edit", methods="GET|POST")
      */
-    public function edit(Request $request, Product $product) : Response
+    public function edit(Request $request, Product $product): Response
     {
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
@@ -73,11 +77,13 @@ class ProductController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('knp_backend_product_edit', ['id' => $product->getId()]);
+            $this->addFlash('success', 'Edited!');
+
+            return $this->redirectToRoute('backend_product_edit', ['id' => $product->getId()]);
         }
 
         $deleteForm = $this->createForm(GenericDeleteType::class, $product, [
-            'action' => $this->generateUrl('knp_backend_product_delete', ['id' => $product->getId()]),
+            'action' => $this->generateUrl('backend_product_delete', ['id' => $product->getId()]),
         ]);
 
         return $this->render('backend/product/edit.html.twig', [
@@ -90,10 +96,10 @@ class ProductController extends Controller
     /**
      * @Route("/{id}", name="delete", methods="DELETE")
      */
-    public function delete(Request $request, Product $product) : Response
+    public function delete(Request $request, Product $product): Response
     {
         $deleteForm = $this->createForm(GenericDeleteType::class, $product);
-        $form->handleRequest($request);
+        $deleteForm->handleRequest($request);
 
         if ($deleteForm->isSubmitted() && $deleteForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -103,6 +109,6 @@ class ProductController extends Controller
             $this->addFlash('success', 'Deleted!');
         }
 
-        return $this->redirectToRoute('knp_backend_product_index');
+        return $this->redirectToRoute('backend_product_index');
     }
 }

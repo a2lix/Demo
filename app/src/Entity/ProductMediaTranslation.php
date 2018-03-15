@@ -19,12 +19,12 @@ class ProductMediaTranslation
      */
     protected $url;
 
-    public function getUrl()
+    public function getUrl(): ?string
     {
         return $this->url;
     }
 
-    public function setUrl($url)
+    public function setUrl(?string $url): self
     {
         $this->url = $url;
 

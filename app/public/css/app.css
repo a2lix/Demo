@@ -11,12 +11,15 @@ footer {
     background-color: #e9ecef;
     height: 60px;
     line-height: 60px;
-    text-align: center;
     width: 100%;
 }
 
 main {
     padding: 50px;
+}
+
+.locale-switcher .active {
+    color: #fff
 }
 
 .a2lix_translationsFields > div {

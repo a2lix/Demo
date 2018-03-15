@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategoryTranslationRepository")
  */
-class CategoryTranslation implements Common\OneLocaleInterface
+class CategoryTranslation
 {
     use ORMBehaviors\Translatable\Translation;
 
@@ -19,12 +19,12 @@ class CategoryTranslation implements Common\OneLocaleInterface
      */
     protected $title;
 
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    public function setTitle($title)
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
