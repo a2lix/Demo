@@ -1,0 +1,28 @@
+html {
+    min-height: 100%;
+}
+
+header {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #e9ecef;
+    height: 60px;
+    line-height: 60px;
+    width: 100%;
+}
+
+main {
+    padding: 50px;
+}
+
+.locale-switcher .active {
+    color: #fff
+}
+
+.a2lix_translationsFields > div {
+    border-left: 10px solid #e9ecef;
+    padding-left: 10px;
+}

@@ -1,0 +1,5 @@
+frontend_index:
+    path:         /
+    controller:   Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: frontend/index.html.twig

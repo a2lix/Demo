@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Company index{% endblock %}
+
+{% block content %}
+    <h1>{{ block('title') }}</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Categories</th>
+                <th>Media</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for company in companies %}
+            <tr>
+                <td>{{ company.id }}</td>
+                <td>{{ company.code }}</td>
+                <td>{{ company.title }}</td>
+                <td>{{ company.description }}</td>
+                <td>{% for categ in company.categories %}{{ categ.title }}{% else %}No categories{% endfor %}</td>
+                <td>{{ company.medias|first ? (company.medias|first).url }}</td>
+                <td>
+                    <a class="btn btn-outline-primary" href="{{ path('backend_company_show', {'id': company.id}) }}">Show</a>
+                    <a class="btn btn-outline-primary" href="{{ path('backend_company_edit', {'id': company.id}) }}">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">No records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="record_actions">
+        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_company_new') }}">Create new</a>
+    </div>
+{% endblock %}
