@@ -45,7 +45,7 @@ class CompanyController extends Controller
             return $this->redirectToRoute('backend_company_index');
         }
 
-        return $this->render('backend/company/new.html.twig', [
+        return $this->render('backend/company/new_edit.html.twig', [
             'company' => $company,
             'form' => $form->createView(),
         ]);
@@ -91,7 +91,7 @@ class CompanyController extends Controller
             'action' => $this->generateUrl('backend_company_delete', ['id' => $company->getId()]),
         ]);
 
-        return $this->render('backend/company/edit.html.twig', [
+        return $this->render('backend/company/new_edit.html.twig', [
             'company' => $company,
             'form' => $form->createView(),
             'deleteForm' => $deleteForm->createView(),

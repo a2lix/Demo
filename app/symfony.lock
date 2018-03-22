@@ -101,6 +101,9 @@
     "monolog/monolog": {
         "version": "1.23.0"
     },
+    "nikic/php-parser": {
+        "version": "v4.0.0"
+    },
     "ocramius/proxy-manager": {
         "version": "2.2.0"
     },

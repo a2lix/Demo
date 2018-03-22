@@ -1,6 +1,6 @@
 # A2liX Demo
 
-Symfony4 with A2lixTranslationFormBundle and KnpDoctrine strategy example.
+Symfony4 with A2lixTranslationFormBundle, A2lixAutoFormBundle and KnpDoctrineBehavior examples.
 
 ---
 
@@ -10,6 +10,13 @@ Symfony4 with A2lixTranslationFormBundle and KnpDoctrine strategy example.
 - ```docker-compose up```
 - ```docker-compose exec app bin/console doctrine:schema:update --force```
 - Go ```http://localhost:8000```
+
+---
+
+### Pictures
+
+![Pic1](pic1.png?raw=true "Pic1")
+![Pic2](pic2.png?raw=true "Pic2")
 
 ---
 

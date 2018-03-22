@@ -8,18 +8,13 @@ services:
       DATABASE_URL: pgsql://a2lix:p4ssw0rd@db:5432/a2lix_demo
     volumes:
       - ./app:/srv/app:rw,cached
-      # If you develop on Linux, comment out the following volumes to just use bind-mounted project directory from host
-      # - /srv/app/var/
-      # - /srv/app/var/cache/
-      # - /srv/app/var/logs/
-      # - /srv/app/var/sessions/
     depends_on:
       - db
     ports:
       - 8000:8000
 
   db:
-    image: postgres:10-alpine
+    image: postgres:9-alpine
     restart: always
     environment:
       POSTGRES_DB: a2lix_demo

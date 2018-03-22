@@ -45,7 +45,7 @@ class ProductController extends Controller
             return $this->redirectToRoute('backend_product_index');
         }
 
-        return $this->render('backend/product/new.html.twig', [
+        return $this->render('backend/product/new_edit.html.twig', [
             'product' => $product,
             'form' => $form->createView(),
         ]);
@@ -86,7 +86,7 @@ class ProductController extends Controller
             'action' => $this->generateUrl('backend_product_delete', ['id' => $product->getId()]),
         ]);
 
-        return $this->render('backend/product/edit.html.twig', [
+        return $this->render('backend/product/new_edit.html.twig', [
             'product' => $product,
             'form' => $form->createView(),
             'deleteForm' => $deleteForm->createView(),

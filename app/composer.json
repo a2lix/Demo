@@ -78,28 +78,5 @@
             "id": "01C8GB40XME3BH8AZ4W320C4JH",
             "allow-contrib": false
         }
-    },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "packages/I18nDoctrineBundle",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "packages/AutoFormBundle",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "packages/TranslationFormBundle",
-            "options": {
-                "symlink": true
-            }
-        }
-    ]
+    }
 }

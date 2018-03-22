@@ -41,13 +41,13 @@ class CompanyType extends AbstractType
             ->add('medias', TranslationsFormsType::class, [
                 'form_type' => CompanyMediaType::class,
             ])
-//            // AutoFormType use without need of declare a dedicated CompanyMediaType
-//            ->add('medias', TranslationsFormsType::class, [
-//                'form_type' => AutoFormType::class,
-//                'form_options' => [
-//                    'data_class' => CompanyMediaLocalize::class
-//                ]
-//            ])
+        //    // --OR-- AutoFormType use without need to declare a dedicated CompanyMediaType
+        //    ->add('medias', TranslationsFormsType::class, [
+        //        'form_type' => \A2lix\AutoFormBundle\Form\Type\AutoFormType::class,
+        //        'form_options' => [
+        //            'data_class' => \App\Entity\CompanyMediaLocalize::class
+        //        ]
+        //    ])
         ;
 
         // Manage submit label
