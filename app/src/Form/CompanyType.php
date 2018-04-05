@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form;
 
 use A2lix\TranslationFormBundle\Form\Type\TranslationsFormsType;
+use A2lix\TranslationFormBundle\Form\Type\TranslationsLocalesSelectorType;
 use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
 use App\Entity\Company;
 use Symfony\Component\Form\AbstractType;
@@ -35,7 +36,7 @@ class CompanyType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'attr' => [
-                    'data-a2lix-formcollection' => null,
+                    'data-entry-label' => 'Category',
                 ],
             ])
             ->add('medias', TranslationsFormsType::class, [
@@ -47,6 +48,10 @@ class CompanyType extends AbstractType
         //        'form_options' => [
         //            'data_class' => \App\Entity\CompanyMediaLocalize::class
         //        ]
+        //    ])
+        //    ->add('locales', TranslationsLocalesSelectorType::class, [
+        //        'help' => 'And so, add javascript to hide/show all locales tabs on change',
+        //        'mapped' => false
         //    ])
         ;
 

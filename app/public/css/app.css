@@ -2,27 +2,21 @@ html {
     min-height: 100%;
 }
 
-header {
-    color: #fff;
-    margin-bottom: 20px;
-}
-
-footer {
-    background-color: #e9ecef;
-    height: 60px;
-    line-height: 60px;
-    width: 100%;
-}
-
 main {
-    padding: 50px;
+    padding: 80px 0 40px;
 }
 
 .locale-switcher .active {
     color: #fff
 }
 
-.a2lix_translationsFields > div {
-    border-left: 10px solid #e9ecef;
-    padding-left: 10px;
+fieldset > div {
+    border-left: 4px solid #e9ecef;
+    padding-left: 8px;
+}
+
+div[data-prototype] > div {
+    border-left: 4px solid #b7c2ce;
+    margin-bottom: 10px;
+    padding-left: 8px;
 }

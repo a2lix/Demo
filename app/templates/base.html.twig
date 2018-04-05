@@ -14,23 +14,19 @@
     </head>
 
     <body>
-        <header>
-            <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 fixed-top bg-dark border-bottom box-shadow">
-                <h5 class="my-0 mr-md-auto font-weight-normal">A2LiX</h5>
-                {{ include('_locale_switcher.html.twig') }}
-            </div>
+        <header class="d-flex flex-column flex-md-row align-items-center p-3 fixed-top bg-dark text-white">
+            <h5 class="my-0 mr-md-auto font-weight-normal">A2LiX</h5>
+            {{ include('_locale_switcher.html.twig') }}
         </header>
 
-        <main role="main" class="container">
+        <main class="container" role="main" >
             {{ include('_flash_messages.html.twig') }}
 
             {% block content %}{% endblock %}
         </main>
 
-        <footer class="footer">
-            <div class="container text-center">
-                <span>A2LiX - {{ 'now'|date('Y') }} | <a href="{{ path('frontend_index') }}">Home</a></span>
-            </div>
+        <footer class="text-center bg-light text-dark border-top py-3">
+            <p>A2LiX - {{ 'now'|date('Y') }} | <a href="{{ path('frontend_index') }}">Home</a></p>
         </footer>
 
        {% block javascripts %}
