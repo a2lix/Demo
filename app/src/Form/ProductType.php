@@ -25,7 +25,7 @@ class ProductType extends AbstractType
             ->add('translations', TranslationsType::class)
             ->add('category', TranslatedEntityType::class, [
                 'class' => Category::class,
-                'choice_label' => 'displayWithCompany',
+                'translation_property' => 'title',
                 // Optionnal custom query_builder override. Here, to ordering by title ASC
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('e')

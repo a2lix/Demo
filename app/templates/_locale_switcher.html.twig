@@ -1,5 +1,5 @@
-<nav class="locale-switcher my-2 my-md-0 mr-md-3">
+<nav class="locale-switcher">
     {% for locale in locales %}
-        <a class="p-2 {% if app.request.locale == locale %}active{% endif %}" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale' : locale})) }}">{{ locale|upper }}</a>
+        <a class="pr-3 {% if app.request.locale == locale %}active{% endif %}" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale' : locale})) }}">{{ locale|upper }}</a>
     {% endfor %}
 </nav>
