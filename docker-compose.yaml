@@ -14,7 +14,7 @@ services:
       - 8000:8000
 
   db:
-    image: postgres:9-alpine
+    image: postgres:10-alpine
     restart: always
     environment:
       POSTGRES_DB: a2lix_demo
