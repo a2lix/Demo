@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a06beeb8b93622780ebd0e1482f6a281",
+    "content-hash": "f7ea39e7426aac8642143a5f25502d15",
     "packages": [
         {
             "name": "a2lix/auto-form-bundle",
@@ -5985,7 +5985,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "a2lix/translation-form-bundle": 10,
         "symfony/lts": 20
     },
     "prefer-stable": false,

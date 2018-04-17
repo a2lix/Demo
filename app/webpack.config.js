@@ -11,8 +11,8 @@ Encore
     // .enableVersioning(Encore.isProduction())
 
     // uncomment to define the assets of the project
-    .addEntry('js/app', './assets/js/app.js')
-    .addStyleEntry('css/app', './assets/css/app.css')
+    .addStyleEntry('global', './assets/css/global.css')
+    // .addEntry('app', './node_modules/@a2lix/symfony-collection/dist/a2lix_sf_collection.min.js')  // Disable because require webpack4 (uglifyJS with ES6)
 
     // uncomment if you use Sass/SCSS files
     // .enableSassLoader()

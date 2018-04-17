@@ -3,7 +3,7 @@ version: '3'
 services:
   app:
     build:
-      context: ./docker/app
+      context: ./docker/phpfpm
     environment:
       DATABASE_URL: pgsql://a2lix:p4ssw0rd@db:5432/a2lix_demo
     volumes:
