@@ -1,4 +1,4 @@
-# A2liX Demo
+# A2LiX Demo
 
 Symfony4 with A2lixTranslationFormBundle, A2lixAutoFormBundle and KnpDoctrineBehavior examples.
 
@@ -8,8 +8,8 @@ Symfony4 with A2lixTranslationFormBundle, A2lixAutoFormBundle and KnpDoctrineBeh
 
 - ```docker-compose build```
 - ```docker-compose up```
-- ```docker-compose exec app bin/console doctrine:schema:update --force```
-- Go ```http://localhost:8000```
+- ```docker-compose exec --user $(id -u):$(id -g) app bin/console doctrine:schema:update --force```
+- Enjoy ```http://localhost:8000```
 
 ---
 

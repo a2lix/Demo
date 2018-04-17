@@ -26,3 +26,11 @@
         <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_company_index') }}">Back to list</a>
     </div>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('a2lix_sf_collection.min.js') }}"></script>
+    <script>
+        a2lix_lib.sfCollection.init()
+    </script>
+{% endblock %}
