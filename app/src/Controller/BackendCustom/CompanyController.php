@@ -8,7 +8,7 @@ use App\Entity\Company;
 use App\Form\CompanyType;
 use App\Form\GenericDeleteType;
 use App\Repository\CompanyRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/company", name="backend_company_")
  */
-class CompanyController extends Controller
+class CompanyController extends AbstractController
 {
     /**
      * @Route("/", name="index", methods="GET")

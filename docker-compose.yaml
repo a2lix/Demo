@@ -1,35 +1,44 @@
-version: '3'
+version: '3.7'
 
 services:
   app:
     build:
-      context: ./docker/phpfpm
-    environment:
-      DATABASE_URL: pgsql://a2lix:p4ssw0rd@db:5432/a2lix_demo
-    volumes:
-      - ./app:/srv/app:rw,cached
+      context: ./app/
+      target: prod
     depends_on:
       - db
+    environment:
+      COMPOSER_HOME: /tmp
+    volumes:
+      - ./app:/appdata:rw,cached
     ports:
       - 8000:8000
+    restart: unless-stopped
+    user: 1000:1000
+
+  node:
+    build:
+      context: ./app/
+      target: node
+    volumes:
+      - ./app:/appdata:rw,cached
+    user: 1000:1000
 
   db:
-    image: postgres:10-alpine
-    restart: always
+    image: postgres:11-alpine
+    restart: unless-stopped
     environment:
       POSTGRES_DB: a2lix_demo
       POSTGRES_USER: a2lix
       POSTGRES_PASSWORD: p4ssw0rd
     volumes:
       - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
     ports:
       - 5432:5432
-
+    
   adminer:
     image: adminer:latest
-    restart: always
+    restart: unless-stopped
     depends_on:
       - db
     ports:

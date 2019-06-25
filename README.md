@@ -7,8 +7,10 @@ Symfony4 with A2lixTranslationFormBundle, A2lixAutoFormBundle and KnpDoctrineBeh
 ### Start:
 
 - ```docker-compose build```
+- ```docker-compose run --rm app composer install```
+- ```docker-compose run --rm node sh -c "yarn install && yarn encore production"```
 - ```docker-compose up```
-- ```docker-compose exec --user $(id -u):$(id -g) app bin/console doctrine:schema:update --force```
+- ```docker-compose exec app bin/console doctrine:schema:update --force```
 - Enjoy ```http://localhost:8000```
 
 ---

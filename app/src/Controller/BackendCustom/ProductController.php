@@ -8,7 +8,7 @@ use App\Entity\Product;
 use App\Form\GenericDeleteType;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/product", name="backend_product_")
  */
-class ProductController extends Controller
+class ProductController extends AbstractController
 {
     /**
      * @Route("/", name="index", methods="GET")

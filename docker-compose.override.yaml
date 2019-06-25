@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: ./app/
+      target: dev
+    environment:
+      XDEBUG_CONFIG: >-
+        remote_enable=1
+        remote_connect_back=1
+
