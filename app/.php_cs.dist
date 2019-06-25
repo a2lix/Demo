@@ -1,5 +1,9 @@
 <?php
 
+$header = <<<'HEADER'
+(c) David ALLIX <https://a2lix.fr>
+HEADER;
+
 return PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
     ->setRules([
@@ -12,20 +16,22 @@ return PhpCsFixer\Config::create()
         'array_syntax' => ['syntax' => 'short'],
         'combine_consecutive_issets' => true,
         'combine_consecutive_unsets' => true,
-        'general_phpdoc_annotation_remove' => ['param', 'return'],
-        // 'header_comment' => ['header' => $header],
+//        'header_comment' => ['header' => $header],
         'linebreak_after_opening_tag' => true,
         'list_syntax' => ['syntax' => 'short'],
+        'no_superfluous_elseif' => true,
+        'no_superfluous_phpdoc_tags' => true,
         'no_useless_else' => true,
         'no_useless_return' => true,
         'ordered_class_elements' => true,
         'ordered_imports' => true,
-        'phpdoc_order' => true,
+        'php_unit_internal_class' => true,
         'strict_comparison' => true,
         'strict_param' => true,
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()
-        ->in(['src'])
+        ->notPath('Kernel.php')
+        ->in(['src', 'tests'])
     )
 ;
