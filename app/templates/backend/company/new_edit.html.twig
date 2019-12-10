@@ -29,8 +29,5 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('a2lix_sf_collection.min.js') }}"></script>
-    <script>
-        a2lix_lib.sfCollection.init()
-    </script>
+    {{ encore_entry_script_tags('a2lixSfCollection') }}
 {% endblock %}

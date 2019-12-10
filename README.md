@@ -1,6 +1,7 @@
 # A2LiX Demo
 
-Symfony4 with A2lixTranslationFormBundle, A2lixAutoFormBundle and KnpDoctrineBehavior examples.
+Symfony5 with A2lixTranslationFormBundle, A2lixAutoFormBundle and KnpDoctrineBehavior examples.
+Also, JS package @a2lix/symfony-collection with Symfony Encore.
 
 ---
 

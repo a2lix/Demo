@@ -1,2 +1,5 @@
+parameters:
+    locale: en
+
 knp_doctrine_behaviors:
     translatable: true

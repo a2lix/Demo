@@ -1,8 +1,8 @@
 controllers:
-    resource: ../../src/Controller
-    type:     annotation
+    resource: ../../src/Controller/
+    type: annotation
 
 controllers_backend_custom:
     resource: ../../src/Controller/BackendCustom
-    type:     annotation
-    prefix:   /{_locale}/backend
+    type: annotation
+    prefix: /{_locale}/backend

@@ -1,6 +1,10 @@
 {
     "devDependencies": {
-        "@symfony/webpack-encore": "^0.27"
+        "@a2lix/symfony-collection": "^0.3",
+        "@symfony/webpack-encore": "^0.28.2",
+        "core-js": "^3.0.0",
+        "regenerator-runtime": "^0.13.2",
+        "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",
     "private": true,
@@ -8,9 +12,6 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production"
-    },
-    "dependencies": {
-        "@a2lix/symfony-collection": "^0.2"
+        "build": "encore production --progress"
     }
 }
