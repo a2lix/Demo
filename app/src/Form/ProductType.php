@@ -31,7 +31,8 @@ class ProductType extends AbstractType
                     return $er->createQueryBuilder('e')
                         ->select('e, t')
                         ->join('e.translations', 't')
-                        ->orderBy('t.title', 'ASC');
+                        ->orderBy('t.title', 'ASC')
+                    ;
                 },
             ])
             ->add('media', ProductMediaType::class)

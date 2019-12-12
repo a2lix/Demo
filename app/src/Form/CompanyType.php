@@ -28,7 +28,7 @@ class CompanyType extends AbstractType
                         'disabled' => true,
                     ],
                 ],
-//                'excluded_fields' => ['description']
+                //                'excluded_fields' => ['description']
             ])
             ->add('categories', CollectionType::class, [
                 'entry_type' => CategoryType::class,
