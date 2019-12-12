@@ -5,14 +5,16 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
+use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CompanyTranslationRepository")
  */
-class CompanyTranslation
+class CompanyTranslation implements TranslationInterface
 {
-    use ORMBehaviors\Translatable\Translation;
+    use Common\IdTrait;
+    use TranslationTrait;
 
     /**
      * @ORM\Column(nullable=true)

@@ -26,6 +26,12 @@
     "knplabs/doctrine-behaviors": {
         "version": "1.6.0"
     },
+    "nette/finder": {
+        "version": "v2.5.1"
+    },
+    "nette/utils": {
+        "version": "v3.0.2"
+    },
     "php": {
         "version": "7.3"
     },
@@ -46,6 +52,9 @@
     },
     "symfony/css-selector": {
         "version": "v5.0.1"
+    },
+    "symfony/debug": {
+        "version": "v4.4.1"
     },
     "symfony/debug-bundle": {
         "version": "4.1",
@@ -156,6 +165,9 @@
             "package.json",
             "webpack.config.js"
         ]
+    },
+    "symplify/package-builder": {
+        "version": "v7.1.0"
     },
     "webmozart/assert": {
         "version": "1.6.0"
