@@ -5,9 +5,6 @@
     "a2lix/translation-form-bundle": {
         "version": "3.0.6"
     },
-    "behat/transliterator": {
-        "version": "v1.2.0"
-    },
     "composer/semver": {
         "version": "1.5.0"
     },
@@ -68,14 +65,14 @@
     "psr/link": {
         "version": "1.0.0"
     },
+    "ramsey/uuid": {
+        "version": "3.9.3"
+    },
     "symfony/browser-kit": {
         "version": "v5.0.1"
     },
     "symfony/css-selector": {
         "version": "v5.0.1"
-    },
-    "symfony/debug": {
-        "version": "v4.4.1"
     },
     "symfony/debug-bundle": {
         "version": "4.1",
