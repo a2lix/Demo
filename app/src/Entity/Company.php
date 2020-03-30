@@ -107,4 +107,14 @@ class Company implements TranslatableInterface
 
         return $this;
     }
+
+    public function getMediaLocalized(): ?CompanyMediaLocalize
+    {
+        $currLocale = $this->getCurrentLocale();
+        $mediaLocalized = $this->medias->filter(function (CompanyMediaLocalize $media) use ($currLocale) : bool {
+            return $media->getLocale() === $currLocale;
+        });
+
+        return $mediaLocalized->count() ? $mediaLocalized->first() : null;
+    }
 }

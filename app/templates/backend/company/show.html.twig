@@ -29,7 +29,7 @@
             </tr>
             <tr>
                 <th>Media</th>
-                <td>{{ company.medias|first ? (company.medias|first).url }}</td>
+                <td>{{ company.mediaLocalized ? company.mediaLocalized.url }}</td>
             </tr>
         </tbody>
     </table>
