@@ -76,6 +76,11 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
+        "db-reset": [
+            "bin/console d:d:d --if-exists --force",
+            "bin/console d:d:c",
+            "bin/console d:s:u --force"
+        ],
         "cs-fixer": [
             "php-cs-fixer fix --verbose"
         ]

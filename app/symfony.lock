@@ -5,6 +5,9 @@
     "a2lix/translation-form-bundle": {
         "version": "3.0.6"
     },
+    "brick/math": {
+        "version": "0.8.14"
+    },
     "composer/semver": {
         "version": "1.5.0"
     },
@@ -64,6 +67,9 @@
     },
     "psr/link": {
         "version": "1.0.0"
+    },
+    "ramsey/collection": {
+        "version": "1.0.1"
     },
     "ramsey/uuid": {
         "version": "3.9.3"
