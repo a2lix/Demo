@@ -69,14 +69,14 @@ class CompanyController extends AbstractController
     /**
      * @Route("/{id}/edit", name="edit", methods="GET|POST")
      */
-    public function edit(Request $request, Company $company): Response
+    public function edit(Request $request, Company $company, $_route): Response
     {
         // // AutoForm example
-        // $form = $this->createForm(\A2lix\AutoFormBundle\Form\Type\AutoFormType::class, $company, [
-        //     'action' => $this->generateUrl($_route, ['id' => $company->getId()]),
-        // ])->add('save', \Symfony\Component\Form\Extension\Core\Type\SubmitType::class);
+        $form = $this->createForm(\A2lix\AutoFormBundle\Form\Type\AutoFormType::class, $company, [
+            'action' => $this->generateUrl($_route, ['id' => $company->getId()]),
+        ])->add('save', \Symfony\Component\Form\Extension\Core\Type\SubmitType::class);
 
-        $form = $this->createForm(CompanyType::class, $company);
+        // $form = $this->createForm(CompanyType::class, $company);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

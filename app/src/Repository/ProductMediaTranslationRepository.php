@@ -6,7 +6,7 @@ namespace App\Repository;
 
 use App\Entity\ProductMediaTranslation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 class ProductMediaTranslationRepository extends ServiceEntityRepository
 {

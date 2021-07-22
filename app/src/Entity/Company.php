@@ -117,4 +117,9 @@ class Company implements TranslatableInterface
 
         return $mediaLocalized->count() ? $mediaLocalized->first() : null;
     }
+
+    public function __toString()
+    {
+        return '?';
+    }
 }

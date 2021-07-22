@@ -1,11 +1,11 @@
-ARG PHP_VERSION=7.3
+ARG PHP_VERSION=8.0
 ARG NODE_VERSION=12
 
 
 #### Stage - PHP Common
 FROM php:$PHP_VERSION-cli-alpine AS php_common
 
-ARG APCU_VERSION=5.1.17
+ARG APCU_VERSION=5.1.20
 RUN set -eux \
       && apk add --no-cache --virtual .build-deps \
         $PHPIZE_DEPS \
@@ -43,7 +43,7 @@ WORKDIR /appdata
 #### Stage - Development
 FROM php_common AS dev
 
-ARG XDEBUG_VERSION=2.7.2
+ARG XDEBUG_VERSION=3.0.4
 RUN set -eux \
       && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
       && pecl install xdebug-$XDEBUG_VERSION \
