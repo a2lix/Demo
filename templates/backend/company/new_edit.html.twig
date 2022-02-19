@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ company.id ? 'Edit' : 'Create new' }} Company{% endblock %}
+
+{% form_theme form _self %}
+
+{# A2lixTranslationType custom render example #}
+{% block _company_translations_locale_title_widget %}
+    {{- form_widget(form) -}}
+    <p class="bg-warning text-dark">Custom form rendering example</p>
+{% endblock %}
+
+{# Remove label from CollectionType #}
+{% block _company_categories_entry_row %}
+    {{- form_errors(form) -}}
+    {{- form_widget(form) -}}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ block('title') }}</h1>
+
+    {{ form(form) }}
+
+    <div class="record_actions">
+        {% if company.id %}{{ form(deleteForm) }}{% endif %}
+        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_company_index') }}">Back to list</a>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
