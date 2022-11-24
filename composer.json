@@ -14,21 +14,21 @@
         "doctrine/orm": "^2.11",
         "knplabs/doctrine-behaviors": "^2.6",
         "sensio/framework-extra-bundle": "^6.2",
-        "symfony/console": "6.0.*",
-        "symfony/dotenv": "6.0.*",
+        "symfony/console": "^6.1",
+        "symfony/dotenv": "^6.1",
         "symfony/flex": "^2",
-        "symfony/form": "6.0.*",
-        "symfony/framework-bundle": "6.0.*",
+        "symfony/form": "^6.1",
+        "symfony/framework-bundle": "^6.1",
         "symfony/monolog-bundle": "^3.7",
-        "symfony/proxy-manager-bridge": "6.0.*",
-        "symfony/runtime": "6.0.*",
-        "symfony/security-bundle": "6.0.*",
-        "symfony/translation": "6.0.*",
-        "symfony/twig-bundle": "6.0.*",
+        "symfony/proxy-manager-bridge": "^6.1",
+        "symfony/runtime": "^6.1",
+        "symfony/security-bundle": "^6.1",
+        "symfony/translation": "^6.1",
+        "symfony/twig-bundle": "^6.1",
         "symfony/webpack-encore-bundle": "^1.14",
-        "symfony/yaml": "6.0.*",
-        "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "symfony/yaml": "^6.1",
+        "twig/extra-bundle": "^3.0",
+        "twig/twig": "^3.0"
     },
     "config": {
         "allow-plugins": {
@@ -86,17 +86,17 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "6.0.*",
+            "require": "6.1.*",
             "docker": true
         }
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.6",
         "phpunit/phpunit": "^9.5",
-        "rector/rector": "^0.12.16",
-        "symfony/debug-bundle": "6.0.*",
+        "rector/rector": "^0.14",
+        "symfony/debug-bundle": "^6.1",
         "symfony/maker-bundle": "^1.37",
-        "symfony/stopwatch": "6.0.*",
-        "symfony/web-profiler-bundle": "6.0.*"
+        "symfony/stopwatch": "^6.1",
+        "symfony/web-profiler-bundle": "^6.1"
     }
 }

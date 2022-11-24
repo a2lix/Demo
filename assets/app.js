@@ -13,4 +13,18 @@ import './bootstrap';
 
 import a2lix_lib from '@a2lix/symfony-collection/src/a2lix_sf_collection'
 
-a2lix_lib.sfCollection.init()
+
+a2lix_lib.sfCollection.init({
+  entry: {
+    add: {
+        label: 'Ajouter',
+        // customFn: (...args) => console.log('add', args),
+        onAfterFn: (...args) => console.log('add', args),
+    },
+    remove: {
+        label: 'Supprimer',
+        // customFn: (...args) => console.log('remove', args),
+        onAfterFn: (...args) => console.log('remove', args),
+    }
+}}
+)

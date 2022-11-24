@@ -7,9 +7,9 @@ Also, JS package @a2lix/symfony-collection with Symfony Encore.
 
 ### Start:
 
-- ```docker-compose build```
-- ```docker-compose up```
-- ```docker-compose exec php composer db-reset```
+- ```docker compose build```
+- ```docker compose up```
+- ```docker compose exec php composer db-reset```
 - Enjoy ```http://localhost```
 
 ---

@@ -2,32 +2,48 @@
 
 declare(strict_types=1);
 
-use Rector\Core\Configuration\Option;
-use Rector\Set\ValueObject\LevelSetList;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Rector\Config\RectorConfig;
+use Rector\Core\ValueObject\PhpVersion;
 use Rector\Doctrine\Set\DoctrineSetList;
-use Rector\Symfony\Set\SymfonySetList;
-use Rector\Set\ValueObject\SetList;
+use Rector\PHPUnit\Set\PHPUnitLevelSetList;
+use Rector\PHPUnit\Set\PHPUnitSetList;
+use Rector\Set\ValueObject\LevelSetList;
+use Rector\Symfony\Set\SensiolabsSetList;
 use Rector\Symfony\Set\SymfonyLevelSetList;
+use Rector\Symfony\Set\SymfonySetList;
+use Rector\Symfony\Set\TwigSetList;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $parameters = $containerConfigurator->parameters();
-    $parameters->set(Option::PATHS, [
-        __DIR__ . '/src'
+return static function (RectorConfig $rectorConfig): void {
+    $rectorConfig->parallel();
+    $rectorConfig->paths([
+        __DIR__ . '/src',
+        __DIR__ . '/tests',
     ]);
-    $parameters->set(Option::AUTO_IMPORT_NAMES, true);
-    $parameters->set(Option::IMPORT_DOC_BLOCKS, false);
-    $parameters->set(Option::IMPORT_SHORT_CLASSES, false);
+    $rectorConfig->importNames();
+    $rectorConfig->disableImportShortClasses();
 
-    $containerConfigurator->import(LevelSetList::UP_TO_PHP_81);
-    $containerConfigurator->import(SetList::ACTION_INJECTION_TO_CONSTRUCTOR_INJECTION);
+    $rectorConfig->symfonyContainerXml(__DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml');
+    $rectorConfig->phpVersion(PhpVersion::PHP_81);
+    $rectorConfig->sets([
+        LevelSetList::UP_TO_PHP_81,
 
-    $containerConfigurator->import(SymfonyLevelSetList::UP_TO_SYMFONY_60);
-    $containerConfigurator->import(SymfonySetList::SYMFONY_CODE_QUALITY);
-    $containerConfigurator->import(SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION);
+        SymfonyLevelSetList::UP_TO_SYMFONY_60,
+        // SymfonySetList::SYMFONY_STRICT,
+        // SymfonySetList::SYMFONY_CODE_QUALITY,
+        // SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
 
-    $containerConfigurator->import(DoctrineSetList::DOCTRINE_ORM_29);
-    $containerConfigurator->import(DoctrineSetList::DOCTRINE_DBAL_30);
-    $containerConfigurator->import(DoctrineSetList::DOCTRINE_CODE_QUALITY);
-    $containerConfigurator->import(DoctrineSetList::ANNOTATIONS_TO_ATTRIBUTES);
+        // DoctrineSetList::ANNOTATIONS_TO_ATTRIBUTES,
+        // DoctrineSetList::DOCTRINE_CODE_QUALITY,
+        DoctrineSetList::DOCTRINE_ORM_29,
+        DoctrineSetList::DOCTRINE_DBAL_30,
+
+        SensiolabsSetList::FRAMEWORK_EXTRA_61,
+
+        TwigSetList::TWIG_240,
+        TwigSetList::TWIG_UNDERSCORE_TO_NAMESPACE,
+
+        PHPUnitLevelSetList::UP_TO_PHPUNIT_90,
+        // PHPUnitSetList::PHPUNIT_CODE_QUALITY,
+        // PHPUnitSetList::PHPUNIT_YIELD_DATA_PROVIDER,
+    ]);
 };
