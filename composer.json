@@ -9,7 +9,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "a2lix/translation-form-bundle": "^3.2",
-        "doctrine/doctrine-bundle": "^2.5",
+        "doctrine/doctrine-bundle": "^2.7",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.11",
         "knplabs/doctrine-behaviors": "^2.6",
