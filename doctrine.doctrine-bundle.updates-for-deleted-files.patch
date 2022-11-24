@@ -1,0 +1,20 @@
+diff --git a/docker-composeyml b/docker-composeyml
+index d2f3521..d7d267f 100644
+--- a/docker-composeyml
++++ b/docker-composeyml
+@@ -59,12 +59,12 @@ services:
+ 
+ ###> doctrine/doctrine-bundle ###
+   database:
+-    image: postgres:${POSTGRES_VERSION:-13}-alpine
++    image: postgres:${POSTGRES_VERSION:-14}-alpine
+     environment:
+       POSTGRES_DB: ${POSTGRES_DB:-app}
+       # You should definitely change the password in production
+-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
+-      POSTGRES_USER: ${POSTGRES_USER:-symfony}
++      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
++      POSTGRES_USER: ${POSTGRES_USER:-app}
+     volumes:
+       - db-data:/var/lib/postgresql/data:rw
+       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
