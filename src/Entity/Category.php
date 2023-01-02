@@ -73,7 +73,7 @@ class Category implements TranslatableInterface
 
     public function removeTag(string $tag): self
     {
-        $this->tags = array_filter($this->tags, fn ($t) => $t !== $tag);
+        $this->tags = array_reduce($this->tags, fn (array $carry, string $t) => [...$carry, ...($t !== $tag ? [$t] : [])], []);
 
         return $this;
     }
