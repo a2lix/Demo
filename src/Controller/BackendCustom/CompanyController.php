@@ -47,7 +47,7 @@ class CompanyController extends AbstractController
 
         return $this->render('backend/company/new_edit.html.twig', [
             'company' => $company,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -60,7 +60,7 @@ class CompanyController extends AbstractController
 
         return $this->render('backend/company/show.html.twig', [
             'company' => $company,
-            'deleteForm' => $deleteForm->createView(),
+            'deleteForm' => $deleteForm,
         ]);
     }
 
@@ -87,8 +87,8 @@ class CompanyController extends AbstractController
 
         return $this->render('backend/company/new_edit.html.twig', [
             'company' => $company,
-            'form' => $form->createView(),
-            'deleteForm' => $deleteForm->createView(),
+            'form' => $form,
+            'deleteForm' => $deleteForm,
         ]);
     }
 

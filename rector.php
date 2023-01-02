@@ -26,17 +26,15 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->sets([
         LevelSetList::UP_TO_PHP_81,
 
-        SymfonyLevelSetList::UP_TO_SYMFONY_60,
+        SymfonyLevelSetList::UP_TO_SYMFONY_62,
         // SymfonySetList::SYMFONY_STRICT,
         // SymfonySetList::SYMFONY_CODE_QUALITY,
         // SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
 
         // DoctrineSetList::ANNOTATIONS_TO_ATTRIBUTES,
         // DoctrineSetList::DOCTRINE_CODE_QUALITY,
-        DoctrineSetList::DOCTRINE_ORM_29,
+        DoctrineSetList::DOCTRINE_ORM_213,
         DoctrineSetList::DOCTRINE_DBAL_30,
-
-        SensiolabsSetList::FRAMEWORK_EXTRA_61,
 
         TwigSetList::TWIG_240,
         TwigSetList::TWIG_UNDERSCORE_TO_NAMESPACE,

@@ -45,7 +45,7 @@ class ProductController extends AbstractController
 
         return $this->render('backend/product/new_edit.html.twig', [
             'product' => $product,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -58,7 +58,7 @@ class ProductController extends AbstractController
 
         return $this->render('backend/product/show.html.twig', [
             'product' => $product,
-            'deleteForm' => $deleteForm->createView(),
+            'deleteForm' => $deleteForm,
         ]);
     }
 
@@ -81,8 +81,8 @@ class ProductController extends AbstractController
 
         return $this->render('backend/product/new_edit.html.twig', [
             'product' => $product,
-            'form' => $form->createView(),
-            'deleteForm' => $deleteForm->createView(),
+            'form' => $form,
+            'deleteForm' => $deleteForm,
         ]);
     }
 
