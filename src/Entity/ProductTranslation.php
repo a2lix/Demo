@@ -17,10 +17,10 @@ class ProductTranslation implements TranslationInterface
     use TranslationTrait;
 
     #[ORM\Column(nullable: true)]
-    private $title;
+    private ?string $title = null;
 
     #[ORM\Column(nullable: true)]
-    private $description;
+    private ?string $description = null;
 
     public function getTitle(): ?string
     {

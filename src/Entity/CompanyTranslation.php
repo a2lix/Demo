@@ -18,7 +18,7 @@ class CompanyTranslation implements TranslationInterface
     use TranslationTrait;
 
     #[ORM\Column(nullable: true)]
-    private $title;
+    private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;

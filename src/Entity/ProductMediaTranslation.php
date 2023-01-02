@@ -17,7 +17,7 @@ class ProductMediaTranslation implements TranslationInterface
     use TranslationTrait;
 
     #[ORM\Column(nullable: true)]
-    private $url;
+    private ?string $url = null;
 
     public function getUrl(): ?string
     {

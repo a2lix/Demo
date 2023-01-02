@@ -17,9 +17,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/{_locale}/backend/product', name: 'backend_product_')]
 class ProductController extends AbstractController
 {
-    public function __construct(private readonly ManagerRegistry $managerRegistry)
-    {
-    }
+    public function __construct(
+        private readonly ManagerRegistry $managerRegistry,
+    ) {}
 
     #[Route(path: '/', name: 'index', methods: 'GET')]
     public function index(ProductRepository $productRepository): Response
@@ -31,8 +31,8 @@ class ProductController extends AbstractController
     public function new(Request $request): Response
     {
         $product = new Product();
-        $form = $this->createForm(ProductType::class, $product);
-        $form->handleRequest($request);
+        $form = $this->createForm(ProductType::class, $product)->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->managerRegistry->getManager();
             $em->persist($product);
@@ -65,8 +65,8 @@ class ProductController extends AbstractController
     #[Route(path: '/{id}/edit', name: 'edit', methods: 'GET|POST')]
     public function edit(Request $request, Product $product): Response
     {
-        $form = $this->createForm(ProductType::class, $product);
-        $form->handleRequest($request);
+        $form = $this->createForm(ProductType::class, $product)->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $this->managerRegistry->getManager()->flush();
 
@@ -74,6 +74,7 @@ class ProductController extends AbstractController
 
             return $this->redirectToRoute('backend_product_edit', ['id' => $product->getId()]);
         }
+
         $deleteForm = $this->createForm(GenericDeleteType::class, $product, [
             'action' => $this->generateUrl('backend_product_delete', ['id' => $product->getId()]),
         ]);
@@ -88,8 +89,8 @@ class ProductController extends AbstractController
     #[Route(path: '/{id}', name: 'delete', methods: 'DELETE')]
     public function delete(Request $request, Product $product): Response
     {
-        $deleteForm = $this->createForm(GenericDeleteType::class, $product);
-        $deleteForm->handleRequest($request);
+        $deleteForm = $this->createForm(GenericDeleteType::class, $product)->handleRequest($request);
+
         if ($deleteForm->isSubmitted() && $deleteForm->isValid()) {
             $em = $this->managerRegistry->getManager();
             $em->remove($product);

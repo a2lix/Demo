@@ -17,7 +17,7 @@ class CategoryTranslation implements TranslationInterface
     use TranslationTrait;
 
     #[ORM\Column(nullable: true)]
-    private $title;
+    private ?string $title = null;
 
     public function getTitle(): ?string
     {

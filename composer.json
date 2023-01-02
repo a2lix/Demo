@@ -13,20 +13,19 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.11",
         "knplabs/doctrine-behaviors": "^2.6",
-        "sensio/framework-extra-bundle": "^6.2",
-        "symfony/console": "^6.1",
-        "symfony/dotenv": "^6.1",
+        "symfony/console": "^6.2",
+        "symfony/dotenv": "^6.2",
         "symfony/flex": "^2",
-        "symfony/form": "^6.1",
-        "symfony/framework-bundle": "^6.1",
+        "symfony/form": "^6.2",
+        "symfony/framework-bundle": "^6.2",
         "symfony/monolog-bundle": "^3.7",
-        "symfony/proxy-manager-bridge": "^6.1",
-        "symfony/runtime": "^6.1",
-        "symfony/security-bundle": "^6.1",
-        "symfony/translation": "^6.1",
-        "symfony/twig-bundle": "^6.1",
+        "symfony/proxy-manager-bridge": "^6.2",
+        "symfony/runtime": "^6.2",
+        "symfony/security-bundle": "^6.2",
+        "symfony/translation": "^6.2",
+        "symfony/twig-bundle": "^6.2",
         "symfony/webpack-encore-bundle": "^1.14",
-        "symfony/yaml": "^6.1",
+        "symfony/yaml": "^6.2",
         "twig/extra-bundle": "^3.0",
         "twig/twig": "^3.0"
     },
@@ -86,17 +85,18 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "6.1.*",
+            "require": "6.2.*",
             "docker": true
         }
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.6",
+        "kubawerlos/php-cs-fixer-custom-fixers": "^3.11",
         "phpunit/phpunit": "^9.5",
-        "rector/rector": "^0.14",
-        "symfony/debug-bundle": "^6.1",
+        "rector/rector": "^0.15",
+        "symfony/debug-bundle": "^6.2",
         "symfony/maker-bundle": "^1.37",
-        "symfony/stopwatch": "^6.1",
-        "symfony/web-profiler-bundle": "^6.1"
+        "symfony/stopwatch": "^6.2",
+        "symfony/web-profiler-bundle": "^6.2"
     }
 }

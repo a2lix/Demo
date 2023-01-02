@@ -17,7 +17,7 @@ class CompanyMediaLocalize implements OneLocaleInterface
     use OneLocaleTrait;
 
     #[ORM\Column(nullable: true)]
-    private $url;
+    private ?string $url = null;
 
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'medias')]
     private ?Company $company = null;

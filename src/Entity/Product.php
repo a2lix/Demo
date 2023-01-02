@@ -22,8 +22,7 @@ class Product implements TranslatableInterface
     protected $translations;
 
     #[ORM\Column]
-    #[Assert\NotBlank]
-    private $code;
+    private string $code;
 
     #[ORM\ManyToOne(targetEntity: Category::class)]
     private ?Category $category = null;
@@ -36,7 +35,7 @@ class Product implements TranslatableInterface
         return PropertyAccess::createPropertyAccessor()->getValue($this->translate(), $method);
     }
 
-    public function getCode(): ?string
+    public function getCode(): string
     {
         return $this->code;
     }

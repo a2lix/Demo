@@ -24,18 +24,13 @@ class Company implements TranslatableInterface, \Stringable
     protected $translations;
 
     #[ORM\Column]
-    #[Assert\NotBlank]
-    private $code;
+    private string $code;
 
-    /**
-     * @var \Category[]|\Doctrine\Common\Collections\Collection<int, \Category>
-     */
+    /** @var Category[]|Collection<int, Category> */
     #[ORM\OneToMany(targetEntity: Category::class, mappedBy: 'company', cascade: ['all'], orphanRemoval: true)]
     private Collection $categories;
 
-    /**
-     * @var \CompanyMediaLocalize[]|\Doctrine\Common\Collections\Collection<int, \CompanyMediaLocalize>
-     */
+    /** @var CompanyMediaLocalize[]|Collection<int, CompanyMediaLocalize> */
     #[ORM\OneToMany(targetEntity: CompanyMediaLocalize::class, mappedBy: 'company', indexBy: 'locale', cascade: ['all'], orphanRemoval: true)]
     private Collection $medias;
 
@@ -55,7 +50,7 @@ class Company implements TranslatableInterface, \Stringable
         return '?';
     }
 
-    public function getCode(): ?string
+    public function getCode(): string
     {
         return $this->code;
     }

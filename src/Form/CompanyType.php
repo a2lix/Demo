@@ -36,7 +36,8 @@ class CompanyType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'attr' => [
-                    'data-entry-label' => 'Category',
+                    'data-entry-add-label' => 'Add Category',
+                    'data-entry-remove-label' => 'Rm Category',
                 ],
             ])
             ->add('medias', TranslationsFormsType::class, [
@@ -70,7 +71,8 @@ class CompanyType extends AbstractType
                     'attr' => [
                         'class' => 'btn-primary btn-lg btn-block',
                     ],
-                ]);
+                ])
+            ;
         });
     }
 

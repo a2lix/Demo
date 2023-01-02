@@ -20,7 +20,6 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__ . '/tests',
     ]);
     $rectorConfig->importNames();
-    $rectorConfig->disableImportShortClasses();
 
     $rectorConfig->symfonyContainerXml(__DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml');
     $rectorConfig->phpVersion(PhpVersion::PHP_81);

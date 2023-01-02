@@ -19,9 +19,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/{_locale}/backend/company', name: 'backend_company_')]
 class CompanyController extends AbstractController
 {
-    public function __construct(private readonly ManagerRegistry $managerRegistry)
-    {
-    }
+    public function __construct(
+        private readonly ManagerRegistry $managerRegistry,
+    ) {}
 
     #[Route(path: '/', name: 'index', methods: 'GET')]
     public function index(CompanyRepository $companyRepository): Response
@@ -33,8 +33,8 @@ class CompanyController extends AbstractController
     public function new(Request $request): Response
     {
         $company = new Company();
-        $form = $this->createForm(CompanyType::class, $company);
-        $form->handleRequest($request);
+        $form = $this->createForm(CompanyType::class, $company)->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->managerRegistry->getManager();
             $em->persist($company);
@@ -71,8 +71,8 @@ class CompanyController extends AbstractController
         // $form = $this->createForm(AutoFormType::class, $company, [
         //     'action' => $this->generateUrl($_route, ['id' => $company->getId()]),
         // ])->add('save', SubmitType::class);
-        $form = $this->createForm(CompanyType::class, $company);
-        $form->handleRequest($request);
+        $form = $this->createForm(CompanyType::class, $company)->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $this->managerRegistry->getManager()->flush();
 
@@ -80,6 +80,7 @@ class CompanyController extends AbstractController
 
             return $this->redirectToRoute('backend_company_edit', ['id' => $company->getId()]);
         }
+
         $deleteForm = $this->createForm(GenericDeleteType::class, $company, [
             'action' => $this->generateUrl('backend_company_delete', ['id' => $company->getId()]),
         ]);
@@ -94,8 +95,8 @@ class CompanyController extends AbstractController
     #[Route(path: '/{id}', name: 'delete', methods: 'DELETE')]
     public function delete(Request $request, Company $company): Response
     {
-        $deleteForm = $this->createForm(GenericDeleteType::class, $company);
-        $deleteForm->handleRequest($request);
+        $deleteForm = $this->createForm(GenericDeleteType::class, $company)->handleRequest($request);
+
         if ($deleteForm->isSubmitted() && $deleteForm->isValid()) {
             $em = $this->managerRegistry->getManager();
             $em->remove($company);
