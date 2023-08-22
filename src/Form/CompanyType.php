@@ -36,7 +36,8 @@ class CompanyType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'attr' => [
-                    'data-entry-add-label' => '<i class="bi bi-plus"></i>',
+                    'data-entry-add-prototype' => '<a class="__class__" data-entry-action="add">__label__</a>',
+                    'data-entry-add-label' => '<span>test</span>',
                     'data-entry-remove-label' => 'Rm Category',
                 ],
             ])
