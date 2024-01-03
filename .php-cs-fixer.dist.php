@@ -1,7 +1,8 @@
 <?php
 
 $finder = (new PhpCsFixer\Finder())
-    ->in(['src', 'tests'])
+    ->in(['src'])
+    ->notPath('bootstrap.php')
 ;
 
 return (new PhpCsFixer\Config())
@@ -9,9 +10,8 @@ return (new PhpCsFixer\Config())
     ->registerCustomFixers(new PhpCsFixerCustomFixers\Fixers())
     ->setRules([
         '@DoctrineAnnotation' => true,
-        '@PHP80Migration' => true,
-        '@PHP80Migration:risky' => true,
-        '@PHPUnit84Migration:risky' => true,
+        '@PHP82Migration' => true,
+        // '@PHPUnit100Migration:risky' => true,
         '@PhpCsFixer' => true,
         '@PhpCsFixer:risky' => true,
         '@Symfony' => true,
@@ -25,13 +25,15 @@ return (new PhpCsFixer\Config())
         'no_useless_else' => true,
         'no_useless_return' => true,
         'php_unit_strict' => false,
+        'php_unit_internal_class' => false,
+        'php_unit_test_class_requires_covers' => false,
         'phpdoc_order' => true,
         'strict_comparison' => true,
         'strict_param' => true,
         'trailing_comma_in_multiline' => ['after_heredoc' => true, 'elements' => ['arrays', 'parameters']],
         'statement_indentation' => true,
         'method_chaining_indentation' => true,
-        'method_argument_space' => ['on_multiline' => 'ensure_fully_multiline'],
+        'method_argument_space' => ['on_multiline' => 'ensure_fully_multiline', 'attribute_placement' => 'ignore'],
 
          PhpCsFixerCustomFixers\Fixer\ConstructorEmptyBracesFixer::name() => true,
          PhpCsFixerCustomFixers\Fixer\MultilineCommentOpeningClosingAloneFixer::name() => true,

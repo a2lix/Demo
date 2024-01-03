@@ -28,7 +28,7 @@ class ProductType extends AbstractType
                 'class' => Category::class,
                 'translation_property' => 'title',
                 // Optionnal custom query_builder override. Here, to ordering by title ASC
-                'query_builder' => fn (EntityRepository $er) => $er->createQueryBuilder('e')
+                'query_builder' => static fn (EntityRepository $er) => $er->createQueryBuilder('e')
                     ->select('e, t')
                     ->join('e.translations', 't')
                     ->orderBy('t.title', Criteria::ASC),
@@ -37,7 +37,7 @@ class ProductType extends AbstractType
         ;
 
         // Manage submit label
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, static function (FormEvent $event): void {
             $form = $event->getForm();
             $data = $event->getData();
 

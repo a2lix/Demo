@@ -5,33 +5,45 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.1.3",
-        "ext-ctype": "*",
-        "ext-iconv": "*",
-        "a2lix/translation-form-bundle": "^3.2",
-        "doctrine/doctrine-bundle": "^2.7",
-        "doctrine/doctrine-migrations-bundle": "^3.2",
-        "doctrine/orm": "^2.11",
-        "knplabs/doctrine-behaviors": "^2.6",
-        "symfony/console": "^6.2",
-        "symfony/dotenv": "^6.2",
-        "symfony/flex": "^2",
-        "symfony/form": "^6.2",
-        "symfony/framework-bundle": "^6.2",
-        "symfony/monolog-bundle": "^3.7",
-        "symfony/proxy-manager-bridge": "^6.2",
-        "symfony/runtime": "^6.2",
-        "symfony/security-bundle": "^6.2",
-        "symfony/translation": "^6.2",
-        "symfony/twig-bundle": "^6.2",
-        "symfony/webpack-encore-bundle": "^1.14",
-        "symfony/yaml": "^6.2",
-        "twig/extra-bundle": "^3.0",
-        "twig/twig": "^3.0"
+        "php": ">=8.2",
+        "a2lix/translation-form-bundle": "^3.2.3",
+        "doctrine/doctrine-bundle": "^2.11.1",
+        "doctrine/doctrine-migrations-bundle": "^3.3",
+        "doctrine/orm": "^2.17.2",
+        "knplabs/doctrine-behaviors": "^2.6.2",
+        "symfony/console": "^6.4.2",
+        "symfony/dotenv": "^6.4.2",
+        "symfony/flex": "^2.4.3",
+        "symfony/form": "^6.4.1",
+        "symfony/framework-bundle": "^6.4.2",
+        "symfony/monolog-bundle": "^3.10",
+        "symfony/runtime": "^6.4",
+        "symfony/security-bundle": "^6.4.2",
+        "symfony/translation": "^6.4.2",
+        "symfony/twig-bundle": "^6.4",
+        "symfony/webpack-encore-bundle": "^2.1.1",
+        "symfony/yaml": "^6.4",
+        "twig/extra-bundle": "^3.8",
+        "twig/twig": "^3.8"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.45",
+        "kubawerlos/php-cs-fixer-custom-fixers": "^3.18",
+        "rector/rector": "^0.18.13",
+        "symfony/debug-bundle": "^6.4",
+        "symfony/maker-bundle": "^1.52",
+        "symfony/stopwatch": "^6.4",
+        "symfony/web-profiler-bundle": "^6.4.2"
+    },
+    "replace": {
+        "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php74": "*",
+        "symfony/polyfill-php80": "*",
+        "symfony/polyfill-php81": "*"
     },
     "config": {
         "allow-plugins": {
-            "composer/package-versions-deprecated": true,
             "symfony/flex": true,
             "symfony/runtime": true
         },
@@ -50,14 +62,6 @@
         "psr-4": {
             "App\\Tests\\": "tests/"
         }
-    },
-    "replace": {
-        "symfony/polyfill-ctype": "*",
-        "symfony/polyfill-iconv": "*",
-        "symfony/polyfill-php72": "*",
-        "symfony/polyfill-php73": "*",
-        "symfony/polyfill-php74": "*",
-        "symfony/polyfill-php80": "*"
     },
     "scripts": {
         "auto-scripts": {
@@ -85,18 +89,8 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "6.2.*",
+            "require": "6.4.*",
             "docker": true
         }
-    },
-    "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.6",
-        "kubawerlos/php-cs-fixer-custom-fixers": "^3.11",
-        "phpunit/phpunit": "^9.5",
-        "rector/rector": "^0.15",
-        "symfony/debug-bundle": "^6.2",
-        "symfony/maker-bundle": "^1.37",
-        "symfony/stopwatch": "^6.2",
-        "symfony/web-profiler-bundle": "^6.2"
     }
 }

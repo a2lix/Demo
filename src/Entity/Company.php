@@ -109,8 +109,8 @@ class Company implements TranslatableInterface, \Stringable
     public function getMediaLocalized(): ?CompanyMediaLocalize
     {
         $currLocale = $this->getCurrentLocale();
-        $mediaLocalized = $this->medias->filter(fn (CompanyMediaLocalize $media): bool => $media->getLocale() === $currLocale);
+        $mediaLocalized = $this->medias->filter(static fn (CompanyMediaLocalize $media): bool => $media->getLocale() === $currLocale);
 
-        return $mediaLocalized->count() ? $mediaLocalized->first() : null;
+        return $mediaLocalized->first() ?: null;
     }
 }
