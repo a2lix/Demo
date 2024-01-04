@@ -1,25 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app.request.locale }}">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="view-transition" content="same-origin" />
         <title>{% block title %}Home{% endblock %} - A2LiX</title>
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        {% block stylesheets %}
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+        {% block stylesheets %}{% endblock %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
     </head>
 
     <body>
         <header class="d-flex flex-column flex-md-row align-items-center p-3 fixed-top bg-dark text-white">
-            <h5 class="my-0 mr-md-auto font-weight-normal">A2LiX</h5>
+            <h5 class="my-0 me-md-auto fw-normal">A2LiX</h5>
             {{ include('_locale_switcher.html.twig') }}
         </header>
 
-        <main class="container" role="main" >
+        <main class="container" role="main">
             {{ include('_flash_messages.html.twig') }}
 
             {% block content %}{% endblock %}
@@ -29,11 +26,6 @@
             <p>A2LiX - {{ 'now'|date('Y') }} | <a href="{{ path('frontend_index') }}">Home</a></p>
         </footer>
 
-       {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        {% endblock %}
+        {% block javascripts %}{% endblock %}
     </body>
 </html>
