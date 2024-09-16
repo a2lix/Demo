@@ -25,11 +25,11 @@
             </tr>
             <tr>
                 <th>Categories</th>
-                <td>{% for categ in company.categories %}{{ categ.title }}, {% else %}No categories{% endfor %}</td>
+                <td>{{ company.categories|length ? company.categories|map(c => "#{c.title}")|join(', ') : 'None' }}</td>
             </tr>
             <tr>
                 <th>Media</th>
-                <td>{{ company.mediaLocalized ? company.mediaLocalized.url }}</td>
+                <td>{{ company.mediaLocalized(app.request.locale).url ?? 'None' }}</td>
             </tr>
         </tbody>
     </table>

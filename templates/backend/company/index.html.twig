@@ -24,8 +24,8 @@
                 <td>{{ company.code }}</td>
                 <td>{{ company.title }}</td>
                 <td>{{ company.description }}</td>
-                <td>{% for categ in company.categories %}{{ categ.title }}, {% else %}No categories{% endfor %}</td>
-                <td>{{ company.medias|first ? (company.medias|first).url }}</td>
+                <td>{{ company.categories|length ? company.categories|map(c => "#{c.title}")|join(', ') : 'None' }}</td>
+                <td>{{ company.mediaLocalized(app.request.locale).url ?? 'None' }}</td>
                 <td>
                     <a class="btn btn-outline-primary" href="{{ path('backend_company_show', {'id': company.id}) }}">Show</a>
                     <a class="btn btn-outline-primary" href="{{ path('backend_company_edit', {'id': company.id}) }}">Edit</a>

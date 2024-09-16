@@ -4,22 +4,25 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use A2lix\TranslationFormBundle\Gedmo\TranslatableTrait;
 use App\Entity\Common\IdTrait;
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
-use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
-use Symfony\Component\PropertyAccess\PropertyAccess;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
-class Category implements TranslatableInterface
+#[Gedmo\TranslationEntity(class: CategoryTranslation::class)]
+class Category
 {
     use IdTrait;
     use TranslatableTrait;
 
-    #[Assert\Valid]
-    protected $translations;
+    #[Gedmo\Translatable]
+    #[ORM\Column]
+    private string $title;
 
     #[ORM\Column(type: 'json')]
     private array $tags = [];
@@ -30,26 +33,26 @@ class Category implements TranslatableInterface
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'categories')]
     private ?Company $company = null;
 
-    public function __call($method, $arguments)
+    /** @var CategoryTranslation[]|Collection<int, CategoryTranslation> */
+    #[Assert\Valid]
+    #[ORM\OneToMany(targetEntity: CategoryTranslation::class, mappedBy: 'object', cascade: ['persist', 'remove'])]
+    private Collection $translations;
+
+    public function __construct()
     {
-        return PropertyAccess::createPropertyAccessor()->getValue($this->translate(), $method);
+        $this->translations = new ArrayCollection();
     }
 
-    public function getCompany(): ?Company
+    public function getTitle(): string
     {
-        return $this->company;
+        return $this->title;
     }
 
-    public function setCompany(?Company $company): self
+    public function setTitle(string $title): self
     {
-        $this->company = $company;
+        $this->title = $title;
 
         return $this;
-    }
-
-    public function displayWithCompany(): string
-    {
-        return $this->getTitle().' ('.$this->getCompany()->getTitle().')';
     }
 
     public function getTags(): array
@@ -88,5 +91,22 @@ class Category implements TranslatableInterface
         $this->code = $code;
 
         return $this;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    public function displayWithCompany(): string
+    {
+        return $this->getTitle().' ('.$this->getCompany()->getTitle().')';
     }
 }

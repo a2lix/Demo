@@ -4,46 +4,19 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Entity\Common\IdTrait;
+use A2lix\TranslationFormBundle\Gedmo\TranslationTrait;
 use App\Repository\CompanyTranslationRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
-use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
+use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
 #[ORM\Entity(repositoryClass: CompanyTranslationRepository::class)]
-class CompanyTranslation implements TranslationInterface
+#[ORM\UniqueConstraint(columns: ['locale', 'object_id', 'field'])]
+class CompanyTranslation extends AbstractPersonalTranslation
 {
-    use IdTrait;
     use TranslationTrait;
 
-    #[ORM\Column(nullable: true)]
-    private ?string $title = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(?string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
+    /** @var Company */
+    #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'translations')]
+    #[ORM\JoinColumn(name: 'object_id', nullable: false, onDelete: 'CASCADE')]
+    protected $object;
 }

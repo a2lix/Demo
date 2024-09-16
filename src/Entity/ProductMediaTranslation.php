@@ -4,30 +4,19 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Entity\Common\IdTrait;
+use A2lix\TranslationFormBundle\Gedmo\TranslationTrait;
 use App\Repository\ProductMediaTranslationRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
-use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
+use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
 #[ORM\Entity(repositoryClass: ProductMediaTranslationRepository::class)]
-class ProductMediaTranslation implements TranslationInterface
+#[ORM\UniqueConstraint(columns: ['locale', 'object_id', 'field'])]
+class ProductMediaTranslation extends AbstractPersonalTranslation
 {
-    use IdTrait;
     use TranslationTrait;
 
-    #[ORM\Column(nullable: true)]
-    private ?string $url = null;
-
-    public function getUrl(): ?string
-    {
-        return $this->url;
-    }
-
-    public function setUrl(?string $url): self
-    {
-        $this->url = $url;
-
-        return $this;
-    }
+    /** @var ProducMedia */
+    #[ORM\ManyToOne(targetEntity: ProductMedia::class, inversedBy: 'translations')]
+    #[ORM\JoinColumn(name: 'object_id', nullable: false, onDelete: 'CASCADE')]
+    protected $object;
 }

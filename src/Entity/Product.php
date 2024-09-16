@@ -4,22 +4,29 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use A2lix\TranslationFormBundle\Gedmo\TranslatableTrait;
 use App\Entity\Common\IdTrait;
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
-use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
-use Symfony\Component\PropertyAccess\PropertyAccess;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
-class Product implements TranslatableInterface
+class Product
 {
     use IdTrait;
     use TranslatableTrait;
 
-    #[Assert\Valid]
-    protected $translations;
+    #[Gedmo\Translatable]
+    #[ORM\Column]
+    private string $title;
+
+    #[Gedmo\Translatable]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
 
     #[ORM\Column]
     private string $code;
@@ -30,9 +37,38 @@ class Product implements TranslatableInterface
     #[ORM\OneToOne(targetEntity: ProductMedia::class, cascade: ['all'], orphanRemoval: true)]
     private ?ProductMedia $media = null;
 
-    public function __call($method, $arguments)
+    /** @var ProductTranslation[]|Collection<int, ProductTranslation> */
+    #[Assert\Valid]
+    #[ORM\OneToMany(targetEntity: ProductTranslation::class, mappedBy: 'object', cascade: ['persist', 'remove'])]
+    private Collection $translations;
+
+    public function __construct()
     {
-        return PropertyAccess::createPropertyAccessor()->getValue($this->translate(), $method);
+        $this->translations = new ArrayCollection();
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
     }
 
     public function getCode(): string

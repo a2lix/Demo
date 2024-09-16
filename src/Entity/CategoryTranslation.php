@@ -4,30 +4,19 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Entity\Common\IdTrait;
+use A2lix\TranslationFormBundle\Gedmo\TranslationTrait;
 use App\Repository\CategoryTranslationRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
-use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
+use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
 #[ORM\Entity(repositoryClass: CategoryTranslationRepository::class)]
-class CategoryTranslation implements TranslationInterface
+#[ORM\UniqueConstraint(columns: ['locale', 'object_id', 'field'])]
+class CategoryTranslation extends AbstractPersonalTranslation
 {
-    use IdTrait;
     use TranslationTrait;
 
-    #[ORM\Column(nullable: true)]
-    private ?string $title = null;
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(?string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
+    /** @var Category */
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'translations')]
+    #[ORM\JoinColumn(name: 'object_id', nullable: false, onDelete: 'CASCADE')]
+    protected $object;
 }

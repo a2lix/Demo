@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Rector\Core\ValueObject\PhpVersion;
 use Rector\Doctrine\Set\DoctrineSetList;
 use Rector\PHPUnit\Set\PHPUnitLevelSetList;
 use Rector\PHPUnit\Set\PHPUnitSetList;
@@ -11,20 +10,19 @@ use Rector\Set\ValueObject\LevelSetList;
 use Rector\Symfony\Set\SymfonyLevelSetList;
 use Rector\Symfony\Set\SymfonySetList;
 use Rector\Symfony\Set\TwigSetList;
+use Rector\ValueObject\PhpVersion;
 
-return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->parallel();
-    $rectorConfig->paths([
+return RectorConfig::configure()
+    ->withPhpVersion(PhpVersion::PHP_83)
+    ->withPaths([
         __DIR__.'/src',
-        __DIR__.'/tests',
-    ]);
-    $rectorConfig->importNames();
-    $rectorConfig->importShortClasses(false);
-
-    $rectorConfig->symfonyContainerXml(__DIR__.'/var/cache/dev/App_KernelDevDebugContainer.xml');
-    $rectorConfig->phpVersion(PhpVersion::PHP_82);
-    $rectorConfig->sets([
-        LevelSetList::UP_TO_PHP_82,
+    ])
+    ->withImportNames()
+    ->withParallel()
+    ->withSymfonyContainerXml(__DIR__.'/var/cache/dev/App_KernelDevDebugContainer.xml')
+    ->withAttributesSets(symfony: true, doctrine: true, phpunit: true)
+    ->withSets([
+        LevelSetList::UP_TO_PHP_83,
 
         SymfonyLevelSetList::UP_TO_SYMFONY_63,
         // SymfonySetList::SYMFONY_STRICT,
@@ -42,5 +40,5 @@ return static function (RectorConfig $rectorConfig): void {
         PHPUnitLevelSetList::UP_TO_PHPUNIT_100,
         // PHPUnitSetList::PHPUNIT_CODE_QUALITY,
         // PHPUnitSetList::PHPUNIT_YIELD_DATA_PROVIDER,
-    ]);
-};
+    ])
+;

@@ -24,8 +24,8 @@
                 <td>{{ product.code }}</td>
                 <td>{{ product.title }}</td>
                 <td>{{ product.description }}</td>
-                <td>{{ product.category ? product.category.title ~' ('~ product.category.company.title ~')' : 'No category' }}</td>
-                <td>{{ product.media ? product.media.url : 'No media' }}</td>
+                <td>{{ product.categoryTranslated.title ?? 'None' }}</td>
+                <td>{{ product.mediaTranslated.url ?? 'None' }}</td>
                 <td>
                     <a class="btn btn-outline-primary" href="{{ path('backend_product_show', {'id': product.id}) }}">Show</a>
                     <a class="btn btn-outline-primary" href="{{ path('backend_product_edit', {'id': product.id}) }}">Edit</a>

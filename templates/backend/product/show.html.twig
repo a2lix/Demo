@@ -24,11 +24,11 @@
             </tr>
             <tr>
                 <th>Category</th>
-                <td>{{ product.category ? product.category.title ~' ('~ product.category.company.title ~')' : 'No category' }}</td>
+                <td>{{ product.categoryTranslated.title ?? 'None' }}</td>
             </tr>
             <tr>
                 <th>Media</th>
-                <td>{{ product.media ? product.media.url : 'No media' }}</td>
+                <td>{{ product.mediaTranslated.url ?? 'None' }}</td>
             </tr>
         </tbody>
     </table>
