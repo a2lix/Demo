@@ -6,24 +6,25 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.2",
-        "a2lix/translation-form-bundle": "^3.2.4",
+        "a2lix/auto-form-bundle": "@dev",
         "doctrine/doctrine-bundle": "^2.13.0",
         "doctrine/doctrine-migrations-bundle": "^3.3.1",
         "doctrine/orm": "^2.19.7",
-        "knplabs/doctrine-behaviors": "^2.6.2",
-        "symfony/asset": "6.4.*",
-        "symfony/asset-mapper": "6.4.*",
-        "symfony/console": "^6.4.11",
-        "symfony/dotenv": "^6.4.10",
-        "symfony/flex": "^2.4.6",
-        "symfony/form": "^6.4.11",
-        "symfony/framework-bundle": "^6.4.10",
-        "symfony/monolog-bundle": "^3.10",
-        "symfony/runtime": "^6.4.8",
-        "symfony/security-bundle": "^6.4.11",
-        "symfony/translation": "^6.4.10",
-        "symfony/twig-bundle": "^6.4.8",
-        "symfony/yaml": "^6.4.11",
+        "phpdocumentor/reflection-docblock": "^5.6",
+        "runtime/frankenphp-symfony": "^0.2.0",
+        "symfony/asset": "*",
+        "symfony/asset-mapper": "*",
+        "symfony/console": "*",
+        "symfony/dotenv": "*",
+        "symfony/flex": "*",
+        "symfony/form": "*",
+        "symfony/framework-bundle": "*",
+        "symfony/monolog-bundle": "*",
+        "symfony/runtime": "*",
+        "symfony/security-bundle": "*",
+        "symfony/translation": "*",
+        "symfony/twig-bundle": "*",
+        "symfony/yaml": "*",
         "twig/extra-bundle": "^3.13",
         "twig/twig": "^3.14"
     },
@@ -31,11 +32,17 @@
         "friendsofphp/php-cs-fixer": "^3.64",
         "kubawerlos/php-cs-fixer-custom-fixers": "^3.22",
         "rector/rector": "^1.2.5",
-        "symfony/debug-bundle": "^6.4.8",
-        "symfony/maker-bundle": "^1.61",
-        "symfony/stopwatch": "^6.4.8",
-        "symfony/web-profiler-bundle": "^6.4.11"
+        "symfony/debug-bundle": "*",
+        "symfony/maker-bundle": "*",
+        "symfony/stopwatch": "*",
+        "symfony/web-profiler-bundle": "*"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/bundles/AutoFormBundle"
+        }
+    ],
     "replace": {
         "symfony/polyfill-php72": "*",
         "symfony/polyfill-php73": "*",
@@ -91,7 +98,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "6.4.*",
+            "require": "7.3.*",
             "docker": true
         }
     }

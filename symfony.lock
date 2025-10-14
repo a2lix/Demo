@@ -2,12 +2,6 @@
     "a2lix/auto-form-bundle": {
         "version": "0.4.0"
     },
-    "a2lix/translation-form-bundle": {
-        "version": "3.2.0"
-    },
-    "brick/math": {
-        "version": "0.9.3"
-    },
     "composer/pcre": {
         "version": "1.0.1"
     },
@@ -104,14 +98,8 @@
             ".php-cs-fixer.dist.php"
         ]
     },
-    "knplabs/doctrine-behaviors": {
-        "version": "2.6.0"
-    },
     "monolog/monolog": {
         "version": "2.3.5"
-    },
-    "nette/utils": {
-        "version": "v3.2.7"
     },
     "nikic/php-parser": {
         "version": "v4.13.2"
@@ -145,12 +133,6 @@
     },
     "psr/log": {
         "version": "3.0.0"
-    },
-    "ramsey/collection": {
-        "version": "1.2.2"
-    },
-    "ramsey/uuid": {
-        "version": "4.2.3"
     },
     "rector/rector": {
         "version": "0.12.16"

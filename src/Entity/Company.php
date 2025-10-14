@@ -4,30 +4,24 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use A2lix\AutoFormBundle\Form\Attribute\AutoTypeCustom;
 use App\Entity\Common\IdTrait;
 use App\Repository\CompanyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
-use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
-use Symfony\Component\PropertyAccess\PropertyAccess;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CompanyRepository::class)]
-class Company implements TranslatableInterface, \Stringable
+class Company
 {
     use IdTrait;
-    use TranslatableTrait;
-
-    #[Assert\Valid]
-    protected $translations;
 
     #[ORM\Column]
     private string $code;
 
     /** @var Category[]|Collection<int, Category> */
     #[ORM\OneToMany(targetEntity: Category::class, mappedBy: 'company', cascade: ['all'], orphanRemoval: true)]
+    #[AutoTypeCustom(['label' => 'cccaat'])]
     private Collection $categories;
 
     /** @var CompanyMediaLocalize[]|Collection<int, CompanyMediaLocalize> */
@@ -38,16 +32,6 @@ class Company implements TranslatableInterface, \Stringable
     {
         $this->categories = new ArrayCollection();
         $this->medias = new ArrayCollection();
-    }
-
-    public function __call($method, $arguments)
-    {
-        return PropertyAccess::createPropertyAccessor()->getValue($this->translate(), $method);
-    }
-
-    public function __toString(): string
-    {
-        return '?';
     }
 
     public function getCode(): string
@@ -104,13 +88,5 @@ class Company implements TranslatableInterface, \Stringable
         $this->medias->removeElement($media);
 
         return $this;
-    }
-
-    public function getMediaLocalized(): ?CompanyMediaLocalize
-    {
-        $currLocale = $this->getCurrentLocale();
-        $mediaLocalized = $this->medias->filter(static fn (CompanyMediaLocalize $media): bool => $media->getLocale() === $currLocale);
-
-        return $mediaLocalized->first() ?: null;
     }
 }
