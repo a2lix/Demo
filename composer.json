@@ -7,6 +7,7 @@
     "require": {
         "php": ">=8.2",
         "a2lix/auto-form-bundle": "@dev",
+        "a2lix/translation-form-bundle": "@dev",
         "doctrine/doctrine-bundle": "^2.13.0",
         "doctrine/doctrine-migrations-bundle": "^3.3.1",
         "doctrine/orm": "^2.19.7",
@@ -41,6 +42,10 @@
         {
             "type": "path",
             "url": "/bundles/AutoFormBundle"
+        },
+        {
+            "type": "path",
+            "url": "/bundles/TranslationFormBundle"
         }
     ],
     "replace": {

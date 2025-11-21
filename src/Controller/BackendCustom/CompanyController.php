@@ -43,9 +43,9 @@ class CompanyController extends AbstractController
     {        
         $company = new Company();
 
-        // $form = $this->createForm(AutoType::class, new Dto(child: new DtoChild()), [
+        $form = $this->createForm(AutoType::class, new Dto(child: new DtoChild()), [
         // $form = $this->createForm(AutoType::class, null, [ 'data_class' => Dto::class,
-        $form = $this->createForm(AutoType::class, $company, [
+        // $form = $this->createForm(AutoType::class, $company, [
         // $form = $this->container->get('form.factory')
         //     ->createNamed('fff', AutoType::class, $company, [
                 'children' => [
