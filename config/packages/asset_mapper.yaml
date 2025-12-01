@@ -3,3 +3,4 @@ framework:
         # The paths to make available to the asset mapper.
         paths:
             - assets/
+            - vendor/a2lix/translation-form-bundle/assets/

@@ -4,29 +4,33 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use A2lix\AutoFormBundle\Form\Attribute\AutoTypeCustom;
 use App\Entity\Common\IdTrait;
 use App\Repository\CompanyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
+use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
+use A2lix\TranslationFormBundle\Helper\KnpTranslatableAccessorTrait;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CompanyRepository::class)]
-class Company
+class Company implements TranslatableInterface
 {
     use IdTrait;
+    use TranslatableTrait;
+    use KnpTranslatableAccessorTrait;
 
     #[ORM\Column]
-    private string $code;
+    public string $code;
 
-    /** @var Category[]|Collection<int, Category> */
+    /** @var Collection<int, Category> */
     #[ORM\OneToMany(targetEntity: Category::class, mappedBy: 'company', cascade: ['all'], orphanRemoval: true)]
-    #[AutoTypeCustom(['label' => 'cccaat'])]
-    private Collection $categories;
+    public Collection $categories;
 
-    /** @var CompanyMediaLocalize[]|Collection<int, CompanyMediaLocalize> */
+    /** @var Collection<int, CompanyMediaLocalize> */
     #[ORM\OneToMany(targetEntity: CompanyMediaLocalize::class, mappedBy: 'company', indexBy: 'locale', cascade: ['all'], orphanRemoval: true)]
-    private Collection $medias;
+    public Collection $medias;
 
     public function __construct()
     {
@@ -34,28 +38,11 @@ class Company
         $this->medias = new ArrayCollection();
     }
 
-    public function getCode(): string
-    {
-        return $this->code;
-    }
-
-    public function setCode(string $code): self
-    {
-        $this->code = $code;
-
-        return $this;
-    }
-
-    public function getCategories(): Collection
-    {
-        return $this->categories;
-    }
-
     public function addCategory(Category $category): self
     {
         if (!$this->categories->contains($category)) {
-            $category->setCompany($this);
-            $this->categories->add($category);
+            $category->company = $this;
+            $this->categories[] = $category;
         }
 
         return $this;
@@ -68,16 +55,11 @@ class Company
         return $this;
     }
 
-    public function getMedias(): Collection
-    {
-        return $this->medias;
-    }
-
     public function addMedia(CompanyMediaLocalize $media): self
     {
         if (!$this->medias->contains($media)) {
-            $media->setCompany($this);
-            $this->medias->add($media);
+            $media->company = $this;
+            $this->medias[] = $media;
         }
 
         return $this;
@@ -88,5 +70,13 @@ class Company
         $this->medias->removeElement($media);
 
         return $this;
+    }
+
+    public function getMediaLocalized(): ?CompanyMediaLocalize
+    {
+        $currLocale = $this->getCurrentLocale();
+        $mediaLocalized = $this->medias->filter(static fn(CompanyMediaLocalize $media): bool => $media->locale === $currLocale);
+
+        return $mediaLocalized->first() ?: null;
     }
 }

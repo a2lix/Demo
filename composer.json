@@ -8,35 +8,39 @@
         "php": ">=8.2",
         "a2lix/auto-form-bundle": "@dev",
         "a2lix/translation-form-bundle": "@dev",
-        "doctrine/doctrine-bundle": "^2.13.0",
-        "doctrine/doctrine-migrations-bundle": "^3.3.1",
-        "doctrine/orm": "^2.19.7",
-        "phpdocumentor/reflection-docblock": "^5.6",
+        "doctrine/doctrine-bundle": "^2.18.1",
+        "doctrine/doctrine-migrations-bundle": "^3.7.0",
+        "doctrine/orm": "^3.5.7",
+        "knplabs/doctrine-behaviors": ">=3",
+        "phpdocumentor/reflection-docblock": "^5.6.4",
         "runtime/frankenphp-symfony": "^0.2.0",
-        "symfony/asset": "*",
-        "symfony/asset-mapper": "*",
-        "symfony/console": "*",
-        "symfony/dotenv": "*",
-        "symfony/flex": "*",
-        "symfony/form": "*",
-        "symfony/framework-bundle": "*",
-        "symfony/monolog-bundle": "*",
-        "symfony/runtime": "*",
-        "symfony/security-bundle": "*",
-        "symfony/translation": "*",
-        "symfony/twig-bundle": "*",
-        "symfony/yaml": "*",
-        "twig/extra-bundle": "^3.13",
-        "twig/twig": "^3.14"
+        "stof/doctrine-extensions-bundle": "^1.14",
+        "symfony/asset": ">=7.3",
+        "symfony/asset-mapper": ">=7.3.5",
+        "symfony/console": ">=7.3.6",
+        "symfony/dotenv": ">=7.3.2",
+        "symfony/expression-language": "7.3.*",
+        "symfony/flex": ">=2.10",
+        "symfony/form": ">=7.3.6",
+        "symfony/framework-bundle": ">=7.3.6",
+        "symfony/intl": "7.4.*",
+        "symfony/monolog-bundle": ">=3.10",
+        "symfony/runtime": ">=7.3.4",
+        "symfony/security-bundle": ">=7.3.4",
+        "symfony/translation": ">=7.3.4",
+        "symfony/twig-bundle": ">=7.3.4",
+        "symfony/yaml": ">=7.3.5",
+        "twig/extra-bundle": "^3.22.1",
+        "twig/twig": "^3.22"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.64",
-        "kubawerlos/php-cs-fixer-custom-fixers": "^3.22",
-        "rector/rector": "^1.2.5",
-        "symfony/debug-bundle": "*",
-        "symfony/maker-bundle": "*",
-        "symfony/stopwatch": "*",
-        "symfony/web-profiler-bundle": "*"
+        "friendsofphp/php-cs-fixer": "^3.90",
+        "kubawerlos/php-cs-fixer-custom-fixers": "^3.35.1",
+        "rector/rector": "^2.2.8",
+        "symfony/debug-bundle": ">=7.3.5",
+        "symfony/maker-bundle": ">=1.64",
+        "symfony/stopwatch": ">=7.3",
+        "symfony/web-profiler-bundle": ">=7.3.5"
     },
     "repositories": [
         {
@@ -89,8 +93,8 @@
             "@auto-scripts"
         ],
         "db-reset": [
-            "bin/console d:d:d --if-exists --force",
-            "bin/console d:d:c",
+            "bin/console d:d:d --force --if-exists || true",
+            "touch data.db || true",
             "bin/console d:s:u --force"
         ],
         "cs-fixer": [
@@ -103,7 +107,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "7.3.*",
+            "require": "7.4.*",
             "docker": true
         }
     }

@@ -16,33 +16,9 @@ class CompanyMediaLocalize implements OneLocaleInterface
     use IdTrait;
     use OneLocaleTrait;
 
-    #[ORM\Column(nullable: true)]
-    private ?string $url = null;
+    #[ORM\Column]
+    public string $url;
 
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'medias')]
-    private ?Company $company = null;
-
-    public function getUrl(): ?string
-    {
-        return $this->url;
-    }
-
-    public function setUrl(?string $url): self
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    public function getCompany(): Company
-    {
-        return $this->company;
-    }
-
-    public function setCompany(Company $company): self
-    {
-        $this->company = $company;
-
-        return $this;
-    }
+    public ?Company $company = null;
 }

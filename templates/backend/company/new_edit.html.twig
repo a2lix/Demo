@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ company.id ? 'Edit' : 'Create new' }} Company{% endblock %}
+{% block title %}{{ company.id ? 'Edit' : 'Create new' }} Company{% endblock title %}
 
 {% form_theme form _self %}
 
@@ -17,17 +17,9 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ block('title') }}</h1>
+    <h1>
+        {{ block('title') }}
+    </h1>
 
     {{ form(form) }}
-
-    <div class="record_actions">
-        {% if company.id %}{{ form(deleteForm) }}{% endif %}
-        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_company_index') }}">Back to list</a>
-    </div>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('app') }}
-{% endblock %}
+{% endblock content %}
