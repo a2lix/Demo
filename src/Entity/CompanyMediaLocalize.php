@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Entity\Common\IdTrait;
-use App\Entity\Common\OneLocaleInterface;
-use App\Entity\Common\OneLocaleTrait;
+use A2lix\TranslationFormBundle\Helper\OneLocaleInterface;
+use A2lix\TranslationFormBundle\Helper\OneLocaleTrait;
 use App\Repository\CompanyMediaLocalizeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,8 +17,21 @@ class CompanyMediaLocalize implements OneLocaleInterface
     use OneLocaleTrait;
 
     #[ORM\Column]
-    public string $url;
+    public ?string $url;
 
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'medias')]
     public ?Company $company = null;
+
+    public function isEmpty(): bool
+    {
+        return null === $this->url;
+    }
+
+    public function render(): string
+    {
+        return sprintf(
+            '%s',
+            $this->url,
+        );
+    }
 }

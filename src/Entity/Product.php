@@ -15,19 +15,21 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
+use A2lix\TranslationFormBundle\Helper\GedmoTranslatableAccessorTrait;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
-#[Gedmo\TranslationEntity(class: ProductMediaTranslation::class)]
+#[Gedmo\TranslationEntity(class: ProductTranslation::class)]
 class Product
 {
     use IdTrait;
+    // use GedmoTranslatableAccessorTrait;
 
     #[ORM\Column]
     public string $code;
 
     #[ORM\Column]
     #[Gedmo\Translatable]
-    public string $title;
+    public ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Gedmo\Translatable]
@@ -40,7 +42,7 @@ class Product
     public ?ProductMedia $media = null;
 
     /** @var Collection<int, ProductTranslation> */
-    #[ORM\OneToMany(targetEntity: ProductTranslation::class, mappedBy: 'object', cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: ProductTranslation::class, mappedBy: 'object', cascade: ['persist', 'remove'], orphanRemoval: true)]
     public Collection $translations;
 
     public function __construct()
@@ -58,6 +60,13 @@ class Product
         if (!$this->translations->contains($translation)) {
             $this->translations[] = $translation->setObject($this);
         }
+
+        return $this;
+    }
+
+    public function removeTranslation(ProductTranslation $translation): self
+    {
+        $this->translations->removeElement($translation->setObject(null));
 
         return $this;
     }

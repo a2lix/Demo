@@ -9,6 +9,7 @@ use A2lix\TranslationFormBundle\Form\Type\TranslatedEntityType;
 use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
 use App\Entity\Category;
 use App\Entity\Product;
+use App\Entity\ProductMedia;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
@@ -26,17 +27,22 @@ class ProductType extends AbstractType
 
         $builder
             ->add('code')
-            ->add('translations', TranslationsType::class)
-            ->add('category', TranslatedEntityType::class, [
-                'class' => Category::class,
-                'translation_property' => 'title',
-                // Optionnal custom query_builder override. Here, to ordering by title ASC
-                'query_builder' => static fn(EntityRepository $er) => $er->createQueryBuilder('e')
-                    ->select('e, t')
-                    ->join('e.translations', 't')
-                    ->orderBy('t.title', 'ASC'),
+            ->add('translations', TranslationsType::class, [
+                'translatable_class' => $options['data_class'],
+                'gedmo' => true,
             ])
-            ->add('media', AutoType::class)
+            // ->add('category', TranslatedEntityType::class, [
+            //     'class' => Category::class,
+            //     'translation_property' => 'title',
+            //     // Optionnal custom query_builder override. Here, to ordering by title ASC
+            //     'query_builder' => static fn(EntityRepository $er) => $er->createQueryBuilder('e')
+            //         ->select('e, t')
+            //         ->join('e.translations', 't')
+            //         ->orderBy('t.title', 'ASC'),
+            // ])
+            ->add('media', AutoType::class, [
+                'data_class' => ProductMedia::class,
+            ])
             ->add('save', SubmitType::class, [
                 'label' => $isEdit ? 'Edit' : 'Create',
                 'attr' => [

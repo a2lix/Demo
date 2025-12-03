@@ -8,26 +8,41 @@ use A2lix\TranslationFormBundle\LocaleProvider\LocaleProviderInterface;
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Gedmo\Translatable\TranslatableListener;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 class ProductRepository extends ServiceEntityRepository
 {
     public function __construct(
         private ManagerRegistry $registry,
-        private LocaleProviderInterface $localeProvider,
+        #[Autowire(service: 'stof_doctrine_extensions.listener.translatable')]
+        private readonly TranslatableListener $translatableListener,
     ) {
         parent::__construct($registry, Product::class);
     }
 
-    public function findOneWithTranslation(int $id): Product
+    public function findAllWithTranslations(): array
     {
+        return $this->createQueryBuilder('e')
+            ->leftJoin('e.translations', 'e_t', 'WITH', "e_t.locale = :locale")
+            ->addSelect('e_t')
+            ->setParameter('locale', $this->translatableListener->getListenerLocale())
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findOneWithTranslations(int $id): Product
+    {
+        // $this->translatableListener->setSkipOnLoad(true);
+        $this->translatableListener->setTranslatableLocale($this->translatableListener->getDefaultLocale());
+
         return $this->createQueryBuilder('e')
             ->leftJoin('e.translations', 'e_t')
             ->addSelect('e_t')
             ->where('e = :id')
             ->setParameter('id', $id)
             ->getQuery()
-            ->setHint(\Gedmo\Translatable\TranslatableListener::HINT_FALLBACK, 0)
-            ->setHint(\Gedmo\Translatable\TranslatableListener::HINT_TRANSLATABLE_LOCALE, $this->localeProvider->getDefaultLocale())
             ->getSingleResult()
         ;
     }

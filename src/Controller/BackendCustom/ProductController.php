@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\BackendCustom;
 
 use A2lix\AutoFormBundle\Form\Type\AutoType;
+use A2lix\TranslationFormBundle\Locale\LocaleProviderInterface;
 use App\Entity\Product;
 use App\Entity\ProductMedia;
 use App\Form\GenericDeleteType;
@@ -12,69 +13,58 @@ use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Gedmo\Translatable\TranslatableListener;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(path: '/{_locale}/backend/product', name: 'backend_product_')]
 class ProductController extends AbstractController
 {
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
-        private readonly ProductRepository $productRepository, 
+        private readonly ProductRepository $productRepository,
+        #[Autowire(service: 'stof_doctrine_extensions.listener.translatable')]
+        private readonly TranslatableListener $translatableListener,
     ) {}
 
     #[Route(path: '/', name: 'index', methods: 'GET')]
     public function index(): Response
     {
         return $this->render('backend/product/index.html.twig', [
-            'productColl' => $this->productRepository->findAll(),
+            'productColl' => $this->productRepository->findAllWithTranslations(),
         ]);
     }
 
-    #[Route(path: '/man/new', name: 'newMan', methods: 'GET|POST')]
+    #[Route(path: '/man/new', name: 'newMan', methods: 'GET|POST', defaults: ['id' => null])]
     #[Route(path: '/man/{id}/edit', name: 'editMan', methods: 'GET|POST')]
-    public function newEditManual(
-        Request $request,
-        #[MapEntity(expr: 'repository.findOneWithTranslation(id)')] ?Product $product,
-    ): Response {
-        $product = $product ?? new Product();
-        $form = $this->createForm(ProductType::class, $product)->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->persist($product);
-            $this->entityManager->flush();
-
-            $this->addFlash('success', 'Created!');
-
-            return $this->redirectToRoute('backend_product_index');
-        }
-
-        return $this->render('backend/product/new_edit.html.twig', [
-            'form' => $form,
-            'product' => $product,
-        ]);
-    }
-
-    #[Route(path: '/auto/new', name: 'newAuto', methods: 'GET|POST')]
+    #[Route(path: '/auto/new', name: 'newAuto', methods: 'GET|POST', defaults: ['id' => null])]
     #[Route(path: '/auto/{id}/edit', name: 'editAuto', methods: 'GET|POST')]
-    public function newEditAuto(
+    public function newEdit(
         Request $request,
-        #[MapEntity(expr: 'repository.findOneWithTranslation(id)')] ?Product $product,
+        #[MapEntity(expr: 'id ? repository.findOneWithTranslations(id)')] ?Product $product,
+        string $_route,
     ): Response {
+        // $this->translatableListener->setSkipOnLoad(true);
+        $this->translatableListener->setTranslatableLocale($this->translatableListener->getDefaultLocale());
+
         $product = $product ?? new Product();
-        $form = $this
-            ->createForm(AutoType::class, $product, [
-                'children_embedded' => '*',
-            ])->add('save', SubmitType::class, [
-                'label' => null !== $product ? 'Edit' : 'Create',
-                'attr' => [
-                    'class' => 'btn-primary btn-lg btn-block',
-                ],
-            ])->handleRequest($request);
+
+        $form = (
+            str_ends_with($_route, 'Man')
+                ? $this->createForm(ProductType::class, $product)
+                : $this
+                    ->createForm(AutoType::class, $product, [
+                        'children_embedded' => '*',
+                    ])->add('save', SubmitType::class, [
+                        'label' => null !== $product ? 'Edit' : 'Create',
+                        'attr' => ['class' => 'btn-primary btn-lg btn-block'],
+                    ])
+        )->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->persist($product);

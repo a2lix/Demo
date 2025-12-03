@@ -25,12 +25,7 @@ class CompanyType extends AbstractType
         $builder
             ->add('code')
             ->add('translations', TranslationsType::class, [
-                // 'fields' => [
-                //     'description' => [
-                //         'disabled' => true,
-                //     ],
-                // ],
-                //                'excluded_fields' => ['description']
+                'translatable_class' => $options['data_class'],
             ])
             ->add('categories', CollectionType::class, [
                 'entry_type' => CategoryType::class,

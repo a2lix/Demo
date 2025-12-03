@@ -16,19 +16,19 @@
             </tr>
             <tr>
                 <th>Title</th>
-                <td>{{ product.title }}</td>
+                <td>{{ product.title ?? '-' }}</td>
             </tr>
             <tr>
                 <th>Description</th>
-                <td>{{ product.description }}</td>
+                <td>{{ product.description ?? '-' }}</td>
             </tr>
             <tr>
                 <th>Category</th>
-                <td>{{ product.category.render() ?? '' }}</td>
+                <td>{{ product.category.render() ?? '-' }}</td>
             </tr>
             <tr>
                 <th>Media</th>
-                <td>{{ product.media.render() ?? '' }}</td>
+                <td>{{ product.media ? product.media.render() : '-' }}</td>
             </tr>
         </tbody>
     </table>

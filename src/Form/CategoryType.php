@@ -34,7 +34,9 @@ class CategoryType extends AbstractType
                     'label' => false,
                 ],
             ])
-            ->add('translations', TranslationsType::class)
+            ->add('translations', TranslationsType::class, [
+                'translatable_class' => $options['data_class'],
+            ])
         ;
     }
 

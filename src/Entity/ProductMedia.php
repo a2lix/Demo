@@ -22,14 +22,14 @@ class ProductMedia
 
     #[ORM\Column]
     #[Gedmo\Translatable]
-    public string $url;
+    public ?string $url;
 
     #[ORM\Column(nullable: true)]
     #[Gedmo\Translatable]
     public ?string $label = null;
 
     /** @var Collection<int, ProductMediaTranslation> */
-    #[ORM\OneToMany(targetEntity: ProductMediaTranslation::class, mappedBy: 'object', cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: ProductMediaTranslation::class, mappedBy: 'object', cascade: ['persist', 'remove'], orphanRemoval: true)]
     public Collection $translations;
 
     public function __construct()
@@ -47,6 +47,13 @@ class ProductMedia
         if (!$this->translations->contains($translation)) {
             $this->translations[] = $translation->setObject($this);
         }
+
+        return $this;
+    }
+
+    public function removeTranslation(ProductMediaTranslation $translation): self
+    {
+        $this->translations->removeElement($translation->setObject(null));
 
         return $this;
     }

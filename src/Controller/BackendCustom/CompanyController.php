@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(path: '/{_locale}/backend/company', name: 'backend_company_')]
 class CompanyController extends AbstractController
@@ -37,44 +37,27 @@ class CompanyController extends AbstractController
 
     #[Route(path: '/man/new', name: 'newMan', methods: 'GET|POST')]
     #[Route(path: '/man/{id}/edit', name: 'editMan', methods: 'GET|POST')]
-    public function newEditManual(
-        Request $request,
-        ?Company $company,
-    ): Response {
-        $company = $company ?? new Company();
-        $form = $this->createForm(CompanyType::class, $company)->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->persist($company);
-            $this->entityManager->flush();
-
-            $this->addFlash('success', 'Created!');
-
-            return $this->redirectToRoute('backend_company_index');
-        }
-
-        return $this->render('backend/company/new_edit.html.twig', [
-            'form' => $form,
-            'company' => $company,
-        ]);
-    }
-
     #[Route(path: '/auto/new', name: 'newAuto', methods: 'GET|POST')]
     #[Route(path: '/auto/{id}/edit', name: 'editAuto', methods: 'GET|POST')]
     public function newEditAuto(
         Request $request,
         ?Company $company,
+        string $_route,
     ): Response {
         $company = $company ?? new Company();
-        $form = $this
-            ->createForm(AutoType::class, $company, [
-                'children_embedded' => '*',
-            ])->add('save', SubmitType::class, [
-                'label' => null !== $company ? 'Edit' : 'Create',
-                'attr' => [
-                    'class' => 'btn-primary btn-lg btn-block',
-                ],
-            ])->handleRequest($request);
+
+        $form = (
+            str_ends_with($_route, 'Man')
+                ? $this->createForm(CompanyType::class, $company)
+                : $this
+                    ->createForm(AutoType::class, $company, [
+                        'children_embedded' => ['categories', 'medias'],
+                        'children_excluded' => static fn (mixed $previousValue) => [...$previousValue],
+                    ])->add('save', SubmitType::class, [
+                        'label' => null !== $company ? 'Edit' : 'Create',
+                        'attr' => ['class' => 'btn-primary btn-lg btn-block'],
+                    ])
+        )->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->persist($company);

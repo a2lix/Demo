@@ -1499,7 +1499,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *     theme?: "dark"|"light", // Changes the color of the dump() output when rendered directly on the templating. "dark" (default) or "light". // Default: "dark"
  * }
  * @psalm-type A2lixTranslationFormConfig = array{
- *     locale_provider?: scalar|null, // Set your own LocaleProvider service identifier if required // Default: "a2lix_translation_form.locale_provider.simple_locale_provider"
+ *     locale_provider?: scalar|null, // Set your own LocaleProvider service identifier if required // Default: "A2lix\\TranslationFormBundle\\LocaleProvider\\SimpleLocaleProvider"
  *     default_locale?: scalar|null, // Set your own default locale if different from the default kernel.default_locale. eg: en // Default: null
  *     locales?: list<scalar|null>,
  *     required_locales?: list<scalar|null>,
