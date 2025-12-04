@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use A2lix\AutoFormBundle\Form\Attribute\AutoTypeCustom;
 use A2lix\TranslationFormBundle\Helper\KnpTranslatableAccessorTrait;
 use App\Entity\Common\IdTrait;
@@ -20,8 +21,8 @@ class Category implements \Stringable, TranslatableInterface
     #[ORM\Column]
     public string $code;
 
-    #[ORM\Column(type: 'json')]
-    #[AutoTypeCustom(embedded: true, options: ['entry_options' => ['label' => false]])]
+    #[ORM\Column(type: Types::JSON)]
+    #[AutoTypeCustom(options: ['entry_options' => ['label' => false]], embedded: true)]
     public array $tags = [];
 
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'categories')]
@@ -39,16 +40,13 @@ class Category implements \Stringable, TranslatableInterface
 
     public function removeTag(string $tag): self
     {
-        $this->tags = array_filter($this->tags, static fn (string $t) => $t !== $tag);
+        $this->tags = array_filter($this->tags, static fn (string $t): bool => $t !== $tag);
 
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return \sprintf(
-            '%s',
-            $this->code,
-        );
+        return $this->code;
     }
 }

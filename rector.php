@@ -9,13 +9,13 @@ return RectorConfig::configure()
     ->withPaths([
         __DIR__ . '/config',
         __DIR__ . '/src',
-        __DIR__ . '/tests',
+        // __DIR__ . '/tests',
     ])
     // ->withRootFiles()
     ->withImportNames(importShortClasses: false, removeUnusedImports: true)
     ->withPhpSets()
     ->withAttributesSets(all: true)
-    ->withComposerBased(twig: true, doctrine: true, phpunit: true, symfony: true)
+    ->withComposerBased(twig: true, doctrine: true, phpunit: false, symfony: true)
     ->withPreparedSets(
         deadCode: true,
         codeQuality: true,

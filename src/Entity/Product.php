@@ -45,6 +45,9 @@ class Product
         $this->translations = new ArrayCollection();
     }
 
+    /**
+     * @return Collection<int, ProductTranslation>
+     */
     public function getTranslations(): Collection
     {
         return $this->translations;

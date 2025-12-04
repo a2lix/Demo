@@ -30,13 +30,13 @@ class Company implements TranslatableInterface
 
     /** @var Collection<int, Category> */
     #[ORM\OneToMany(targetEntity: Category::class, mappedBy: 'company', cascade: ['all'], orphanRemoval: true)]
-    #[AutoTypeCustom(embedded: true, options: ['entry_options' => ['label' => false]])]
+    #[AutoTypeCustom(options: ['entry_options' => ['label' => false]], embedded: true)]
     public Collection $categories;
 
     /** @var Collection<int, CompanyMediaLocalize> */
-    #[ORM\OneToMany(targetEntity: CompanyMediaLocalize::class, mappedBy: 'company', indexBy: 'locale', cascade: ['all'], orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: CompanyMediaLocalize::class, mappedBy: 'company', cascade: ['all'], orphanRemoval: true, indexBy: 'locale')]
     // #[AutoTypeCustom(embedded: true, options: ['entry_options' => ['label' => false, 'children_excluded' => ['id']]])]
-    #[AutoTypeCustom(type: TranslationsFormsType::class, options: ['form_type' => CompanyMediaType::class])]
+    #[AutoTypeCustom(options: ['form_type' => CompanyMediaType::class], type: TranslationsFormsType::class)]
     public Collection $medias;
 
     public function __construct()

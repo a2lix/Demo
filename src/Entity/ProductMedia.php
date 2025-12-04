@@ -32,6 +32,9 @@ class ProductMedia implements \Stringable
         $this->translations = new ArrayCollection();
     }
 
+    /**
+     * @return Collection<int, ProductMediaTranslation>
+     */
     public function getTranslations(): Collection
     {
         return $this->translations;
@@ -53,7 +56,7 @@ class ProductMedia implements \Stringable
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return \sprintf(
             '%s (%s)',

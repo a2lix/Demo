@@ -3,12 +3,9 @@
 namespace App\Form;
 
 use A2lix\AutoFormBundle\Form\Type\AutoType;
-use A2lix\TranslationFormBundle\Form\Type\TranslatedEntityType;
 use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
-use App\Entity\Category;
 use App\Entity\Product;
 use App\Entity\ProductMedia;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;

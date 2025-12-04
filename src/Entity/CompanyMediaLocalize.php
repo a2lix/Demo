@@ -27,7 +27,7 @@ class CompanyMediaLocalize implements \Stringable, OneLocaleInterface
         return null === $this->url;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return \sprintf(
             '%s',
