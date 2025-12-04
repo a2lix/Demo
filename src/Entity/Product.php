@@ -16,14 +16,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
-use A2lix\TranslationFormBundle\Helper\GedmoTranslatableAccessorTrait;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[Gedmo\TranslationEntity(class: ProductTranslation::class)]
 class Product
 {
     use IdTrait;
-    // use GedmoTranslatableAccessorTrait;
 
     #[ORM\Column]
     #[AutoTypeCustom(options: ['priority' => 1])]

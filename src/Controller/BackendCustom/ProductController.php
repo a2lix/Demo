@@ -11,6 +11,8 @@ use App\Entity\ProductMedia;
 use App\Form\GenericDeleteType;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Gedmo\Translatable\TranslatableListener;

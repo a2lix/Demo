@@ -1,7 +1,8 @@
 # A2LiX Demo
 
-Symfony6 with A2lixTranslationFormBundle, A2lixAutoFormBundle and KnpDoctrineBehavior examples.
-Also, JS package @a2lix/symfony-collection with Symfony AssetMapper.
+Symfony7 with [A2lixTranslationFormBundle](https://github.com/a2lix/TranslationFormBundle), [A2lixAutoFormBundle](https://github.com/a2lix/AutoFormBundle) with KnpDoctrineBehavior ([Translatable](https://github.com/KnpLabs/DoctrineBehaviors/blob/master/docs/translatable.md))
+& Gedmo/StofDoctrineExtensionsBundle ([Personal Translation](https://github.com/doctrine-extensions/DoctrineExtensions/blob/main/doc/translatable.md#personal-translations)) examples.
+Also, JS package [@a2lix/symfony-collection](https://github.com/a2lix/symfony-collection) with Symfony AssetMapper.
 
 ---
 
