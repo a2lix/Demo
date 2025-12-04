@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use A2lix\AutoFormBundle\Form\Attribute\AutoTypeCustom;
 use App\Entity\Common\IdTrait;
 use A2lix\TranslationFormBundle\Helper\OneLocaleInterface;
 use A2lix\TranslationFormBundle\Helper\OneLocaleTrait;
@@ -20,6 +21,7 @@ class CompanyMediaLocalize implements OneLocaleInterface
     public ?string $url;
 
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'medias')]
+    #[AutoTypeCustom(excluded: true)]
     public ?Company $company = null;
 
     public function isEmpty(): bool
@@ -27,7 +29,7 @@ class CompanyMediaLocalize implements OneLocaleInterface
         return null === $this->url;
     }
 
-    public function render(): string
+    public function __toString()
     {
         return sprintf(
             '%s',

@@ -24,8 +24,8 @@
                 <td>{{ company.code }}</td>
                 <td>{{ company.title }}</td>
                 <td>{{ company.description }}</td>
-                <td>{% for c in company.categories %}{{ c.render() }}, {% else %}-{% endfor %}</td>
-                <td>{{ company.mediaLocalized.render() ?? '-' }}</td>
+                <td>{% for c in company.categories %}{{ c }}, {% else %}-{% endfor %}</td>
+                <td>{{ company.mediaLocalized ?? '-' }}</td>
                 <td>
                     <a class="btn btn-outline-primary" href="{{ path('backend_company_show', { id: company.id }) }}">Show</a>
                     <a class="btn btn-outline-primary" href="{{ path('backend_company_editMan', { id: company.id }) }}">Edit (man)</a>

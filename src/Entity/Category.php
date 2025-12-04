@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use A2lix\AutoFormBundle\Form\Attribute\AutoTypeCustom;
 use App\Entity\Common\IdTrait;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -23,9 +24,11 @@ class Category implements TranslatableInterface
     public string $code;
 
     #[ORM\Column(type: 'json')]
+    #[AutoTypeCustom(embedded: true, options: ['entry_options' => ['label' => false]])]
     public array $tags = [];
 
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'categories')]
+    #[AutoTypeCustom(excluded: true)]
     public ?Company $company = null;
 
     public function addTag(string $tag): self
@@ -44,12 +47,11 @@ class Category implements TranslatableInterface
         return $this;
     }
 
-    public function render(): string
+    public function __toString()
     {
         return sprintf(
-            '%s (%s)',
-            $this->title,
-            $this->company->title,
+            '%s',
+            $this->code,
         );
     }
 }

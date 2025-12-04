@@ -12,5 +12,5 @@ trait IdTrait
     #[ORM\Id]
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
-    public ?int $id = null;
+    public private(set) ?int $id = null;
 }

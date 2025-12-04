@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use A2lix\AutoFormBundle\Form\Attribute\AutoTypeCustom;
 use App\Entity\Common\IdTrait;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -25,6 +26,7 @@ class Product
     // use GedmoTranslatableAccessorTrait;
 
     #[ORM\Column]
+    #[AutoTypeCustom(options: ['priority' => 1])]
     public string $code;
 
     #[ORM\Column]
@@ -35,7 +37,7 @@ class Product
     #[Gedmo\Translatable]
     public ?string $description = null;
 
-    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[ORM\ManyToOne(targetEntity: Category::class, cascade: ['all'])]
     public ?Category $category = null;
 
     #[ORM\OneToOne(targetEntity: ProductMedia::class, cascade: ['all'], orphanRemoval: true)]
@@ -43,6 +45,7 @@ class Product
 
     /** @var Collection<int, ProductTranslation> */
     #[ORM\OneToMany(targetEntity: ProductTranslation::class, mappedBy: 'object', cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[AutoTypeCustom(options: ['priority' => 1])]
     public Collection $translations;
 
     public function __construct()

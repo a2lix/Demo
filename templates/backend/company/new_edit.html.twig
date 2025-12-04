@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ company.id ? 'Edit' : 'Create new' }} Company{% endblock title %}
+{% block title %}
+    {{ company.id ? 'Edit' : 'Create new' }} Company
+    [{{ app.current_route ends with 'Man' ? 'Manual' : 'Auto' }}]
+{% endblock title %}
 
 {% form_theme form _self %}
 

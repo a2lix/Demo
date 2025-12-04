@@ -50,10 +50,8 @@ class CompanyController extends AbstractController
             str_ends_with($_route, 'Man')
                 ? $this->createForm(CompanyType::class, $company)
                 : $this
-                    ->createForm(AutoType::class, $company, [
-                        'children_embedded' => ['categories', 'medias'],
-                        'children_excluded' => static fn (mixed $previousValue) => [...$previousValue],
-                    ])->add('save', SubmitType::class, [
+                    ->createForm(AutoType::class, $company)
+                    ->add('save', SubmitType::class, [
                         'label' => null !== $company ? 'Edit' : 'Create',
                         'attr' => ['class' => 'btn-primary btn-lg btn-block'],
                     ])

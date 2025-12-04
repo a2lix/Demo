@@ -17,15 +17,14 @@
       "extensions": [
         "bmewburn.vscode-intelephense-client",
         "xdebug.php-debug",
-        "getpsalm.psalm-vscode-plugin"
       ]
     },
     "settings": {
       "terminal.integrated.defaultProfile.linux": "bash"
     }
   },
-  "mounts": [
-    "source=/home/david/Works/a2lix/AutoFormBundle,target=/bundles/AutoFormBundle,type=bind,consistency=cached",
-    "source=/home/david/Works/a2lix/TranslationFormBundle,target=/bundles/TranslationFormBundle,type=bind,consistency=cached"
-  ]
+  // "mounts": [
+  //   "source=/home/david/Works/a2lix/AutoFormBundle,target=/bundles/AutoFormBundle,type=bind,consistency=cached",
+  //   "source=/home/david/Works/a2lix/TranslationFormBundle,target=/bundles/TranslationFormBundle,type=bind,consistency=cached"
+  // ]
 }

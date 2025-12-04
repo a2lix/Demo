@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ product.id ? 'Edit' : 'Create new' }} Product{% endblock title %}
+{% block title %}
+    {{ product.id ? 'Edit' : 'Create new' }} Product
+    [{{ app.current_route ends with 'Man' ? 'Manual' : 'Auto' }}]
+{% endblock title %}
 
 {% block content %}
     <h1>

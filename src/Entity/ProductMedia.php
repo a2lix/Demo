@@ -58,7 +58,7 @@ class ProductMedia
         return $this;
     }
 
-    public function render(): string
+    public function __toString()
     {
         return sprintf(
             '%s (%s)',

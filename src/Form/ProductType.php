@@ -29,7 +29,7 @@ class ProductType extends AbstractType
             ->add('code')
             ->add('translations', TranslationsType::class, [
                 'translatable_class' => $options['data_class'],
-                'gedmo' => true,
+                // 'children_excluded' => ['description'],
             ])
             // ->add('category', TranslatedEntityType::class, [
             //     'class' => Category::class,

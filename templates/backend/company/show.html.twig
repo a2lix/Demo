@@ -25,11 +25,11 @@
             </tr>
             <tr>
                 <th>Categories</th>
-                <td>{% for c in company.categories %}{{ c.render() }}, {% else %}-{% endfor %}</td>
+                <td>{% for c in company.categories %}{{ c }}, {% else %}-{% endfor %}</td>
             </tr>
             <tr>
                 <th>Media</th>
-                <td>{{ company.mediaLocalized.render() ?? '-' }}</td>
+                <td>{{ company.mediaLocalized ?? '-' }}</td>
             </tr>
         </tbody>
     </table>
