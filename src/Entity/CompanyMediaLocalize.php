@@ -1,18 +1,16 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Entity;
 
 use A2lix\AutoFormBundle\Form\Attribute\AutoTypeCustom;
-use App\Entity\Common\IdTrait;
 use A2lix\TranslationFormBundle\Helper\OneLocaleInterface;
 use A2lix\TranslationFormBundle\Helper\OneLocaleTrait;
+use App\Entity\Common\IdTrait;
 use App\Repository\CompanyMediaLocalizeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CompanyMediaLocalizeRepository::class)]
-class CompanyMediaLocalize implements OneLocaleInterface
+class CompanyMediaLocalize implements \Stringable, OneLocaleInterface
 {
     use IdTrait;
     use OneLocaleTrait;
@@ -31,7 +29,7 @@ class CompanyMediaLocalize implements OneLocaleInterface
 
     public function __toString()
     {
-        return sprintf(
+        return \sprintf(
             '%s',
             $this->url,
         );

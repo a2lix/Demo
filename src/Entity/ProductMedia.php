@@ -1,22 +1,17 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Entity;
 
 use App\Entity\Common\IdTrait;
 use App\Repository\ProductMediaRepository;
-use Doctrine\ORM\Mapping as ORM;
-use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
-use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
-use A2lix\TranslationFormBundle\Helper\KnpTranslatableAccessorTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: ProductMediaRepository::class)]
 #[Gedmo\TranslationEntity(class: ProductMediaTranslation::class)]
-class ProductMedia
+class ProductMedia implements \Stringable
 {
     use IdTrait;
 
@@ -60,7 +55,7 @@ class ProductMedia
 
     public function __toString()
     {
-        return sprintf(
+        return \sprintf(
             '%s (%s)',
             $this->url,
             $this->label,

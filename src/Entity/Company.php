@@ -1,28 +1,25 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Entity;
 
 use A2lix\AutoFormBundle\Form\Attribute\AutoTypeCustom;
 use A2lix\TranslationFormBundle\Form\Type\TranslationsFormsType;
+use A2lix\TranslationFormBundle\Helper\KnpTranslatableAccessorTrait;
 use App\Entity\Common\IdTrait;
+use App\Form\CompanyMediaType;
 use App\Repository\CompanyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
-use A2lix\TranslationFormBundle\Helper\KnpTranslatableAccessorTrait;
-use App\Form\CompanyMediaType;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CompanyRepository::class)]
 class Company implements TranslatableInterface
 {
     use IdTrait;
-    use TranslatableTrait;
     use KnpTranslatableAccessorTrait;
+    use TranslatableTrait;
 
     #[ORM\Column]
     #[AutoTypeCustom(options: ['priority' => 2])]
@@ -85,7 +82,7 @@ class Company implements TranslatableInterface
     public function getMediaLocalized(): ?CompanyMediaLocalize
     {
         $currLocale = $this->getCurrentLocale();
-        $mediaLocalized = $this->medias->filter(static fn(CompanyMediaLocalize $media): bool => $media->locale === $currLocale);
+        $mediaLocalized = $this->medias->filter(static fn (CompanyMediaLocalize $media): bool => $media->locale === $currLocale);
 
         return $mediaLocalized->first() ?: null;
     }

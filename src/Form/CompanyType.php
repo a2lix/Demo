@@ -1,19 +1,14 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Form;
 
 use A2lix\TranslationFormBundle\Form\Type\TranslationsFormsType;
-use A2lix\TranslationFormBundle\Form\Type\TranslationsLocalesSelectorType;
 use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
 use App\Entity\Company;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CompanyType extends AbstractType

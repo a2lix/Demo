@@ -1,18 +1,13 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Controller\BackendCustom;
 
-use A2lix\AutoFormBundle\Form\Type\AutoFormType;
 use A2lix\AutoFormBundle\Form\Type\AutoType;
 use App\Entity\Company;
 use App\Form\CompanyType;
 use App\Form\GenericDeleteType;
 use App\Repository\CompanyRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,7 +39,7 @@ class CompanyController extends AbstractController
         ?Company $company,
         string $_route,
     ): Response {
-        $company = $company ?? new Company();
+        $company ??= new Company();
 
         $form = (
             str_ends_with($_route, 'Man')

@@ -1,20 +1,13 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Controller\BackendCustom;
 
 use A2lix\AutoFormBundle\Form\Type\AutoType;
-use A2lix\TranslationFormBundle\Locale\LocaleProviderInterface;
 use App\Entity\Product;
-use App\Entity\ProductMedia;
 use App\Form\GenericDeleteType;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
 use Gedmo\Translatable\TranslatableListener;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -54,7 +47,7 @@ class ProductController extends AbstractController
         // $this->translatableListener->setSkipOnLoad(true);
         $this->translatableListener->setTranslatableLocale($this->translatableListener->getDefaultLocale());
 
-        $product = $product ?? new Product();
+        $product ??= new Product();
 
         $form = (
             str_ends_with($_route, 'Man')

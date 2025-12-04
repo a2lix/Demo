@@ -1,14 +1,9 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Entity\Common\IdTrait;
 use App\Repository\ProductMediaTranslationRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
-use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
 use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
 #[ORM\Entity(repositoryClass: ProductMediaTranslationRepository::class)]

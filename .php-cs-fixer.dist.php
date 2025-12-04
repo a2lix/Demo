@@ -9,13 +9,12 @@ return (new PhpCsFixer\Config())
     ->setRules([
         '@autoPHPMigration:risky' => true,
         '@autoPHPMigration' => true,
-        '@autoPHPUnitMigration:risky' => true,
+        // '@autoPHPUnitMigration:risky' => true,
         '@PhpCsFixer' => true,
         '@PhpCsFixer:risky' => true,
         '@Symfony' => true,
         '@Symfony:risky' => true,
 
-        'header_comment' => ['header' => $header],
         'class_attributes_separation' => ['elements' => ['method' => 'one']],
         'class_definition' => ['inline_constructor_arguments' => true],
         // 'date_time_immutable' => true,

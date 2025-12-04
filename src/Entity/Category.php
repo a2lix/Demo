@@ -1,24 +1,21 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Entity;
 
 use A2lix\AutoFormBundle\Form\Attribute\AutoTypeCustom;
+use A2lix\TranslationFormBundle\Helper\KnpTranslatableAccessorTrait;
 use App\Entity\Common\IdTrait;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
-use A2lix\TranslationFormBundle\Helper\KnpTranslatableAccessorTrait;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
-class Category implements TranslatableInterface
+class Category implements \Stringable, TranslatableInterface
 {
     use IdTrait;
-    use TranslatableTrait;
     use KnpTranslatableAccessorTrait;
+    use TranslatableTrait;
 
     #[ORM\Column]
     public string $code;
@@ -33,7 +30,7 @@ class Category implements TranslatableInterface
 
     public function addTag(string $tag): self
     {
-        if (!in_array($tag, $this->tags, true)) {
+        if (!\in_array($tag, $this->tags, true)) {
             $this->tags[] = $tag;
         }
 
@@ -42,14 +39,14 @@ class Category implements TranslatableInterface
 
     public function removeTag(string $tag): self
     {
-        $this->tags = array_filter($this->tags, static fn(string $t) => $t !== $tag);
+        $this->tags = array_filter($this->tags, static fn (string $t) => $t !== $tag);
 
         return $this;
     }
 
     public function __toString()
     {
-        return sprintf(
+        return \sprintf(
             '%s',
             $this->code,
         );
