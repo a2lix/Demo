@@ -1318,9 +1318,9 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  *             lifetime?: int, // Default: 31536000
  *             path?: scalar|null, // Default: "/"
  *             domain?: scalar|null, // Default: null
- *             secure?: true|false|"auto", // Default: null
+ *             secure?: true|false|"auto", // Default: false
  *             httponly?: bool, // Default: true
- *             samesite?: null|"lax"|"strict"|"none", // Default: "lax"
+ *             samesite?: null|"lax"|"strict"|"none", // Default: null
  *             always_remember_me?: bool, // Default: false
  *             remember_me_parameter?: scalar|null, // Default: "_remember_me"
  *         },
@@ -1500,8 +1500,8 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
  * }
  * @psalm-type A2lixTranslationFormConfig = array{
  *     locale_provider?: scalar|null, // Set your own LocaleProvider service identifier if required // Default: "a2lix_translation_form.locale_provider.simple_locale_provider"
- *     default_locale?: scalar|null, // Set your own default locale if different from the default kernel.default_locale. eg: en // Default: null
- *     locales?: list<scalar|null>,
+ *     default_locale?: scalar|null, // Set your own default locale if different from the default framework.default_locale. eg: en // Default: null
+ *     enabled_locales?: list<scalar|null>,
  *     required_locales?: list<scalar|null>,
  *     templating?: scalar|null, // Set your own template path if required // Default: "@A2lixTranslationForm/native_layout.html.twig"
  * }

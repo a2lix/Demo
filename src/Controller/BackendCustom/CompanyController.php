@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route(path: '/{_locale}/backend/company', name: 'backend_company_')]
+#[Route(path: '/backend/company', name: 'backend_company_')]
 class CompanyController extends AbstractController
 {
     public function __construct(
