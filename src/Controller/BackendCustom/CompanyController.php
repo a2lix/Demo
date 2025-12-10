@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Controller\BackendCustom;
 
@@ -30,10 +32,10 @@ class CompanyController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/man/new', name: 'newMan', methods: 'GET|POST')]
-    #[Route(path: '/man/{id}/edit', name: 'editMan', methods: 'GET|POST')]
-    #[Route(path: '/auto/new', name: 'newAuto', methods: 'GET|POST')]
-    #[Route(path: '/auto/{id}/edit', name: 'editAuto', methods: 'GET|POST')]
+    #[Route(path: '/man/new', name: 'newMan', methods: ['GET', 'POST'])]
+    #[Route(path: '/man/{id}/edit', name: 'editMan', methods: ['GET', 'POST'])]
+    #[Route(path: '/auto/new', name: 'newAuto', methods: ['GET', 'POST'])]
+    #[Route(path: '/auto/{id}/edit', name: 'editAuto', methods: ['GET', 'POST'])]
     public function newEditAuto(
         Request $request,
         ?Company $company,
@@ -43,13 +45,13 @@ class CompanyController extends AbstractController
 
         $form = (
             str_ends_with($_route, 'Man')
-                ? $this->createForm(CompanyType::class, $company)
-                : $this
-                    ->createForm(AutoType::class, $company)
-                    ->add('save', SubmitType::class, [
-                        'label' => null !== $company ? 'Edit' : 'Create',
-                        'attr' => ['class' => 'btn-primary btn-lg btn-block'],
-                    ])
+            ? $this->createForm(CompanyType::class, $company)
+            : $this
+            ->createForm(AutoType::class, $company)
+            ->add('save', SubmitType::class, [
+                'label' => null !== $company ? 'Edit' : 'Create',
+                'attr' => ['class' => 'btn-primary btn-lg btn-block'],
+            ])
         )->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -33,8 +35,8 @@ class Company implements TranslatableInterface
     #[AutoTypeCustom(options: ['entry_options' => ['label' => false]], embedded: true)]
     public Collection $categories;
 
-    /** @var Collection<int, CompanyMediaLocalize> */
-    #[ORM\OneToMany(targetEntity: CompanyMediaLocalize::class, mappedBy: 'company', cascade: ['all'], orphanRemoval: true, indexBy: 'locale')]
+    /** @var Collection<int, CompanyMediaLocale> */
+    #[ORM\OneToMany(targetEntity: CompanyMediaLocale::class, mappedBy: 'company', cascade: ['all'], orphanRemoval: true, indexBy: 'locale')]
     // #[AutoTypeCustom(embedded: true, options: ['entry_options' => ['label' => false, 'children_excluded' => ['id']]])]
     #[AutoTypeCustom(options: ['form_type' => CompanyMediaType::class], type: TranslationsFormsType::class)]
     public Collection $medias;
@@ -62,28 +64,25 @@ class Company implements TranslatableInterface
         return $this;
     }
 
-    public function addMedia(CompanyMediaLocalize $media): self
+    public function addMedia(CompanyMediaLocale $media): self
     {
-        if (!$this->medias->contains($media)) {
-            $media->company = $this;
-            $this->medias[] = $media;
-        }
+        $media->company = $this;
+        $this->medias->set($media->locale, $media);
 
         return $this;
     }
 
-    public function removeMedia(CompanyMediaLocalize $media): self
+    public function removeMedia(CompanyMediaLocale $media): self
     {
         $this->medias->removeElement($media);
 
         return $this;
     }
 
-    public function getMediaLocalized(): ?CompanyMediaLocalize
+    public function getMedia(?string $targetedLocale = null): ?CompanyMediaLocale
     {
-        $currLocale = $this->getCurrentLocale();
-        $mediaLocalized = $this->medias->filter(static fn (CompanyMediaLocalize $media): bool => $media->locale === $currLocale);
+        $targetedLocale ??= $this->getCurrentLocale();
 
-        return $mediaLocalized->first() ?: null;
+        return $this->medias->get($targetedLocale) ?? null;
     }
 }

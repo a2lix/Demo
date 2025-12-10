@@ -1,6 +1,6 @@
 a2lix_translation_form:
-    # enabled_locales: [en, fr, de, es]
-    # default_locale: 'en'
+    # default_locale: 'en'  # <=> '%kernel.default_locale%'
+    # enabled_locales: [en, fr, de, es]    # <=> '%kernel.enabled_locales%'
     required_locales: [en]
 
 # a2lix_auto_form: ~

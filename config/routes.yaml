@@ -12,7 +12,10 @@ frontend_index:
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
     defaults:
         template: frontend/index.html.twig
+        _locale: '%kernel.default_locale%'
 
 controllers:
     resource: routing.controllers
     prefix: /{_locale}
+    defaults:
+        _locale: '%kernel.default_locale%'

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -6,11 +8,11 @@ use A2lix\AutoFormBundle\Form\Attribute\AutoTypeCustom;
 use A2lix\TranslationFormBundle\Helper\OneLocaleInterface;
 use A2lix\TranslationFormBundle\Helper\OneLocaleTrait;
 use App\Entity\Common\IdTrait;
-use App\Repository\CompanyMediaLocalizeRepository;
+use App\Repository\CompanyMediaLocaleRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CompanyMediaLocalizeRepository::class)]
-class CompanyMediaLocalize implements \Stringable, OneLocaleInterface
+#[ORM\Entity(repositoryClass: CompanyMediaLocaleRepository::class)]
+class CompanyMediaLocale implements \Stringable, OneLocaleInterface
 {
     use IdTrait;
     use OneLocaleTrait;

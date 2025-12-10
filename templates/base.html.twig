@@ -7,6 +7,7 @@
         <title>{% block title %}Home{% endblock %} - A2LiX</title>
 
         {% block stylesheets %}{% endblock %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
     </head>
 
     <body>
@@ -26,6 +27,5 @@
         </footer>
 
         {% block javascripts %}{% endblock %}
-        {% block importmap %}{{ importmap('app') }}{% endblock %}
     </body>
 </html>
