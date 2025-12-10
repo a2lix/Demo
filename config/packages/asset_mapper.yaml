@@ -4,3 +4,9 @@ framework:
         paths:
             - assets/
             - vendor/a2lix/translation-form-bundle/assets/
+        missing_import_mode: strict
+
+when@prod:
+    framework:
+        asset_mapper:
+            missing_import_mode: warn
