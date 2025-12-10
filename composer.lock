@@ -4,15 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7e01a436a97f3e694396e3dc3ea613f9",
+    "content-hash": "f8d6f01dd277eb68bb2dbd426004598c",
     "packages": [
         {
             "name": "a2lix/auto-form-bundle",
-            "version": "dev-main",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/a2lix/AutoFormBundle.git",
+                "reference": "ba33c49183e06c58f0a634fffb3c5bce526cef00"
+            },
             "dist": {
-                "type": "path",
-                "url": "/bundles/AutoFormBundle",
-                "reference": "c72126a7be0447d81e38b80f02ad40d620364532"
+                "type": "zip",
+                "url": "https://api.github.com/repos/a2lix/AutoFormBundle/zipball/ba33c49183e06c58f0a634fffb3c5bce526cef00",
+                "reference": "ba33c49183e06c58f0a634fffb3c5bce526cef00",
+                "shasum": ""
             },
             "require": {
                 "php": ">=8.4",
@@ -54,22 +60,7 @@
                     "A2lix\\AutoFormBundle\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "A2lix\\AutoFormBundle\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "cs-fixer": [
-                    "php-cs-fixer fix --verbose"
-                ],
-                "phpstan": [
-                    "phpstan analyse --memory-limit=2G"
-                ],
-                "phpunit": [
-                    "phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -95,30 +86,38 @@
                 "magic",
                 "symfony"
             ],
-            "transport-options": {
-                "relative": false
-            }
+            "support": {
+                "issues": "https://github.com/a2lix/AutoFormBundle/issues",
+                "source": "https://github.com/a2lix/AutoFormBundle/tree/1.0.0"
+            },
+            "time": "2025-12-10T16:25:47+00:00"
         },
         {
             "name": "a2lix/translation-form-bundle",
-            "version": "dev-main",
+            "version": "4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/a2lix/TranslationFormBundle.git",
+                "reference": "a68314272fb0842405ed3b76731f5700d0c6b285"
+            },
             "dist": {
-                "type": "path",
-                "url": "/bundles/TranslationFormBundle",
-                "reference": "e50de87f432db19613fcf6e43cd88bcd4ba4f957"
+                "type": "zip",
+                "url": "https://api.github.com/repos/a2lix/TranslationFormBundle/zipball/a68314272fb0842405ed3b76731f5700d0c6b285",
+                "reference": "a68314272fb0842405ed3b76731f5700d0c6b285",
+                "shasum": ""
             },
             "require": {
-                "a2lix/auto-form-bundle": "@dev",
+                "a2lix/auto-form-bundle": "^1.0",
                 "php": "^8.4",
-                "symfony/config": "^7.4.1|^8.0",
-                "symfony/dependency-injection": "^7.4.2|^8.0",
-                "symfony/doctrine-bridge": "^7.4.1|^8.0",
+                "symfony/config": "^7.4|^8.0",
+                "symfony/dependency-injection": "^7.4|^8.0",
+                "symfony/doctrine-bridge": "^7.4|^8.0",
                 "symfony/event-dispatcher": "^7.4|^8.0",
-                "symfony/form": "^7.4|^8.0.1",
-                "symfony/http-kernel": "^7.4.2|^8.0",
-                "symfony/intl": "^7.4|^8.0.1",
+                "symfony/form": "^7.4|^8.0",
+                "symfony/http-kernel": "^7.4|^8.0",
+                "symfony/intl": "^7.4|^8.0",
                 "symfony/options-resolver": "^7.4|^8.0",
-                "symfony/translation": "^7.4|^8.0.1",
+                "symfony/translation": "^7.4|^8.0",
                 "symfony/ux-twig-component": "^2.31"
             },
             "require-dev": {
@@ -147,7 +146,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.x-dev"
+                    "dev-main": "4.x-dev"
                 }
             },
             "autoload": {
@@ -155,22 +154,7 @@
                     "A2lix\\TranslationFormBundle\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "A2lix\\TranslationFormBundle\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "cs-fixer": [
-                    "php-cs-fixer fix --verbose"
-                ],
-                "phpstan": [
-                    "phpstan analyse --memory-limit=2G"
-                ],
-                "phpunit": [
-                    "phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -198,9 +182,11 @@
                 "translatable",
                 "translation"
             ],
-            "transport-options": {
-                "relative": false
-            }
+            "support": {
+                "issues": "https://github.com/a2lix/TranslationFormBundle/issues",
+                "source": "https://github.com/a2lix/TranslationFormBundle/tree/4.0.0"
+            },
+            "time": "2025-12-10T18:02:29+00:00"
         },
         {
             "name": "brick/math",
@@ -9414,10 +9400,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "a2lix/auto-form-bundle": 20,
-        "a2lix/translation-form-bundle": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

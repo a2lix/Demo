@@ -6,8 +6,8 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.2",
-        "a2lix/auto-form-bundle": "@dev",
-        "a2lix/translation-form-bundle": "@dev",
+        "a2lix/auto-form-bundle": "^1.0",
+        "a2lix/translation-form-bundle": "^4.0",
         "doctrine/doctrine-bundle": "^2.18.1",
         "doctrine/doctrine-migrations-bundle": "^3.7.0",
         "doctrine/orm": "^3.5.8",
@@ -42,16 +42,6 @@
         "symfony/stopwatch": ">=7.4",
         "symfony/web-profiler-bundle": ">=7.4.0"
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "/bundles/AutoFormBundle"
-        },
-        {
-            "type": "path",
-            "url": "/bundles/TranslationFormBundle"
-        }
-    ],
     "replace": {
         "symfony/polyfill-php72": "*",
         "symfony/polyfill-php73": "*",
