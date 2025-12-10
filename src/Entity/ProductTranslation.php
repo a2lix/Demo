@@ -1,48 +1,21 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Entity\Common\IdTrait;
 use App\Repository\ProductTranslationRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Knp\DoctrineBehaviors\Contract\Entity\TranslationInterface;
-use Knp\DoctrineBehaviors\Model\Translatable\TranslationTrait;
+use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
 #[ORM\Entity(repositoryClass: ProductTranslationRepository::class)]
-class ProductTranslation implements TranslationInterface
+#[ORM\UniqueConstraint(columns: ['locale', 'object_id', 'field'])]
+class ProductTranslation extends AbstractPersonalTranslation
 {
-    use IdTrait;
-    use TranslationTrait;
-
-    #[ORM\Column(nullable: true)]
-    private ?string $title = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?string $description = null;
-
-    public function getTitle(): ?string
+    public function __construct(string $locale, string $field, string $value)
     {
-        return $this->title;
+        $this->setLocale($locale)->setField($field)->setContent($value);
     }
 
-    public function setTitle(?string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
+    #[ORM\ManyToOne(targetEntity: Product::class, inversedBy: 'translations')]
+    #[ORM\JoinColumn(name: 'object_id', nullable: false, onDelete: 'CASCADE')]
+    protected $object;
 }

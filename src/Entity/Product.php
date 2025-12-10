@@ -1,72 +1,70 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Entity;
 
+use A2lix\AutoFormBundle\Form\Attribute\AutoTypeCustom;
 use App\Entity\Common\IdTrait;
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
-use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
-use Symfony\Component\PropertyAccess\PropertyAccess;
-use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
-class Product implements TranslatableInterface
+#[Gedmo\TranslationEntity(class: ProductTranslation::class)]
+class Product
 {
     use IdTrait;
-    use TranslatableTrait;
-
-    #[Assert\Valid]
-    protected $translations;
 
     #[ORM\Column]
-    private string $code;
+    #[AutoTypeCustom(options: ['priority' => 1])]
+    public string $code;
 
-    #[ORM\ManyToOne(targetEntity: Category::class)]
-    private ?Category $category = null;
+    #[ORM\Column]
+    #[Gedmo\Translatable]
+    public ?string $title = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Gedmo\Translatable]
+    public ?string $description = null;
+
+    #[ORM\ManyToOne(targetEntity: Category::class, cascade: ['all'])]
+    public ?Category $category = null;
 
     #[ORM\OneToOne(targetEntity: ProductMedia::class, cascade: ['all'], orphanRemoval: true)]
-    private ?ProductMedia $media = null;
+    public ?ProductMedia $media = null;
 
-    public function __call($method, $arguments)
+    /** @var Collection<int, ProductTranslation> */
+    #[ORM\OneToMany(targetEntity: ProductTranslation::class, mappedBy: 'object', cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[AutoTypeCustom(options: ['priority' => 1])]
+    public Collection $translations;
+
+    public function __construct()
     {
-        return PropertyAccess::createPropertyAccessor()->getValue($this->translate(), $method);
+        $this->translations = new ArrayCollection();
     }
 
-    public function getCode(): string
+    /**
+     * @return Collection<int, ProductTranslation>
+     */
+    public function getTranslations(): Collection
     {
-        return $this->code;
+        return $this->translations;
     }
 
-    public function setCode(string $code): self
+    public function addTranslation(ProductTranslation $translation): self
     {
-        $this->code = $code;
+        if (!$this->translations->contains($translation)) {
+            $this->translations[] = $translation->setObject($this);
+        }
 
         return $this;
     }
 
-    public function getCategory(): ?Category
+    public function removeTranslation(ProductTranslation $translation): self
     {
-        return $this->category;
-    }
-
-    public function setCategory(Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    public function getMedia(): ?ProductMedia
-    {
-        return $this->media;
-    }
-
-    public function setMedia(ProductMedia $media): self
-    {
-        $this->media = $media;
+        $this->translations->removeElement($translation->setObject(null));
 
         return $this;
     }

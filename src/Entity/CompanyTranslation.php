@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -17,33 +15,9 @@ class CompanyTranslation implements TranslationInterface
     use IdTrait;
     use TranslationTrait;
 
-    #[ORM\Column(nullable: true)]
-    private ?string $title = null;
+    #[ORM\Column]
+    public ?string $title;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(?string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
+    public ?string $description = null;
 }

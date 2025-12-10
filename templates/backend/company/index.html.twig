@@ -18,28 +18,31 @@
             </tr>
         </thead>
         <tbody>
-        {% for company in companies %}
+        {% for company in companyColl %}
             <tr>
                 <td>{{ company.id }}</td>
                 <td>{{ company.code }}</td>
                 <td>{{ company.title }}</td>
                 <td>{{ company.description }}</td>
-                <td>{% for categ in company.categories %}{{ categ.title }}, {% else %}No categories{% endfor %}</td>
-                <td>{{ company.medias|first ? (company.medias|first).url }}</td>
+                <td>{% for c in company.categories %}{{ c }}, {% else %}-{% endfor %}</td>
+                <td>{{ company.media ?? '-' }}</td>
                 <td>
-                    <a class="btn btn-outline-primary" href="{{ path('backend_company_show', {'id': company.id}) }}">Show</a>
-                    <a class="btn btn-outline-primary" href="{{ path('backend_company_edit', {'id': company.id}) }}">Edit</a>
+                    <a class="btn btn-outline-primary" href="{{ path('backend_company_show', { id: company.id }) }}">Show</a>
+                    <a class="btn btn-outline-primary" href="{{ path('backend_company_editMan', { id: company.id }) }}">Edit (man)</a>
+                    <a class="btn btn-outline-primary" href="{{ path('backend_company_editAuto', { id: company.id }) }}">Edit (auto)</a>
+                    <a class="btn btn-outline-primary" href="{{ path('backend_company_delete', { id: company.id }) }}">Delete</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">No records found</td>
+                <td colspan="7">No records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
     <div class="record_actions">
-        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_company_new') }}">Create new</a>
+        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_company_newMan') }}">Create new (man)</a>
+        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_company_newAuto') }}">Create new (auto)</a>
     </div>
 {% endblock %}

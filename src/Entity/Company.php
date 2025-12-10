@@ -1,38 +1,43 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Entity;
 
+use A2lix\AutoFormBundle\Form\Attribute\AutoTypeCustom;
+use A2lix\TranslationFormBundle\Form\Type\TranslationsFormsType;
+use A2lix\TranslationFormBundle\Helper\KnpTranslatableAccessorTrait;
 use App\Entity\Common\IdTrait;
+use App\Form\CompanyMediaType;
 use App\Repository\CompanyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
-use Symfony\Component\PropertyAccess\PropertyAccess;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CompanyRepository::class)]
-class Company implements TranslatableInterface, \Stringable
+class Company implements TranslatableInterface
 {
     use IdTrait;
+    use KnpTranslatableAccessorTrait;
     use TranslatableTrait;
 
-    #[Assert\Valid]
+    #[ORM\Column]
+    #[AutoTypeCustom(options: ['priority' => 2])]
+    public string $code;
+
+    #[AutoTypeCustom(options: ['priority' => 1])]
     protected $translations;
 
-    #[ORM\Column]
-    private string $code;
-
-    /** @var Category[]|Collection<int, Category> */
+    /** @var Collection<int, Category> */
     #[ORM\OneToMany(targetEntity: Category::class, mappedBy: 'company', cascade: ['all'], orphanRemoval: true)]
-    private Collection $categories;
+    #[AutoTypeCustom(options: ['entry_options' => ['label' => false]], embedded: true)]
+    public Collection $categories;
 
-    /** @var CompanyMediaLocalize[]|Collection<int, CompanyMediaLocalize> */
-    #[ORM\OneToMany(targetEntity: CompanyMediaLocalize::class, mappedBy: 'company', indexBy: 'locale', cascade: ['all'], orphanRemoval: true)]
-    private Collection $medias;
+    /** @var Collection<int, CompanyMediaLocale> */
+    #[ORM\OneToMany(targetEntity: CompanyMediaLocale::class, mappedBy: 'company', cascade: ['all'], orphanRemoval: true, indexBy: 'locale')]
+    // #[AutoTypeCustom(embedded: true, options: ['entry_options' => ['label' => false, 'children_excluded' => ['id']]])]
+    #[AutoTypeCustom(options: ['form_type' => CompanyMediaType::class], type: TranslationsFormsType::class)]
+    public Collection $medias;
 
     public function __construct()
     {
@@ -40,38 +45,11 @@ class Company implements TranslatableInterface, \Stringable
         $this->medias = new ArrayCollection();
     }
 
-    public function __call($method, $arguments)
-    {
-        return PropertyAccess::createPropertyAccessor()->getValue($this->translate(), $method);
-    }
-
-    public function __toString(): string
-    {
-        return '?';
-    }
-
-    public function getCode(): string
-    {
-        return $this->code;
-    }
-
-    public function setCode(string $code): self
-    {
-        $this->code = $code;
-
-        return $this;
-    }
-
-    public function getCategories(): Collection
-    {
-        return $this->categories;
-    }
-
     public function addCategory(Category $category): self
     {
         if (!$this->categories->contains($category)) {
-            $category->setCompany($this);
-            $this->categories->add($category);
+            $category->company = $this;
+            $this->categories[] = $category;
         }
 
         return $this;
@@ -84,33 +62,25 @@ class Company implements TranslatableInterface, \Stringable
         return $this;
     }
 
-    public function getMedias(): Collection
+    public function addMedia(CompanyMediaLocale $media): self
     {
-        return $this->medias;
-    }
-
-    public function addMedia(CompanyMediaLocalize $media): self
-    {
-        if (!$this->medias->contains($media)) {
-            $media->setCompany($this);
-            $this->medias->add($media);
-        }
+        $media->company = $this;
+        $this->medias->set($media->locale, $media);
 
         return $this;
     }
 
-    public function removeMedia(CompanyMediaLocalize $media): self
+    public function removeMedia(CompanyMediaLocale $media): self
     {
         $this->medias->removeElement($media);
 
         return $this;
     }
 
-    public function getMediaLocalized(): ?CompanyMediaLocalize
+    public function getMedia(?string $targetedLocale = null): ?CompanyMediaLocale
     {
-        $currLocale = $this->getCurrentLocale();
-        $mediaLocalized = $this->medias->filter(static fn (CompanyMediaLocalize $media): bool => $media->getLocale() === $currLocale);
+        $targetedLocale ??= $this->getCurrentLocale();
 
-        return $mediaLocalized->first() ?: null;
+        return $this->medias->get($targetedLocale) ?? null;
     }
 }

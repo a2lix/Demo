@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="{{ app.request.locale }}">
+<html lang="{{ app.locale }}">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="view-transition" content="same-origin" />
         <title>{% block title %}Home{% endblock %} - A2LiX</title>
 
@@ -12,8 +12,8 @@
 
     <body>
         <header class="d-flex flex-column flex-md-row align-items-center p-3 fixed-top bg-dark text-white">
-            <h5 class="my-0 me-md-auto fw-normal">A2LiX</h5>
-            {{ include('_locale_switcher.html.twig') }}
+            <a href="/" class="h5 my-0 me-md-auto fw-normal">A2LiX</a>
+            <twig:A2lixTranslationForm:LocaleSwitcher />
         </header>
 
         <main class="container" role="main">

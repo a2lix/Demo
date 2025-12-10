@@ -1,14 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ product.id ? 'Edit' : 'Create new' }} Product{% endblock %}
+{% block title %}
+    {{ product.id ? 'Edit' : 'Create new' }} Product
+    [{{ app.current_route ends with 'Man' ? 'Manual' : 'Auto' }}]
+{% endblock title %}
 
 {% block content %}
-    <h1>{{ block('title') }}</h1>
+    <h1>
+        {{ block('title') }}
+    </h1>
 
     {{ form(form) }}
 
     <div class="record_actions">
-        {% if product.id %}{{ form(deleteForm) }}{% endif %}
         <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_product_index') }}">Back to list</a>
     </div>
-{% endblock %}
+{% endblock content %}

@@ -25,18 +25,19 @@
             </tr>
             <tr>
                 <th>Categories</th>
-                <td>{% for categ in company.categories %}{{ categ.title }}, {% else %}No categories{% endfor %}</td>
+                <td>{% for c in company.categories %}{{ c }}, {% else %}-{% endfor %}</td>
             </tr>
             <tr>
                 <th>Media</th>
-                <td>{{ company.mediaLocalized ? company.mediaLocalized.url }}</td>
+                <td>{{ company.media ?? '-' }}</td>
             </tr>
         </tbody>
     </table>
 
     <div class="record_actions">
         {{ form(deleteForm) }}
-        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_company_edit', {'id': company.id}) }}">Edit</a>
+        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_company_editMan', { id: company.id }) }}">Edit (man)</a>
+        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_company_editAuto', { id: company.id }) }}">Edit (auto)</a>
         <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_company_index') }}">Back to list</a>
     </div>
-{% endblock %}
+{% endblock content %}

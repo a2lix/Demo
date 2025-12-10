@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Entity\Common;
 
@@ -12,10 +10,5 @@ trait IdTrait
     #[ORM\Id]
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\GeneratedValue]
-    private ?int $id = null;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    public private(set) ?int $id = null;
 }

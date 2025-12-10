@@ -1,3 +1,5 @@
+/* @import url('../../vendor/a2lix/translation-form-bundle/assets/a2lix_translation.css'); */
+
 html {
     min-height: 100%;
 }
@@ -6,18 +8,19 @@ main {
     padding: 80px 0 40px;
 }
 
-.locale-switcher .active {
-    color: #fff
-}
-
-fieldset > div {
+fieldset>div {
     border-left: 4px solid #e9ecef;
     padding-left: 8px;
 }
 
-div[data-prototype] > div {
+div[data-prototype]>div {
     border-left: 4px solid #b7c2ce;
     margin-bottom: 10px;
     padding-left: 8px;
 }
 
+:has(input[required]) > label::after,
+:has(textarea[required]) > label::after,
+:has(select[required]) > label::after {
+  content: " *";
+}

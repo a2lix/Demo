@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Form;
 
@@ -17,13 +15,13 @@ class CategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('translations', TranslationsType::class)
+            ->add('code')
             ->add('tags', CollectionType::class, [
                 'entry_type' => TextType::class,
+                'by_reference' => false,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'delete_empty' => true,
-                'by_reference' => false,
                 'prototype_name' => '__name2__',
                 'attr' => [
                     'data-prototype-name' => '__name2__',
@@ -34,7 +32,9 @@ class CategoryType extends AbstractType
                     'label' => false,
                 ],
             ])
-            ->add('code')
+            ->add('translations', TranslationsType::class, [
+                'translatable_class' => $options['data_class'],
+            ])
         ;
     }
 

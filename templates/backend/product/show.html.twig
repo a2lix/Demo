@@ -16,26 +16,27 @@
             </tr>
             <tr>
                 <th>Title</th>
-                <td>{{ product.title }}</td>
+                <td>{{ product.title ?? '-' }}</td>
             </tr>
             <tr>
                 <th>Description</th>
-                <td>{{ product.description }}</td>
+                <td>{{ product.description ?? '-' }}</td>
             </tr>
             <tr>
                 <th>Category</th>
-                <td>{{ product.category ? product.category.title ~' ('~ product.category.company.title ~')' : 'No category' }}</td>
+                <td>{{ product.category ?? '-' }}</td>
             </tr>
             <tr>
                 <th>Media</th>
-                <td>{{ product.media ? product.media.url : 'No media' }}</td>
+                <td>{{ product.media ?? '-' }}</td>
             </tr>
         </tbody>
     </table>
 
     <div class="record_actions">
         {{ form(deleteForm) }}
-        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_product_edit', {'id': product.id}) }}">Edit</a>
+        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_product_editMan', { id: product.id }) }}">Edit (man)</a>
+        <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_product_editAuto', { id: product.id }) }}">Edit (auto)</a>
         <a class="btn btn-outline-primary btn-lg btn-block" href="{{ path('backend_product_index') }}">Back to list</a>
     </div>
-{% endblock %}
+{% endblock content %}

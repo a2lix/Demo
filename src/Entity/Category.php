@@ -1,92 +1,52 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Entity;
 
+use A2lix\AutoFormBundle\Form\Attribute\AutoTypeCustom;
+use A2lix\TranslationFormBundle\Helper\KnpTranslatableAccessorTrait;
 use App\Entity\Common\IdTrait;
 use App\Repository\CategoryRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
-use Symfony\Component\PropertyAccess\PropertyAccess;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
-class Category implements TranslatableInterface
+class Category implements \Stringable, TranslatableInterface
 {
     use IdTrait;
+    use KnpTranslatableAccessorTrait;
     use TranslatableTrait;
 
-    #[Assert\Valid]
-    protected $translations;
-
-    #[ORM\Column(type: 'json')]
-    private array $tags = [];
-
     #[ORM\Column]
-    private string $code;
+    public string $code;
+
+    #[ORM\Column(type: Types::JSON)]
+    #[AutoTypeCustom(options: ['entry_options' => ['label' => false]], embedded: true)]
+    public array $tags = [];
 
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'categories')]
-    private ?Company $company = null;
-
-    public function __call($method, $arguments)
-    {
-        return PropertyAccess::createPropertyAccessor()->getValue($this->translate(), $method);
-    }
-
-    public function getCompany(): ?Company
-    {
-        return $this->company;
-    }
-
-    public function setCompany(?Company $company): self
-    {
-        $this->company = $company;
-
-        return $this;
-    }
-
-    public function displayWithCompany(): string
-    {
-        return $this->getTitle().' ('.$this->getCompany()->getTitle().')';
-    }
-
-    public function getTags(): array
-    {
-        return $this->tags;
-    }
-
-    public function setTags(array $tags): self
-    {
-        $this->tags = $tags;
-
-        return $this;
-    }
+    #[AutoTypeCustom(excluded: true)]
+    public ?Company $company = null;
 
     public function addTag(string $tag): self
     {
-        $this->tags[] = $tag;
+        if (!\in_array($tag, $this->tags, true)) {
+            $this->tags[] = $tag;
+        }
 
         return $this;
     }
 
     public function removeTag(string $tag): self
     {
-        $this->tags = array_reduce($this->tags, static fn (array $carry, string $t) => [...$carry, ...($t !== $tag ? [$t] : [])], []);
+        $this->tags = array_filter($this->tags, static fn (string $t): bool => $t !== $tag);
 
         return $this;
     }
 
-    public function getCode(): string
+    public function __toString(): string
     {
         return $this->code;
-    }
-
-    public function setCode(string $code): self
-    {
-        $this->code = $code;
-
-        return $this;
     }
 }
