@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Controller\BackendCustom;
 
@@ -47,11 +45,11 @@ class CompanyController extends AbstractController
             str_ends_with($_route, 'Man')
             ? $this->createForm(CompanyType::class, $company)
             : $this
-            ->createForm(AutoType::class, $company)
-            ->add('save', SubmitType::class, [
-                'label' => null !== $company ? 'Edit' : 'Create',
-                'attr' => ['class' => 'btn-primary btn-lg btn-block'],
-            ])
+                ->createForm(AutoType::class, $company)
+                ->add('save', SubmitType::class, [
+                    'label' => null !== $company ? 'Edit' : 'Create',
+                    'attr' => ['class' => 'btn-primary btn-lg btn-block'],
+                ])
         )->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

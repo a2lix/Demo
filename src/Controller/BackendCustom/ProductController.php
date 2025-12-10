@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Controller\BackendCustom;
 
@@ -55,9 +53,9 @@ class ProductController extends AbstractController
             str_ends_with($_route, 'Man')
             ? $this->createForm(ProductType::class, $product)
             : $this
-            ->createForm(AutoType::class, $product, [
-                'children_embedded' => '*',
-            ])->add('save', SubmitType::class, [
+                ->createForm(AutoType::class, $product, [
+                    'children_embedded' => '*',
+                ])->add('save', SubmitType::class, [
                 'label' => null !== $product ? 'Edit' : 'Create',
                 'attr' => ['class' => 'btn-primary btn-lg btn-block'],
             ])

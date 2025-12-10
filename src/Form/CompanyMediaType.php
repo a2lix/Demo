@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Form;
 
@@ -14,7 +12,8 @@ class CompanyMediaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('url');
+            ->add('url')
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
