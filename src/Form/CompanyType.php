@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class CompanyType extends AbstractType
 {
@@ -21,6 +22,8 @@ class CompanyType extends AbstractType
             ->add('code')
             ->add('translations', TranslationsType::class, [
                 'translatable_class' => $options['data_class'],
+                // 'required_locales' => ['en','fr'],
+                // 'constraints' => new Assert\Valid(),
             ])
             ->add('categories', CollectionType::class, [
                 'entry_type' => CategoryType::class,

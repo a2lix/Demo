@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CompanyRepository::class)]
 class Company implements TranslatableInterface
@@ -26,6 +27,7 @@ class Company implements TranslatableInterface
     public string $code;
 
     #[AutoTypeCustom(options: ['priority' => 1])]
+    #[Assert\Valid]
     protected $translations;
 
     /** @var Collection<int, Category> */

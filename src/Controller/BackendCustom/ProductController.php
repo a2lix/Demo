@@ -56,9 +56,9 @@ class ProductController extends AbstractController
                 ->createForm(AutoType::class, $product, [
                     'children_embedded' => '*',
                 ])->add('save', SubmitType::class, [
-                'label' => null !== $product ? 'Edit' : 'Create',
-                'attr' => ['class' => 'btn-primary btn-lg btn-block'],
-            ])
+                    'label' => null !== $product ? 'Edit' : 'Create',
+                    'attr' => ['class' => 'btn-primary btn-lg btn-block'],
+                ])
         )->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
