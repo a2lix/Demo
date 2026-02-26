@@ -32,6 +32,16 @@
         "twig/extra-bundle": "^3.23",
         "twig/twig": "^3.23"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/bundles/AutoFormBundle"
+        },
+        {
+            "type": "path",
+            "url": "/bundles/TranslationFormBundle"
+        }
+    ],
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.94.2",
         "kubawerlos/php-cs-fixer-custom-fixers": "^3.36",

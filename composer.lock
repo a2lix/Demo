@@ -4,15 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb4f9dc7fec30fb1ec402fdf7d9172ab",
+    "content-hash": "11953bdc6d8d98a9b3df60253f404509",
     "packages": [
         {
             "name": "a2lix/auto-form-bundle",
-            "version": "dev-main",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/a2lix/AutoFormBundle.git",
+                "reference": "0c1e914b133d49e7929d835b972e23ecd210eeeb"
+            },
             "dist": {
-                "type": "path",
-                "url": "/bundles/AutoFormBundle",
-                "reference": "ba33c49183e06c58f0a634fffb3c5bce526cef00"
+                "type": "zip",
+                "url": "https://api.github.com/repos/a2lix/AutoFormBundle/zipball/0c1e914b133d49e7929d835b972e23ecd210eeeb",
+                "reference": "0c1e914b133d49e7929d835b972e23ecd210eeeb",
+                "shasum": ""
             },
             "require": {
                 "php": ">=8.4",
@@ -54,22 +60,7 @@
                     "A2lix\\AutoFormBundle\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "A2lix\\AutoFormBundle\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "cs-fixer": [
-                    "php-cs-fixer fix --verbose"
-                ],
-                "phpstan": [
-                    "phpstan analyse --memory-limit=2G"
-                ],
-                "phpunit": [
-                    "phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -95,17 +86,25 @@
                 "magic",
                 "symfony"
             ],
-            "transport-options": {
-                "relative": false
-            }
+            "support": {
+                "issues": "https://github.com/a2lix/AutoFormBundle/issues",
+                "source": "https://github.com/a2lix/AutoFormBundle/tree/1.0.1"
+            },
+            "time": "2026-02-26T16:55:28+00:00"
         },
         {
             "name": "a2lix/translation-form-bundle",
-            "version": "dev-main",
+            "version": "4.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/a2lix/TranslationFormBundle.git",
+                "reference": "861679918d8d69ffbe1773e72c29aacbbc368e76"
+            },
             "dist": {
-                "type": "path",
-                "url": "/bundles/TranslationFormBundle",
-                "reference": "7289c49308e4db537d8be80fc7a921d9c9e72fb4"
+                "type": "zip",
+                "url": "https://api.github.com/repos/a2lix/TranslationFormBundle/zipball/861679918d8d69ffbe1773e72c29aacbbc368e76",
+                "reference": "861679918d8d69ffbe1773e72c29aacbbc368e76",
+                "shasum": ""
             },
             "require": {
                 "a2lix/auto-form-bundle": "^1.0",
@@ -155,22 +154,7 @@
                     "A2lix\\TranslationFormBundle\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "A2lix\\TranslationFormBundle\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "cs-fixer": [
-                    "php-cs-fixer fix --verbose"
-                ],
-                "phpstan": [
-                    "phpstan analyse --memory-limit=2G"
-                ],
-                "phpunit": [
-                    "phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -198,9 +182,11 @@
                 "translatable",
                 "translation"
             ],
-            "transport-options": {
-                "relative": false
-            }
+            "support": {
+                "issues": "https://github.com/a2lix/TranslationFormBundle/issues",
+                "source": "https://github.com/a2lix/TranslationFormBundle/tree/4.0.3"
+            },
+            "time": "2026-02-26T17:05:55+00:00"
         },
         {
             "name": "brick/math",
@@ -787,37 +773,44 @@
         },
         {
             "name": "doctrine/doctrine-migrations-bundle",
-            "version": "3.7.0",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineMigrationsBundle.git",
-                "reference": "1e380c6dd8ac8488217f39cff6b77e367f1a644b"
+                "reference": "20505da78735744fb4a42a3bb9a416b345ad6f7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/1e380c6dd8ac8488217f39cff6b77e367f1a644b",
-                "reference": "1e380c6dd8ac8488217f39cff6b77e367f1a644b",
+                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/20505da78735744fb4a42a3bb9a416b345ad6f7c",
+                "reference": "20505da78735744fb4a42a3bb9a416b345ad6f7c",
                 "shasum": ""
             },
             "require": {
-                "doctrine/doctrine-bundle": "^2.4 || ^3.0",
+                "doctrine/dbal": "^4",
+                "doctrine/doctrine-bundle": "^3",
                 "doctrine/migrations": "^3.2",
-                "php": "^7.2 || ^8.0",
-                "symfony/deprecation-contracts": "^2.1 || ^3",
-                "symfony/framework-bundle": "^5.4 || ^6.0 || ^7.0 || ^8.0"
+                "php": "^8.4",
+                "psr/log": "^3",
+                "symfony/config": "^6.4 || ^7.0 || ^8.0",
+                "symfony/console": "^6.4 || ^7.0 || ^8.0",
+                "symfony/dependency-injection": "^6.4 || ^7.0 || ^8.0",
+                "symfony/deprecation-contracts": "^3",
+                "symfony/framework-bundle": "^6.4 || ^7.0 || ^8.0",
+                "symfony/http-foundation": "^6.4 || ^7.0 || ^8.0",
+                "symfony/http-kernel": "^6.4 || ^7.0 || ^8.0",
+                "symfony/service-contracts": "^3.0"
             },
             "require-dev": {
                 "composer/semver": "^3.0",
-                "doctrine/coding-standard": "^12 || ^14",
-                "doctrine/orm": "^2.6 || ^3",
-                "phpstan/phpstan": "^1.4 || ^2",
-                "phpstan/phpstan-deprecation-rules": "^1 || ^2",
-                "phpstan/phpstan-phpunit": "^1 || ^2",
-                "phpstan/phpstan-strict-rules": "^1.1 || ^2",
-                "phpstan/phpstan-symfony": "^1.3 || ^2",
-                "phpunit/phpunit": "^8.5 || ^9.5",
-                "symfony/phpunit-bridge": "^6.3 || ^7 || ^8",
-                "symfony/var-exporter": "^5.4 || ^6 || ^7 || ^8"
+                "doctrine/coding-standard": "^14",
+                "doctrine/orm": "^3",
+                "phpstan/phpstan": "^2",
+                "phpstan/phpstan-deprecation-rules": "^2",
+                "phpstan/phpstan-phpunit": "^2",
+                "phpstan/phpstan-strict-rules": "^2",
+                "phpstan/phpstan-symfony": "^2",
+                "phpunit/phpunit": "^12.5",
+                "symfony/var-exporter": "^6.4 || ^7 || ^8"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -852,7 +845,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/DoctrineMigrationsBundle/issues",
-                "source": "https://github.com/doctrine/DoctrineMigrationsBundle/tree/3.7.0"
+                "source": "https://github.com/doctrine/DoctrineMigrationsBundle/tree/4.0.0"
             },
             "funding": [
                 {
@@ -868,7 +861,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-11-15T19:02:59+00:00"
+            "time": "2025-12-05T08:14:38+00:00"
         },
         {
             "name": "doctrine/event-manager",

@@ -17,9 +17,9 @@ class CompanyTranslation implements TranslationInterface
     use TranslationTrait;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     public ?string $title;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Assert\NotBlank(message: 'Description is required')]
-    public ?string $description = null;
+    public ?string $description;
 }

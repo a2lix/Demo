@@ -8,6 +8,7 @@ use A2lix\TranslationFormBundle\Helper\OneLocaleTrait;
 use App\Entity\Common\IdTrait;
 use App\Repository\CompanyMediaLocaleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CompanyMediaLocaleRepository::class)]
 class CompanyMediaLocale implements \Stringable, OneLocaleInterface
@@ -16,11 +17,12 @@ class CompanyMediaLocale implements \Stringable, OneLocaleInterface
     use OneLocaleTrait;
 
     #[ORM\Column]
-    public ?string $url;
+    #[Assert\NotBlank]
+    public ?string $url = null;
 
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'medias')]
     #[AutoTypeCustom(excluded: true)]
-    public ?Company $company = null;
+    public ?Company $company;
 
     public function isEmpty(): bool
     {

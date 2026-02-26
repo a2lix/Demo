@@ -10,6 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TranslatableInterface;
 use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category implements \Stringable, TranslatableInterface
@@ -19,7 +20,11 @@ class Category implements \Stringable, TranslatableInterface
     use TranslatableTrait;
 
     #[ORM\Column]
-    public string $code;
+    #[Assert\NotBlank]
+    public ?string $code;
+
+    #[Assert\Valid]
+    protected $translations;
 
     #[ORM\Column(type: Types::JSON)]
     #[AutoTypeCustom(options: ['entry_options' => ['label' => false]], embedded: true)]
@@ -27,7 +32,7 @@ class Category implements \Stringable, TranslatableInterface
 
     #[ORM\ManyToOne(targetEntity: Company::class, inversedBy: 'categories')]
     #[AutoTypeCustom(excluded: true)]
-    public ?Company $company = null;
+    public ?Company $company;
 
     public function addTag(string $tag): self
     {

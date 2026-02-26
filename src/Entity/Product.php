@@ -20,24 +20,26 @@ class Product
 
     #[ORM\Column]
     #[AutoTypeCustom(options: ['priority' => 1])]
-    public string $code;
+    #[Assert\NotBlank]
+    public ?string $code;
 
     #[ORM\Column]
     #[Gedmo\Translatable]
-    #[Assert\NotBlank(message: 'Title is required')]
-    public ?string $title = null;
+    #[Assert\NotBlank]
+    public ?string $title;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Gedmo\Translatable]
-    public ?string $description = null;
+    public ?string $description;
 
     #[ORM\ManyToOne(targetEntity: Category::class, cascade: ['all'])]
-    public ?Category $category = null;
+    public ?Category $category;
 
     #[ORM\OneToOne(targetEntity: ProductMedia::class, cascade: ['all'], orphanRemoval: true)]
-    public ?ProductMedia $media = null;
+    #[Assert\Valid]
+    public ?ProductMedia $media;
 
-    /** @var Collection<int, ProductTranslation> */
+    /** @var Collection<array-key, ProductTranslation> */
     #[ORM\OneToMany(targetEntity: ProductTranslation::class, mappedBy: 'object', cascade: ['persist', 'remove'], orphanRemoval: true)]
     #[AutoTypeCustom(options: ['priority' => 1])]
     public Collection $translations;
@@ -48,7 +50,7 @@ class Product
     }
 
     /**
-     * @return Collection<int, ProductTranslation>
+     * @return Collection<array-key, ProductTranslation>
      */
     public function getTranslations(): Collection
     {

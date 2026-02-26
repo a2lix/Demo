@@ -6,6 +6,7 @@ use App\Entity\CompanyMediaLocale;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class CompanyMediaType extends AbstractType
 {
@@ -20,6 +21,7 @@ class CompanyMediaType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => CompanyMediaLocale::class,
+            'constraints' => new Assert\Valid(),
         ]);
     }
 }
