@@ -6,42 +6,50 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.2",
-        "a2lix/auto-form-bundle": "^1.0",
-        "a2lix/translation-form-bundle": "^4.0.1",
-        "doctrine/doctrine-bundle": "^2.18.2",
-        "doctrine/doctrine-migrations-bundle": "^3.7.0",
-        "doctrine/orm": "^3.6.0",
+        "a2lix/auto-form-bundle": "@dev",
+        "a2lix/translation-form-bundle": "@dev",
+        "doctrine/doctrine-bundle": "^3",
+        "doctrine/doctrine-migrations-bundle": "^3",
+        "doctrine/orm": "^3.6",
         "knplabs/doctrine-behaviors": ">=3",
-        "phpdocumentor/reflection-docblock": "^5.6.6",
-        "runtime/frankenphp-symfony": "^1.0",
-        "stof/doctrine-extensions-bundle": "^1.15.2",
-        "symfony/asset": ">=7.4",
-        "symfony/asset-mapper": ">=7.4.3",
-        "symfony/console": ">=7.4.3",
-        "symfony/dotenv": ">=7.4.0",
-        "symfony/expression-language": "7.3.*",
+        "stof/doctrine-extensions-bundle": "^1.15",
+        "symfony/asset": "^8",
+        "symfony/asset-mapper": "^8",
+        "symfony/console": "^8",
+        "symfony/dotenv": "^8",
+        "symfony/expression-language": "^8",
         "symfony/flex": ">=2.10",
-        "symfony/form": ">=7.4.3",
-        "symfony/framework-bundle": ">=7.4.3",
-        "symfony/intl": "7.4.*",
-        "symfony/monolog-bundle": ">=4.0.1",
-        "symfony/runtime": ">=7.4.1",
-        "symfony/security-bundle": ">=7.4.0",
-        "symfony/translation": ">=7.4.3",
-        "symfony/twig-bundle": ">=7.4.3",
-        "symfony/validator": "7.4.*",
-        "symfony/yaml": ">=7.4.1",
-        "twig/extra-bundle": "^3.22.2",
-        "twig/twig": "^3.22.2"
+        "symfony/form": "^8",
+        "symfony/framework-bundle": "^8",
+        "symfony/intl": "^8",
+        "symfony/monolog-bundle": ">=4.0",
+        "symfony/runtime": "^8",
+        "symfony/security-bundle": "^8",
+        "symfony/translation": "^8",
+        "symfony/twig-bundle": "^8",
+        "symfony/validator": "^8",
+        "symfony/yaml": "^8",
+        "twig/extra-bundle": "^3.22",
+        "twig/twig": "^3.22"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/bundles/AutoFormBundle"
+        },
+        {
+            "type": "path",
+            "url": "/bundles/TranslationFormBundle"
+        }
+    ],
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.92.3",
-        "kubawerlos/php-cs-fixer-custom-fixers": "^3.35.1",
-        "rector/rector": "^2.3.0",
-        "symfony/debug-bundle": ">=7.4.0",
+        "friendsofphp/php-cs-fixer": "^3.92",
+        "kubawerlos/php-cs-fixer-custom-fixers": "^3.35",
+        "rector/rector": "^2.3",
+        "symfony/debug-bundle": "^8",
         "symfony/maker-bundle": ">=1.65.1",
-        "symfony/stopwatch": ">=7.4",
-        "symfony/web-profiler-bundle": ">=7.4.3"
+        "symfony/stopwatch": "^8",
+        "symfony/web-profiler-bundle": "^8"
     },
     "replace": {
         "symfony/polyfill-php72": "*",
@@ -98,7 +106,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "7.4.*",
+            "require": "8.0.*",
             "docker": true
         }
     }

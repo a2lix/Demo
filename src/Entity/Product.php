@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[Gedmo\TranslationEntity(class: ProductTranslation::class)]
@@ -23,6 +24,7 @@ class Product
 
     #[ORM\Column]
     #[Gedmo\Translatable]
+    #[Assert\NotBlank(message: 'Title is required')]
     public ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
